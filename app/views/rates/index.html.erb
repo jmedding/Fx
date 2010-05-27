@@ -1,0 +1,28 @@
+<h1>Listing rates</h1>
+
+<table>
+  <tr>
+    <th>Exposure</th>
+    <th>Factor</th>
+    <th>Description</th>
+    <th>Carried</th>
+    <th>Day</th>
+  </tr>
+
+<% @rates.each do |rate| %>
+  <tr>
+    <td><%=h rate.exposure_id %></td>
+    <td><%=h rate.factor %></td>
+    <td><%=h rate.description %></td>
+    <td><%=h rate.carried %></td>
+    <td><%=h rate.day %></td>
+    <td><%= link_to 'Show', rate %></td>
+    <td><%= link_to 'Edit', edit_rate_path(rate) %></td>
+    <td><%= link_to 'Destroy', rate, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New rate', new_rate_path %>

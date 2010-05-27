@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  password: MyString
+  rating: 1
+  group_id: 1
+
+two:
+  name: MyString
+  password: MyString
+  rating: 1
+  group_id: 1

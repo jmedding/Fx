@@ -1,0 +1,33 @@
+<p>
+  <b>Tender:</b>
+  <%=h @exposure.tender_id %>
+</p>
+
+<p>
+  <b>Currency in:</b>
+  <%=h @exposure.currency_in %>
+</p>
+
+<p>
+  <b>Currency out:</b>
+  <%=h @exposure.currency_out %>
+</p>
+
+<p>
+  <b>Factor:</b>
+  <%=h @exposure.factor %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%=h @exposure.amount %>
+</p>
+
+<p>
+  <b>Supply:</b>
+  <%=h @exposure.supply %>
+</p>
+
+
+<%= link_to 'Edit', edit_exposure_path(@exposure) %> |
+<%= link_to 'Back', exposures_path %>

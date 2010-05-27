@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  exposure_id: 1
+  factor: 1.5
+  description: MyString
+  carried: 1.5
+  day: 2010-05-26
+
+two:
+  exposure_id: 1
+  factor: 1.5
+  description: MyString
+  carried: 1.5
+  day: 2010-05-26

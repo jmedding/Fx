@@ -1,0 +1,38 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+alstom:  
+  name: Alstom
+
+power:
+  parent: alstom
+  name: Power
+
+<% power.move_to_child_of(alstom) %>
+ty:
+  parent: power
+  name: TY
+
+tp:
+  parent: power
+  name: TP
+
+ts:
+  parent: power
+  name: TS
+
+tpgn:
+  parent: tp
+  name: TPGN
+
+tpsn:
+  parent: tp
+  name: TPSN
+
+tpen:
+  parent: tp
+  name: TPEN
+
+
+tphg:
+  parent: tp
+  name: TPHG

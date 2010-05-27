@@ -1,0 +1,28 @@
+<p>
+  <b>Exposure:</b>
+  <%=h @rate.exposure_id %>
+</p>
+
+<p>
+  <b>Factor:</b>
+  <%=h @rate.factor %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @rate.description %>
+</p>
+
+<p>
+  <b>Carried:</b>
+  <%=h @rate.carried %>
+</p>
+
+<p>
+  <b>Day:</b>
+  <%=h @rate.day %>
+</p>
+
+
+<%= link_to 'Edit', edit_rate_path(@rate) %> |
+<%= link_to 'Back', rates_path %>

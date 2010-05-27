@@ -1,0 +1,35 @@
+<h1>New exposure</h1>
+
+<% form_for(@exposure) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :tender_id %><br />
+    <%= f.text_field :tender_id %>
+  </p>
+  <p>
+    <%= f.label :currency_in %><br />
+    <%= f.text_field :currency_in %>
+  </p>
+  <p>
+    <%= f.label :currency_out %><br />
+    <%= f.text_field :currency_out %>
+  </p>
+  <p>
+    <%= f.label :factor %><br />
+    <%= f.text_field :factor %>
+  </p>
+  <p>
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </p>
+  <p>
+    <%= f.label :supply %><br />
+    <%= f.check_box :supply %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', exposures_path %>

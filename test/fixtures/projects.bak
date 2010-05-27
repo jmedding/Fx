@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+london:
+  user: chris
+  name: London
+  description: "A CCPP in the heart of London"
+
+zurich:
+  user: jon
+  name: Zurich
+  description: "3rd party HRSG sale for Zurich's new CCGG"

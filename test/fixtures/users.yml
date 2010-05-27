@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+jon:
+  name: Medding
+  password: medding
+  rating: nil
+  group: tphg
+
+chris:
+  name: Jacobi
+  password: jacobi
+  rating: nil
+  group: tpgn
+
+mike:
+  name: Magness
+  password: magness
+  rating: nil
+  group: tp
+
+david:
+  name: Wickham
+  password: wickham
+  rating: nil
+  group: power

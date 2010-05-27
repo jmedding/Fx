@@ -1,0 +1,37 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+eur:
+  id: 1
+  symbol: EUR
+
+usd:
+  id: 2
+  symbol: USD
+
+pln:
+  id: 3
+  symbol: PLN
+
+inr:
+  id: 4
+  symbol: INR
+
+jpn:
+  id: 5
+  symbol: JPN
+
+mxn:
+  id: 6
+  symbol: MXN
+
+cny:
+  id: 7
+  symbol: CNY
+
+gbp:
+  id: 8
+  symbol: GBP
+
+chf:
+  id: 9
+  symbol: CHF

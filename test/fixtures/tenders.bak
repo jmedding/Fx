@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+zurich_tphg:
+  id: 1
+  project: zurich
+  bid_date: 2010-05-19
+  validity: 2010-08-19
+  user: jon
+  description: "TPHG tender for Zurich project"
+
+london_tphg:
+  id: 2
+  project: london
+  bid_date: 2010-06-19
+  validity: 2010-10-19
+  user: jon
+  description: "TPHG tender for London project"
+
+london_tpgn:
+  id: 3
+  project: london
+  bid_date: 2010-06-19
+  validity: 2010-10-19
+  user: chris
+  description: "TPGN tender for London project"
