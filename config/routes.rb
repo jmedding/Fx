@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :tenders
 
-  map.resources :exposures
+  map.resources :exposures, :member =>  { :test => :get }
 
   map.resources :currencies
 
@@ -12,6 +12,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :groups
 
   map.resources :users
+  
+  map.resources :graph
 
   # The priority is based upon order of creation: first created -> highest priority.
 
