@@ -1,0 +1,34 @@
+.exposure {
+	background-color: Linen;
+	margin:5px 0px 0px 0px;
+	padding: 3px;
+	width: 973px;
+	font:12px verdana,arial,sans-serif;
+	-moz-border-radius: 6px;
+}
+
+.table {
+	background-color: white;
+	margin-right: 3px;
+	float: left;
+	width: 250px;
+	height: 210px;
+	border:0px solid red;
+	-moz-border-radius: 3px;
+}
+
+.graph {
+	float: left;
+	clear: right;
+	background-color: white;
+	padding: 5px;
+	width: 710px;
+	border:0px solid red;
+	-moz-border-radius: 3px;
+}
+
+div.spacer {
+  clear: both;
+  display: block;
+  height: 0;
+  }

@@ -1,0 +1,11 @@
+<% e = exposure %>
+<div class="exposure">
+  <div class="spacer">&nbsp;</div>
+  <table class="table">
+    <%= render(:partial => 'exposures/exposure_table_rows', :locals => {:exposure => e})  %>
+  </table>
+  <div class="graph">
+	<%= open_flash_chart_object(700,200, "/exposures/graph/#{e.id}")  %>
+  </div>
+  <div class="spacer">&nbsp;</div>
+</div>

@@ -2,7 +2,12 @@ class Exposure < ActiveRecord::Base
 	belongs_to :tender
 	has_many :rates
 
-
+	def Exposure.populate_exposures!
+		Exposure.find(:all).each do |e|
+			e.generate_dummy_rates
+		end
+	end
+	
 	def generate_dummy_rates
 		rates.delete_all
 		day = tender.bid_date-(10)
@@ -19,17 +24,18 @@ class Exposure < ActiveRecord::Base
 			rates << r
 			self.current_rate = r.factor
 			#r.save
-			puts  current_rate
+			#puts  current_rate
 			#puts rates.last.factor
 			day = day.next
 		end
-		#save
+		save
+		puts tender.description.to_s + ' current_rate for ' + amount_symbol?.to_s + ' is ' + current_rate.to_s
 		return 	Rate.find_all_by_exposure_id(id).length
 	end
 	
 	def amount_symbol?
-		currency_out_symbol? unless supply
-		currency_in_symbol? if supply
+		return currency_out_symbol? unless supply
+		return currency_in_symbol? if supply
 	end
 	def currency_in_symbol?
 		Currency.find(currency_in).symbol

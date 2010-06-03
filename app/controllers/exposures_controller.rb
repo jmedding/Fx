@@ -41,6 +41,7 @@ class ExposuresController < ApplicationController
 	  end	
 	  
 	  g = Graph.new
+	  g.set_bg_color('#FFFFFF')
 	  g.title(title, '{font-size: 12px;}')
 	  g.set_data(factors)
 	  g.line(1, '0x80a033', 'Daily rate', 10)

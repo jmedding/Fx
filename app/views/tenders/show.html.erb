@@ -3,7 +3,9 @@
 <%= render(:partial => 'tenders/tender_table_rows', :locals => {:tender => t})  %>
 </table>
 
-
+<% t.exposures.sort_by{|e| e.buffer?}.each do |e| %>
+  <%=  render(:partial => 'exposures/exposure_table_and_graph', :locals => {:exposure => e})  %>
+<% end %>
 
 <%= link_to 'Edit', edit_tender_path(@tender) %> |
 <%= link_to 'Back', tenders_path %>
