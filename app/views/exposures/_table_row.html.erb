@@ -1,0 +1,6 @@
+<tr>
+<%- fields.each_with_index do |f, i| -%>
+	<%- f = content_tag(:b, f) if i == 0 -%>
+	<%= content_tag (:td, f) %>
+<%- end -%>
+</tr>

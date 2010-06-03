@@ -1,27 +1,8 @@
-<p>
-  <b>Project:</b>
-  <%=h @tender.project_id %>
-</p>
+<% t = @tender %>
+<table>
+<%= render(:partial => 'tenders/tender_table_rows', :locals => {:tender => t})  %>
+</table>
 
-<p>
-  <b>Bid date:</b>
-  <%=h @tender.bid_date %>
-</p>
-
-<p>
-  <b>Validity:</b>
-  <%=h @tender.validity %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%=h @tender.user_id %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%=h @tender.description %>
-</p>
 
 
 <%= link_to 'Edit', edit_tender_path(@tender) %> |

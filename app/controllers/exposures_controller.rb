@@ -18,8 +18,8 @@ class ExposuresController < ApplicationController
 	  tender_desc = @exposure.tender.description
 	  direction = "Cash Out"
 	  direction = "Cash In" if @exposure.supply
-	  currency_1 = Currency.find(@exposure.currency_in).symbol
-	  currency_2 = Currency.find(@exposure.currency_out).symbol
+	  currency_1 = @exposure.currency_in_symbol?
+	  currency_2 = @exposure.currency_out_symbol?
 	  currency_1_and_2 = "#{currency_1} => #{currency_2}"
 	  title = "#{project_name}:#{group_name}:#{tender_desc}\n"
 	  title += "#{direction}:#{currency_1_and_2}"
@@ -48,9 +48,10 @@ class ExposuresController < ApplicationController
 	  g.line(1, '#CC3399', 'Carried rate', 10)
 	  g.set_x_labels(days)
 	  g.set_x_label_style( 10, '#CC3399', 2 ,10);
+	  g.set_y_legend( currency_1 + currency_2, 12, '#164166' )
 	  g.set_data(bid_to_ntp)
 	  #g.line(1, '0x80a033', 'Bid Date to NTP', 8)
-	  g.area_hollow(0,0,25,'#CC3399')
+	  g.area_hollow(0,0,10,'#031087ff', "Bid to NTP", 10)
 	  #use several area_hollow lines (safe, caution, under) with corresponding fill colors (green, yellow, red)
 	  #to show the current risk level
 	  #Would have to graph it as a % margin (with 0 being neutral)
@@ -78,7 +79,7 @@ class ExposuresController < ApplicationController
   def show
     @exposure = Exposure.find(params[:id])
     @graph = open_flash_chart_object(700,250, "/exposures/graph/#{@exposure.id}")  
-    #@graph = "/exposures/graph/#{@exposure.id}"
+    
     
 
     respond_to do |format|

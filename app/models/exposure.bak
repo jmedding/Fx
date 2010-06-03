@@ -21,4 +21,11 @@ has_many :rates
       end
  end
  
+ def currency_in_symbol
+	Currency.find(currency_in).symbol
+ end
+ 
+ def currency_out_symbol
+	Currency.find(currency_out).symbol
+ end
 end

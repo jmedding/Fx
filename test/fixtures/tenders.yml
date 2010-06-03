@@ -6,6 +6,7 @@ zurich_tphg:
   validity: 2010-08-19
   user: jon
   description: "TPHG tender for Zurich project"
+  group: tphg
 
 london_tphg:
   project: london
@@ -13,6 +14,7 @@ london_tphg:
   validity: 2010-10-19
   user: jon
   description: "TPHG tender for London project"
+  group: tphg
 
 london_tpgn:
   project: london
@@ -20,3 +22,4 @@ london_tpgn:
   validity: 2010-10-19
   user: chris
   description: "TPGN tender for London project"
+  group: tpgn

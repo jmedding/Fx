@@ -21,9 +21,11 @@ ActiveRecord::Schema.define(:version => 20100526100729) do
     t.integer  "tender_id"
     t.integer  "currency_in"
     t.integer  "currency_out"
-    t.float    "factor"
+    t.float    "carried_rate"
+    t.float    "current_rate"
     t.integer  "amount"
     t.boolean  "supply"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -58,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20100526100729) do
 
   create_table "tenders", :force => true do |t|
     t.integer  "project_id"
+    t.integer  "group_id"
     t.date     "bid_date"
     t.date     "validity"
     t.integer  "user_id"

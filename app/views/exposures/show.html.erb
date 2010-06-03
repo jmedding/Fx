@@ -1,32 +1,23 @@
-<p>
-  <b>Tender:</b>
-  <%=h @exposure.tender_id %>
-</p>
+<% e = @exposure %>
+<% t = e.tender %>
 
-<p>
-  <b>Currency in:</b>
-  <%=h @exposure.currency_in %>
-</p>
-
-<p>
-  <b>Currency out:</b>
-  <%=h @exposure.currency_out %>
-</p>
-
-<p>
-  <b>Factor:</b>
-  <%=h @exposure.factor %>
-</p>
-
-<p>
-  <b>Amount:</b>
-  <%=h @exposure.amount %>
-</p>
-
-<p>
-  <b>Supply:</b>
-  <%=h @exposure.supply %>
-</p>
+<table>
+<%= render(:partial => 'tenders/tender_table_rows', :locals => {:tender => t})  %>
+<%= render(:partial => 'table_row', :locals => {:fields => ["Group", t.group.name]})  %>
+<%= render(:partial => 'table_row', :locals => {:fields => ["Project", t.project.name]})  %>
+<%= render(:partial => 'table_row', :locals => {:fields => ["Tender", t.description]})  %>
+<%= render(:partial => 'table_row', :locals => {:fields => ["Owner", t.user.name]})  %>
+<%= render(:partial => 'table_row', :locals => {:fields => ["Bid Date", t.bid_date]})  %>
+<%= render(:partial => 'table_row', :locals => {:fields => ["Validity", t.validity]})  %>
+<%= render(:partial => 'table_row', :locals => {:fields => ["Direction", e.direction?]})  %>
+<%= render(:partial => 'table_row', :locals => {:fields => ["Currency in", e.currency_in_symbol?]})  %>
+<%= render(:partial => 'table_row', :locals => {:fields => ["Currency out", e.currency_out_symbol?]})  %>
+<%= render(:partial => 'table_row', :locals => {:fields => ["Current rate", e.current_rate]})  %>
+<%= render(:partial => 'table_row', :locals => {:fields => ["Carried rate", e.carried_rate]})  %>
+<%= render(:partial => 'table_row', :locals => {:fields => ["Amount", format_currency (e.amount, e.amount_symbol?)]})  %>
+<%= render(:partial => 'table_row', :locals => {:fields => ["Buffer", "%.1f %" % (100*e.buffer?)]})  %>
+<%= render(:partial => 'table_row', :locals => {:fields => ["Remaining validity", "%d days" % e.remaining_validity?]})  %>
+</table>
 
 <%= @graph %>
 

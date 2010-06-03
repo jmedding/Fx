@@ -1,0 +1,8 @@
+<% tender = @tender if nil|tender %>
+<% t = tender %>
+<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Group", t.group.name]})  %>
+<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Project", t.project.name]})  %>
+<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Tender", t.description]})  %>
+<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Owner", t.user.name]})  %>
+<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Bid Date", t.bid_date]})  %>
+<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Validity", t.validity]})  %>
