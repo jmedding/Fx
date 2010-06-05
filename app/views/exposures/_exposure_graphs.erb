@@ -1,0 +1,5 @@
+<% exposures.each do |e|%>
+  <div class="graph">
+	<%= open_flash_chart_object(700,200, "/exposures/graph/#{e.id}")  %>
+  </div>
+<%- end %>

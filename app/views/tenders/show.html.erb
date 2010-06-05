@@ -1,10 +1,13 @@
-<% t = @tender %>
-<table>
-<%= render(:partial => 'tenders/tender_table_rows', :locals => {:tender => t})  %>
-</table>
-
-<% t.exposures.sort_by{|e| e.buffer?}.each do |e| %>
-  <%=  render(:partial => 'exposures/exposure_table_and_graph', :locals => {:exposure => e})  %>
+<% tenders = [@tender] %>
+<% tenders.each do |t|%>
+	<table class="table">
+	<%= render(:partial => 'tenders/tender_table_rows', :locals => {:tenders => [t]})  %>
+	</table>
+	
+	<table class="table">
+	<%=  render(:partial => 'exposures/exposure_table_rows', :locals => {:exposures => t.exposures})  %>	
+	</table>
+	<%=  render(:partial => 'exposures/exposure_graphs', :locals => {:exposures => t.exposures})  %>
 <% end %>
 
 <%= link_to 'Edit', edit_tender_path(@tender) %> |

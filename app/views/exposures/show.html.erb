@@ -1,9 +1,11 @@
-<% e = @exposure %>
-<% t = e.tender %>
+<% e = [@exposure] %>
+<% t = e[0].tender if e.size > 0%>
 
 <table>
-<%= render(:partial => 'tenders/tender_table_rows', :locals => {:tender => t})  %>
-<%= render(:partial => 'exposure_table_rows', :locals => {:exposure => e})  %>
+<%= render(:partial => 'tenders/tender_table_rows', :locals => {:tenders => [t]})  %>
+</table>
+<table>
+<%= render(:partial => 'exposure_table_rows', :locals => {:exposures => e})  %>
 </table>
 
 <%= @graph %>

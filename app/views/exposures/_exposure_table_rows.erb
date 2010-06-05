@@ -1,9 +1,7 @@
-<% e = exposure %>
-<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Currency in", e.currency_in_symbol?]})  %>
-<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Currency out", e.currency_out_symbol?]})  %>
-<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Direction", e.direction?]})  %>
-<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Current rate", e.current_rate]})  %>
-<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Carried rate", e.carried_rate]})  %>
-<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Amount", format_currency (e.amount, e.amount_symbol?)]})  %>
-<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Buffer", "%.1f %" % (100*e.buffer?)]})  %>
-<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Remaining validity", "%d days" % e.remaining_validity?]})  %>
+<%  if exposures.size > 0 then -%>
+	<tr><td class="table_head" colspan="#{exposures[0].size}">Exposure Data</td></tr>
+	<%= render(:partial => 'exposures/table_row', :locals => {:header => true, :fields => exposures[0].get_fields})  %>
+	<%- exposures.each do |e| %>
+		<%= render(:partial => 'exposures/table_row', :locals => {:header => false, :fields => e.get_fields})  %>
+	<%- end -%>
+<%- end -%>

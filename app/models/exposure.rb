@@ -8,6 +8,31 @@ class Exposure < ActiveRecord::Base
 		end
 	end
 	
+	def Exposure.get_header_fields
+		e = Exposure.create( 
+			:currency_in => 1, :currency_out => 2,
+			:supply => true, :current_rate => 1, 
+			:carried_rate => 1, :amount => 20)
+		f = e.get_fields
+		e.destroy
+		return f		
+	end
+	
+	def get_fields
+		f = Array.new
+		f << Field.new("Currency In", currency_in_symbol?)
+		f << Field.new("Currency Out", currency_out_symbol?)
+		d= "Cash Out"
+		d = "Cash In" if supply
+		f << Field.new("Direction", d)
+		f << Field.new("Current Rate", "%.4f" % current_rate)
+		f << Field.new("Carried Rate", "%.4f" % carried_rate)
+		f << Field.new("Amount", amount_symbol? + " %.0f" % amount)
+		f << Field.new("Buffer", "%.1f %" % (100*buffer?))
+		f << Field.new("Remaining validity", "%d days" % remaining_validity?)
+	end
+	
+	
 	def generate_dummy_rates
 		rates.delete_all
 		day = tender.bid_date-(10)
@@ -59,11 +84,13 @@ class Exposure < ActiveRecord::Base
 	end
 	def remaining_validity?
 		v = 0
-		if Date.today > tender.bid_date
-			v = (tender.validity - Date.today).to_i
-		else
-			v = (tender.validity - tender.bid_date).to_i
-		end
+		if tender
+			if Date.today > tender.bid_date
+				v = (tender.validity - Date.today).to_i
+			else
+				v = (tender.validity - tender.bid_date).to_i
+			end
+		end		
 		return v if v > 0
 		return 0	#can not have a negative validity period...
 	end

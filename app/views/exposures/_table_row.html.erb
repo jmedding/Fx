@@ -1,6 +1,9 @@
+<%- tag = :td -%>
+<%- tag = :th if header -%>
 <tr>
-<%- fields.each_with_index do |f, i| -%>
-	<%- f = content_tag(:b, f) if i == 0 -%>
-	<%= content_tag (:td, f) %>
-<%- end -%>
+<%- fields.each do |f| -%>	
+	<%- text = f.text -%>
+	<%- text = f.header if header -%>
+	<%= content_tag (tag, text, :class => "cell") -%>
+<%- end %>
 </tr>

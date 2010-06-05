@@ -1,7 +1,7 @@
-<% t = tender %>
-<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Group", t.group.name]})  %>
-<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Project", t.project.name]})  %>
-<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Tender", t.description]})  %>
-<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Owner", t.user.name]})  %>
-<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Bid Date", t.bid_date]})  %>
-<%= render(:partial => 'exposures/table_row', :locals => {:fields => ["Validity", t.validity]})  %>
+<%  if tenders.size > 0 then -%>
+	<tr><td class="table_head" colspan="#{exposures[0].size}">Tender Data</td></tr>
+	<%= render(:partial => 'exposures/table_row', :locals => {:header => true, :fields => tenders[0].get_fields})  %>
+	<%- tenders.each do |t| %>
+		<%= render(:partial => 'exposures/table_row', :locals => {:header => false, :fields => t.get_fields})  %>
+	<%- end -%>
+<%- end -%>

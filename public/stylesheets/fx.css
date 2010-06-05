@@ -9,21 +9,28 @@
 
 .table {
 	background-color: white;
-	margin-right: 3px;
-	float: left;
-	width: 250px;
-	height: 210px;
+	margin-bottom: 20px;
 	border:0px solid red;
 	-moz-border-radius: 3px;
+	font:12px verdana,arial,sans-serif;
+	border-collapse:collapse;
 }
 
+.cell {
+	padding: 0px 10px;
+	text-align: right;
+}
+ .table_head {
+	 font-size: 16px;
+	 font-weight: bold;
+ }
 .graph {
-	float: left;
 	clear: right;
 	background-color: white;
 	padding: 5px;
 	width: 710px;
 	border:0px solid red;
+	margin-bottom: 20px;
 	-moz-border-radius: 3px;
 }
 
