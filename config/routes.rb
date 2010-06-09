@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :levels
+
+  map.resources :priviledges
+
   map.resources :rates
 
   map.resources :tenders

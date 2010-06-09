@@ -1,0 +1,24 @@
+<h1>Listing priviledges</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Group</th>
+    <th>Level</th>
+  </tr>
+
+<% @priviledges.each do |priviledge| %>
+  <tr>
+    <td><%=h priviledge.user_id %></td>
+    <td><%=h priviledge.group_id %></td>
+    <td><%=h priviledge.level_id %></td>
+    <td><%= link_to 'Show', priviledge %></td>
+    <td><%= link_to 'Edit', edit_priviledge_path(priviledge) %></td>
+    <td><%= link_to 'Destroy', priviledge, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New priviledge', new_priviledge_path %>

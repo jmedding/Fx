@@ -1,0 +1,11 @@
+<%  if groups.size > 0 then -%>	
+	<%- groups.each do |group| %>
+		<table class="table">
+		<tr><td class="table_head" colspan="#{groups[0].get_fields.size}">Group Information</td></tr>
+		<%= render(:partial => 'exposures/table_row', :locals => {:header => true, :fields => group.get_fields})  %>
+		<%= render(:partial => 'groups/group',  :locals => {:group => group})  %>
+		</table>
+	<%- end -%>
+<%- else -%>
+Sorry, No valid groups were found 	for this user.
+<%- end -%>

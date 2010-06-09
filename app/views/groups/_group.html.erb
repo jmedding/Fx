@@ -1,0 +1,6 @@
+<%= render(:partial => 'exposures/table_row', 
+	:locals => {:header => false, :fields => group.get_fields, 
+	:is_nested_set => false, :level => group.get_fields[0].level, :is_nested_set => true})  %>
+<% unless group.children.empty? %>
+<%= render group.children %>
+<% end %>

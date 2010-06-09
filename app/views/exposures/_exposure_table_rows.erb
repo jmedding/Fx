@@ -1,5 +1,5 @@
 <%  if exposures.size > 0 then -%>
-	<tr><td class="table_head" colspan="#{exposures[0].size}">Exposure Data</td></tr>
+	<tr><td class="table_head" colspan="#{exposures[0].et_fields.size}">Exposure Data</td></tr>
 	<%= render(:partial => 'exposures/table_row', :locals => {:header => true, :fields => exposures[0].get_fields})  %>
 	<%- exposures.each do |e| %>
 		<%= render(:partial => 'exposures/table_row', :locals => {:header => false, :fields => e.get_fields})  %>

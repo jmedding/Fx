@@ -1,0 +1,18 @@
+<p>
+  <b>User:</b>
+  <%=h @priviledge.user_id %>
+</p>
+
+<p>
+  <b>Group:</b>
+  <%=h @priviledge.group_id %>
+</p>
+
+<p>
+  <b>Level:</b>
+  <%=h @priviledge.level_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_priviledge_path(@priviledge) %> |
+<%= link_to 'Back', priviledges_path %>

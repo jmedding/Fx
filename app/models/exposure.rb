@@ -25,11 +25,12 @@ class Exposure < ActiveRecord::Base
 		d= "Cash Out"
 		d = "Cash In" if supply
 		f << Field.new("Direction", d)
-		f << Field.new("Current Rate", "%.4f" % current_rate)
-		f << Field.new("Carried Rate", "%.4f" % carried_rate)
-		f << Field.new("Amount", amount_symbol? + " %.0f" % amount)
-		f << Field.new("Buffer", "%.1f %" % (100*buffer?))
-		f << Field.new("Remaining validity", "%d days" % remaining_validity?)
+		f << Field.new("Current Rate", "%.4f" % current_rate, true)
+		f << Field.new("Carried Rate", "%.4f" % carried_rate, true)
+		f << Field.new("Amount", amount_symbol? + " %.0f" % amount, true)
+		f << Field.new("Buffer", "%.1f %" % (100*buffer?), true)
+		f << Field.new("Remaining validity", "%d days" % remaining_validity?, true)
+		return f
 	end
 	
 	
@@ -38,7 +39,7 @@ class Exposure < ActiveRecord::Base
 		day = tender.bid_date-(10)
 		actual= carried_rate * 1.05
 		#logger.debug("The first call is to day #{day}")
-		while day <= tender.validity do
+		while day <= Date.today do
 			actual += actual * 0.02*(0.5 - rand)
 			r = Rate.new(
 				:exposure => self, 

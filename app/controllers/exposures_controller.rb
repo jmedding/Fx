@@ -52,7 +52,7 @@ class ExposuresController < ApplicationController
 	  g.set_y_legend( currency_1 + currency_2, 12, '#164166' )
 	  g.set_data(bid_to_ntp)
 	  #g.line(1, '0x80a033', 'Bid Date to NTP', 8)
-	  g.area_hollow(0,0,10,'#031087ff', "Bid to NTP", 10)
+	  g.area_hollow(0,0,10,'#031087ff', "Validity", 10)
 	  #use several area_hollow lines (safe, caution, under) with corresponding fill colors (green, yellow, red)
 	  #to show the current risk level
 	  #Would have to graph it as a % margin (with 0 being neutral)

@@ -14,11 +14,25 @@
 	-moz-border-radius: 3px;
 	font:12px verdana,arial,sans-serif;
 	border-collapse:collapse;
+	border: 2px solid grey;
+}
+
+.table a{
+	color: DarkSlateGrey;
+	font-weight: Bold;
+	text-decoration: none;
+}
+.table a:link{}
+
+.table a:hover{
+	color: Blue;
 }
 
 .cell {
 	padding: 0px 10px;
-	text-align: right;
+	text-align: center;
+	border-collapse:collapse;
+	border: 1px solid grey;
 }
  .table_head {
 	 font-size: 16px;
@@ -29,7 +43,7 @@
 	background-color: white;
 	padding: 5px;
 	width: 710px;
-	border:0px solid red;
+	border:1px solid grey;
 	margin-bottom: 20px;
 	-moz-border-radius: 3px;
 }

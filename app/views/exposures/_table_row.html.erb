@@ -1,9 +1,17 @@
 <%- tag = :td -%>
+<%- colors = ['Gainsboro', 'Plum', 'Burlywood', 'LightCyan', 'Lavender', 'Khaki']-%>
 <%- tag = :th if header -%>
-<tr>
+<%- level = 0 unless nil.|level -%>
+<%- is_nested_set = false unless nil.|is_nested_set -%>
+<%- old_row_params = "style=\"font-size:#{15-2*level}px\"" %>
+<%- row_params = "style=\"background-color:#{colors[level]}\"" %>
+<tr <%= row_params if is_nested_set%> >
 <%- fields.each do |f| -%>	
-	<%- text = f.text -%>
+	<%- text = link_to_unless(f.link_object == nil, f.text, f.link_object) -%>
 	<%- text = f.header if header -%>
-	<%= content_tag (tag, text, :class => "cell") -%>
+	<%- params = { :class => "cell", 
+		:style =>("text-align:right" if f.is_number),
+		:style =>("text-align:left; padding-left:#{5+level*7}px" if f.is_nested_set)} -%>
+	<%= content_tag (tag, text, params) -%>
 <%- end %>
 </tr>

@@ -2,7 +2,9 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.xml
   def index
-    @groups = Group.all
+	#Once sessions are implemented, return all groups where the user has a priveledge
+	#A table including all subgroups will be generated.
+    @groups = Group.find_all_by_name("Alstom")
 
     respond_to do |format|
       format.html # index.html.erb
