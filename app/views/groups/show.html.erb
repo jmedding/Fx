@@ -1,23 +1,12 @@
-<p>
-  <b>Parent:</b>
-  <%=h @group.parent_id %>
-</p>
-
-<p>
-  <b>Lft:</b>
-  <%=h @group.lft %>
-</p>
-
-<p>
-  <b>Rgt:</b>
-  <%=h @group.rgt %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%=h @group.name %>
-</p>
-
+<%- tenders = [] -%>
+<%- @group.get_self_and_children?.each {|g| tenders = tenders|g.tenders} -%>
+<table class="table">
+<%= render(:partial => 'groups/display_groups', :locals => {:groups => [@group]})  %>
+</table>
+<table class="table">
+<%= render(:partial => 'tenders/tender_table_rows', :locals => {:tenders => tenders})  %>
+</table>
+<%= "No tenders in this group!<br/><br/>" if tenders.empty? %>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

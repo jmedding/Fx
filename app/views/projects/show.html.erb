@@ -1,18 +1,14 @@
-<p>
-  <b>User:</b>
-  <%=h @project.user_id %>
-</p>
+<%= render(:partial => 'projects/display_projects', :locals => {:projects => [@project]})  %>
 
-<p>
-  <b>Name:</b>
-  <%=h @project.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%=h @project.description %>
-</p>
-
-
+<% tenders = @project.tenders %>
+<% tenders.each do |tender| %>
+	<table class="table">
+	<%= render(:partial => 'tenders/tender_table_rows', :locals => {:tenders => [tender]})  %>
+	</table>
+	<table class="table">
+	<%=  render(:partial => 'exposures/exposure_table_rows', :locals => {:exposures => tender.exposures})  %>	
+	</table>
+<%- end -%>
+<br/>
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

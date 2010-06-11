@@ -1,0 +1,11 @@
+<%  if projects.size > 0 then -%>
+	<table class="table">
+	<tr><td class="table_head" colspan="#{groups[0].get_fields.size}">Project Listing</td></tr>
+	<%= render(:partial => 'exposures/table_row', :locals => {:header => true, :fields => projects[0].get_fields})  %>
+	<% projects.each do |p| %>
+		<%= render(:partial => 'exposures/table_row', :locals => {:header => false, :fields => p.get_fields}) %>
+	<%- end -%>
+	</table>
+<%- else -%>
+Sorry, No valid projects were found for this group/user(??).
+<%- end -%>

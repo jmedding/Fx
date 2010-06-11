@@ -1,17 +1,20 @@
 class Tender < ActiveRecord::Base
-  belongs_to :project
-  belongs_to :user
-  has_many :exposures
-  belongs_to :group
+	belongs_to :project
+	belongs_to :user
+	has_many :exposures
+	belongs_to :group
 
-  #attr_reader :bid_date, :validity, :user, :description, :project
-  
-  def get_fields
+	#attr_reader :bid_date, :validity, :user, :description, :project
+	
+	def get_fields
 		f = Array.new
 		f << Field.new("Group", group.name)
+		f.last.link_object = group
 		f << Field.new("Project", project.name)
+		f.last.link_object = project
 		f << Field.new("Tender", description)
 		f << Field.new("Owner", user.name)
+		f.last.link_object = user
 		f << Field.new("Bid Date", bid_date)
 		f << Field.new("Validity", validity)
 		return f
