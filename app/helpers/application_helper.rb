@@ -5,7 +5,8 @@ module ApplicationHelper
 		number_to_currency(amount, 
 			:delimiter => "'", 
 			:unit => symbol, 
-			:precision => decimals)
+			:precision => decimals,
+			:format => "%n %u")
 	end
 	
 end

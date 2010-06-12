@@ -7,6 +7,7 @@
 <%- row_params = "style=\"background-color:#{colors[level]}\"" %>
 <tr <%= row_params if is_nested_set%> >
 <%- fields.each do |f| -%>	
+	<%- f.text = format_currency(f.text.to_i/1000, "k"+f.currency) if nil.|f.currency-%>
 	<%- text = link_to_unless(f.link_object == nil, f.text, f.link_object) -%>
 	<%- text = f.header if header -%>
 	<%- style_text = "text-align:right;" if f.is_number -%>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100526100729) do
+ActiveRecord::Schema.define(:version => 20100609115546) do
 
   create_table "currencies", :force => true do |t|
     t.string   "symbol"
@@ -35,6 +35,20 @@ ActiveRecord::Schema.define(:version => 20100526100729) do
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "levels", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "priviledges", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.integer  "level_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

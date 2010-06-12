@@ -1,10 +1,6 @@
 <% tenders = [@tender] %>
 <% tenders.each do |t|%>
 	<table class="table">
-	<%= render(:partial => 'tenders/tender_table_rows', :locals => {:tenders => [t]})  %>
-	</table>
-	
-	<table class="table">
 	<%=  render(:partial => 'exposures/exposure_table_rows', :locals => {:exposures => t.exposures})  %>	
 	</table>
 	<%=  render(:partial => 'exposures/exposure_graphs', :locals => {:exposures => t.exposures})  %>

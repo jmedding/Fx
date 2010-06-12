@@ -20,16 +20,28 @@ class Exposure < ActiveRecord::Base
 	
 	def get_fields
 		f = Array.new
-		f << Field.new("Currency In", currency_in_symbol?)
-		f << Field.new("Currency Out", currency_out_symbol?)
+		f << Field.new("Group", tender.group.name)
+		f.last.link_object = tender.group
+		f << Field.new("Project", tender.project.name)
+		f.last.link_object = tender.project
+		#f << Field.new("Tender", description)
+		f << Field.new("Owner", tender.user.name)
+		f.last.link_object = tender.user
+		f << Field.new("Bid Date", tender.bid_date)
+		#f << Field.new("Validity", tender.validity)
+		f << Field.new("Fx", fx_symbol?)
+		#f << Field.new("Currency In", currency_in_symbol?)
+		#f << Field.new("Currency Out", currency_out_symbol?)
 		d= "Cash Out"
 		d = "Cash In" if supply
 		f << Field.new("Direction", d)
 		f << Field.new("Current Rate", "%.4f" % current_rate, true)
 		f << Field.new("Carried Rate", "%.4f" % carried_rate, true)
-		f << Field.new("Amount", amount_symbol? + " %.0f" % amount, true)
+		f << Field.new("Amount", amount, true)
+		f.last.currency = amount_symbol?
 		f << Field.new("Buffer", "%.1f %" % (100*buffer?), true)
 		f << Field.new("Remaining validity", "%d days" % remaining_validity?, true)
+		f.last.hover_text = tender.validity
 		return f
 	end
 	
@@ -45,7 +57,7 @@ class Exposure < ActiveRecord::Base
 				:exposure => self, 
 				:factor => actual, 
 				:carried => carried_rate, 
-				:description => (currency_in_symbol? + ":" + currency_out_symbol?),
+				:description => (fx_symbol?),
 				:day => day)
 			rates << r
 			self.current_rate = r.factor
@@ -63,6 +75,10 @@ class Exposure < ActiveRecord::Base
 		return currency_out_symbol? unless supply
 		return currency_in_symbol? if supply
 	end
+	def fx_symbol?
+		currency_in_symbol? + ":" + currency_out_symbol?
+	end
+	
 	def currency_in_symbol?
 		Currency.find(currency_in).symbol
 	end

@@ -1,5 +1,5 @@
 <%  if tenders.size > 0 then -%>
-	<tr><td class="table_head" colspan="#{exposures[0].size}">Tender Data</td></tr>
+	<tr><td class="table_head" colspan="<%= tenders[0].get_fields.size %>">Tender Data</td></tr>
 	<%= render(:partial => 'exposures/table_row', :locals => {:header => true, :fields => tenders[0].get_fields})  %>
 	<%- tenders.each do |t| %>
 		<%= render(:partial => 'exposures/table_row', :locals => {:header => false, :fields => t.get_fields})  %>
