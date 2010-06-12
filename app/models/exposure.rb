@@ -30,6 +30,7 @@ class Exposure < ActiveRecord::Base
 		f << Field.new("Bid Date", tender.bid_date)
 		#f << Field.new("Validity", tender.validity)
 		f << Field.new("Fx", fx_symbol?)
+		f.last.link_object = self
 		#f << Field.new("Currency In", currency_in_symbol?)
 		#f << Field.new("Currency Out", currency_out_symbol?)
 		d= "Cash Out"
@@ -40,7 +41,7 @@ class Exposure < ActiveRecord::Base
 		f << Field.new("Amount", amount, true)
 		f.last.currency = amount_symbol?
 		f << Field.new("Buffer", "%.1f %" % (100*buffer?), true)
-		f << Field.new("Remaining validity", "%d days" % remaining_validity?, true)
+		f << Field.new("Remaining validity", "%d days" % tender.remaining_validity?, true)
 		f.last.hover_text = tender.validity
 		return f
 	end
@@ -99,18 +100,18 @@ class Exposure < ActiveRecord::Base
 	def buffer?
 		(current_rate - carried_rate)/carried_rate
 	end
-	def remaining_validity?
-		v = 0
-		if tender
-			if Date.today > tender.bid_date
-				v = (tender.validity - Date.today).to_i
-			else
-				v = (tender.validity - tender.bid_date).to_i
-			end
-		end		
-		return v if v > 0
-		return 0	#can not have a negative validity period...
-	end
+	#~ def remaining_validity?
+		#~ v = 0
+		#~ if tender
+			#~ if Date.today > tender.bid_date
+				#~ v = (tender.validity - Date.today).to_i
+			#~ else
+				#~ v = (tender.validity - tender.bid_date).to_i
+			#~ end
+		#~ end		
+		#~ return v if v > 0
+		#~ return 0	#can not have a negative validity period...
+	#~ end
 	
 	
 end

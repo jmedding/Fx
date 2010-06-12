@@ -4,6 +4,7 @@ class GroupsController < ApplicationController
   def index
 	#Once sessions are implemented, return all groups where the user has a priveledge
 	#A table including all subgroups will be generated.
+	Group.rebuild! if nil.|Group.find(:first).rgt
     @groups = Group.find_all_by_name("Alstom")
 
     respond_to do |format|
@@ -15,7 +16,8 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.xml
   def show
-    @group = Group.find(params[:id])
+    Group.rebuild! if nil.|Group.find(:first).rgt
+	 @group = Group.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +28,8 @@ class GroupsController < ApplicationController
   # GET /groups/new
   # GET /groups/new.xml
   def new
-    @group = Group.new
+    Group.rebuild! if nil.|Group.find(:first).rgt
+	 @group = Group.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,13 +39,15 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
-    @group = Group.find(params[:id])
+    Group.rebuild! if nil.|Group.find(:first).rgt
+	 @group = Group.find(params[:id])
   end
 
   # POST /groups
   # POST /groups.xml
   def create
-    @group = Group.new(params[:group])
+    Group.rebuild! if nil.|Group.find(:first).rgt
+	 @group = Group.new(params[:group])
 
     respond_to do |format|
       if @group.save
@@ -59,7 +64,8 @@ class GroupsController < ApplicationController
   # PUT /groups/1
   # PUT /groups/1.xml
   def update
-    @group = Group.find(params[:id])
+    Group.rebuild! if nil.|Group.find(:first).rgt
+	 @group = Group.find(params[:id])
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
@@ -76,7 +82,8 @@ class GroupsController < ApplicationController
   # DELETE /groups/1
   # DELETE /groups/1.xml
   def destroy
-    @group = Group.find(params[:id])
+    Group.rebuild! if nil.|Group.find(:first).rgt
+	 @group = Group.find(params[:id])
     @group.destroy
 
     respond_to do |format|

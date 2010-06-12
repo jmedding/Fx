@@ -13,10 +13,12 @@ class Tender < ActiveRecord::Base
 		f << Field.new("Project", project.name)
 		f.last.link_object = project
 		f << Field.new("Tender", description)
+		f.last.link_object = self
 		f << Field.new("Owner", user.name)
 		f.last.link_object = user
 		f << Field.new("Bid Date", bid_date)
 		f << Field.new("Validity", validity)
+		f << Field.new("Days", remaining_validity?, true)
 		return f
 	end
 	
@@ -34,5 +36,15 @@ class Tender < ActiveRecord::Base
 		e.destroy
 		return f
 	end
-
+	
+	def remaining_validity?
+		v = 0
+		if Date.today > bid_date
+			v = (validity - Date.today).to_i
+		else
+			v = (validity - bid_date).to_i
+		end
+		return v if v > 0
+		return 0	#can not have a negative validity period...
+	end
 end

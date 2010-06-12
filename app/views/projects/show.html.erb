@@ -3,9 +3,6 @@
 <% tenders = @project.tenders %>
 <% tenders.each do |tender| %>
 	<table class="table">
-	<%= render(:partial => 'tenders/tender_table_rows', :locals => {:tenders => [tender]})  %>
-	</table>
-	<table class="table">
 	<%=  render(:partial => 'exposures/exposure_table_rows', :locals => {:exposures => tender.exposures})  %>	
 	</table>
 <%- end -%>

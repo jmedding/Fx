@@ -2,9 +2,6 @@
 <% t = e[0].tender if e.size > 0%>
 
 <table class="table">
-<%= render(:partial => 'tenders/tender_table_rows', :locals => {:tenders => [t]})  %>
-</table>
-<table class="table">
 <%= render(:partial => 'exposure_table_rows', :locals => {:exposures => e})  %>
 </table>
 
