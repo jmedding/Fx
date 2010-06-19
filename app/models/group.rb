@@ -1,8 +1,10 @@
 class Group < ActiveRecord::Base
+#	default_scope :order => 'self.level'
   acts_as_nested_set
   has_many :users
   has_many :tenders
   has_many :priviledges
+  
   
   attr_reader :num_projects, :num_tenders, :num_exposures, :num_currencies
   attr_writer :num_projects, :num_tenders, :num_exposures, :num_currencies

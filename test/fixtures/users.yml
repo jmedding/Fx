@@ -2,24 +2,35 @@
 
 jon:
   name: Medding
-  password: medding
-  rating: nil
-  group: tphg
+  login: medding
+  crypted_password: 111461331ce3d9b2c3d116083e0b32d1c94add1bfd70360b0d9c78f9d71909dd6eda8cc9be45a166c48f411155a3f9b10b16dbca096d02255b5d43289ccd9255
+  password_salt: AHqVaIfoQDB6u2ol4bH4
+  persistence_token: 073f7ec46244e8f66365c4124c115a9f415f75f522960a174d33eb73a50058f8283bfe1f7065835ee157bed81fde09ea1d5cf6e0467bcc93e79ee13f36ecec28    
 
 chris:
   name: Jacobi
-  password: jacobi
-  rating: nil
-  group: tpgn
+  login: jacobi
+  crypted_password: 94b8c248ef05945a52f461769c9be42d0bc8fc3525f292c594c0b3acfdc66d601c461609e598f9b2acdd50a15715ec5a25f3f9b0755d5fc1e7594c07aa5e7df9
+  password_salt: lRmBdgrpQaCHQ3z2TzMz
+  persistence_token: caf8d316464131dc90d1735a2dfbbb38ce59451c95edf94b16b99c19268c329af3e9954f26c52b7fbf1837db62e8619bdc714992f97f84944a905bff0e6ac647
 
 mike:
   name: Magness
-  password: magness
-  rating: nil
-  group: tp
+  login: magness
+  crypted_password: fc301913303c43b93597f8ae31090390da2fbdcf8156f2a4a19f5c16a7e396d110c8d4ffd23c2e10f10bf0af68c20c32e7c42d47a31fb0e1b75369096ba27659
+  password_salt: 9jVaUrFvU0-9tq8u4QrK
+  persistence_token: b38e7bc4591b26bc0fa736911f713e82bc7fb374c0743636586e086988109e700c1af59b2aa2b7bedc39cfacf7e048e59457ca732d28000e3c116a502d0ca2f1
 
 david:
   name: Wickham
-  password: wickham
-  rating: nil
-  group: power
+  login: wickham
+  crypted_password: 344f03108f6046be92ebb4ef1de7d8f334571fd06d6e97ed2e0e286653379318cb268cf1f3cf4458ebfe3e31d75c1c11d764e205d0d9866077eb4e436441146b
+  password_salt: nLt6wn-C6FhQuIETl_5Z
+  persistence_token: 5c16d69d2757645c897cff1587cd37e4a0edf57b79f1c365f67d0f5b3c00d16f982aff2ba4ddf544b02fd79c0aa8f4336ad373ba98ed395633be91b7bab74bc4
+
+root:
+  name: Root
+  login: root
+  crypted_password: decd2d18cfe4ff18aec9cd0c040fa0cbd5152236f515c1fed8e397c1e778e6a8d5db7c9bc877294bebcd9b0942d4d10d8df0c353700ef8c3eab90cf8ce6405cf
+  password_salt: 1IJ9nNwr8leIXoA8oMc7
+  persistence_token: 4d0a80405898cb4561af01ac06608f391008148db18541208f8cb721d395bbca966987931a4ea10aef285a770bf15172bb6697bc6f1d8d5f669a852bc26d4b28

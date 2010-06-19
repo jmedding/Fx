@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	protect_from_forgery :except => [:delete, :create]
+	
   # GET /users
   # GET /users.xml
   def index
@@ -44,7 +46,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:notice] = 'User was successfully created.'
+        flash[:notice] = 'Registration was successfull.'
         format.html { redirect_to(@user) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else

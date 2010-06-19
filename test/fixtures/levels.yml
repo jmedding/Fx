@@ -1,7 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
+#~ user:
+  #~ id: 1
+  #~ name: User
 
-two:
-  name: MyString
+#~ admin:
+  #~ id: 2
+  #~ name: Admin
+
+#~ root:
+  #~ id: 3
+  #~ name: Root

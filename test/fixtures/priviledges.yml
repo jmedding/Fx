@@ -1,11 +1,27 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  user_id: 1
-  group_id: 1
-  level_id: 1
+j1:
+  user: jon
+  group: tphg
+  level: admin
 
-two:
-  user_id: 1
-  group_id: 1
-  level_id: 1
+j2:
+  user: jon
+  group: tpsn
+  level: admin
+
+c1:
+  user: chris
+  group: tpng
+  level: admin
+
+c2:
+  user: chris
+  group: tpen
+  level: admin
+
+d1:
+  user: david
+  group: power
+  level: admin
+

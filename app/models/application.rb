@@ -1,0 +1,1 @@
+self.allow_forgery_protection = false

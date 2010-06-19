@@ -1,12 +1,19 @@
 class GroupsController < ApplicationController
+	before_filter :logged_in? 
+	
+	def logged_in?
+		redirect_to(login_path) unless current_user
+	end
+	
   # GET /groups
   # GET /groups.xml
   def index
 	#Once sessions are implemented, return all groups where the user has a priveledge
 	#A table including all subgroups will be generated.
 	Group.rebuild! if nil.|Group.find(:first).rgt
-    @groups = Group.find_all_by_name("Alstom")
-
+	
+	@groups = current_user.get_unique_group_branches
+	
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @groups }

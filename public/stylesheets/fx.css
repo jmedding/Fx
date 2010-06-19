@@ -1,3 +1,24 @@
+.header {
+	background-color: Green;
+	font:36px verdana,arial,sans-serif;
+	color: White;
+	height: 55px;
+	vertical-align: middle;
+	padding: 10px;
+}
+
+.login {
+	font:12px verdana,arial,sans-serif;
+	float:right;
+	color: White;
+}
+
+.login a{
+	color: Yellow;
+	font-weight: Normal;
+	text-decoration: none;
+}
+
 .exposure {
 	background-color: Linen;
 	margin:5px 0px 0px 0px;
@@ -53,3 +74,6 @@ div.spacer {
   display: block;
   height: 0;
   }
+
+body {
+	font-family:verdana,arial,sans-serif;

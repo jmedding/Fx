@@ -1,6 +1,7 @@
 class Exposure < ActiveRecord::Base
+	default_scope :order => 'currency_out'
 	belongs_to :tender
-	has_many :rates
+	has_many :rates,		:order => "day"
 
 	def Exposure.populate_exposures!
 		Exposure.find(:all).each do |e|
