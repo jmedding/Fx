@@ -1,10 +1,6 @@
 class GroupsController < ApplicationController
 	before_filter :logged_in? 
 	
-	def logged_in?
-		redirect_to(login_path) unless current_user
-	end
-	
   # GET /groups
   # GET /groups.xml
   def index
@@ -24,7 +20,8 @@ class GroupsController < ApplicationController
   # GET /groups/1.xml
   def show
     Group.rebuild! if nil.|Group.find(:first).rgt
-	 @group = Group.find(params[:id])
+	 #this won't work - it won't find children groups
+	 @group = current_user.groups.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

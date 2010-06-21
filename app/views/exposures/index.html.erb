@@ -1,4 +1,4 @@
-<h1>Listing exposures</h1>
+<h1>Exposures for <%= current_user.name%></h1>
 <table class="table">
 <%= render(:partial => 'exposure_table_rows', :locals => {:exposures => @exposures})  %>
 </table>

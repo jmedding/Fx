@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+	before_filter :logged_in? 
   # GET /projects
   # GET /projects.xml
   def index
@@ -13,7 +14,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.xml
   def show
-    @project = Project.find(params[:id])
+    @project = current_user.tenders.find_by_project_id(params[:id]).project
+	 @tenders = @project.tenders.find_all_by_user_id(current_user.id) if @project
 
     respond_to do |format|
       format.html # show.html.erb

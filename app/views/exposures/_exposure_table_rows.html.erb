@@ -1,5 +1,6 @@
 <%  if exposures.size > 0 then -%>
 	<% header_text =  exposures[0].tender.description%>
+	<% header_text = "Exposures accessible to #{current_user.name}" if exposures.size > 1 %>
 	<tr><td class="table_head" colspan="<%= exposures[0].get_fields.size %>"><%=  header_text %></td></tr>
 	<%= render(:partial => 'exposures/table_row', :locals => {:header => true, :fields => exposures[0].get_fields})  %>
 	<%- exposures.each do |e| %>

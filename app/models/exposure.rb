@@ -2,7 +2,8 @@ class Exposure < ActiveRecord::Base
 	default_scope :order => 'currency_out'
 	belongs_to :tender
 	has_many :rates,		:order => "day"
-
+	#belongs_to :user, :through => :tender  #doesn't work,
+	
 	def Exposure.populate_exposures!
 		Exposure.find(:all).each do |e|
 			e.generate_dummy_rates

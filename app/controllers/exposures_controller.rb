@@ -1,8 +1,16 @@
 class ExposuresController < ApplicationController
+	before_filter :logged_in? 
+	
+	def get_exposure_for_user
+		e = Exposure.find(params[:id])
+		return nil unless e.tender.user == current_user
+		return e		
+	end
+	
   # GET /exposures
   # GET /exposures.xml
   def index
-    @exposures = Exposure.all
+    @exposures = current_user.exposures
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,10 +20,10 @@ class ExposuresController < ApplicationController
   
   #/exposure/graph/1
   def graph
-	  @exposure = Exposure.find(params[:id])
-	  project_name = @exposure.tender.project.name
-	  group_name = @exposure.tender.user.group.name
+	  @exposure = get_exposure_for_user
 	  tender_desc = @exposure.tender.description
+	  project_name = @exposure.tender.project.name
+	  group_name = @exposure.tender.group.name
 	  direction = "Cash Out"
 	  direction = "Cash In" if @exposure.supply
 	  currency_1 = @exposure.currency_in_symbol?
@@ -32,6 +40,7 @@ class ExposuresController < ApplicationController
 		  carrieds << r.carried
 		  days << r.day
 	  end
+	  logger.warn("Factors: #{factors.size}")
 	  max = (factors+carrieds).max*1.05
 	  min = (factors+carrieds).min*0.95
 	  bid_to_ntp = days.map do |day|
@@ -78,11 +87,9 @@ class ExposuresController < ApplicationController
   # GET /exposures/1
   # GET /exposures/1.xml
   def show
-    @exposure = Exposure.find(params[:id])
+    @exposure = get_exposure_for_user #Exposure.find(params[:id])
     @graph = open_flash_chart_object(700,250, "/exposures/graph/#{@exposure.id}")  
     
-    
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @exposure }
@@ -93,6 +100,7 @@ class ExposuresController < ApplicationController
   # GET /exposures/new.xml
   def new
     @exposure = Exposure.new
+	 #@exposure.tender = params[:tender]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -102,7 +110,7 @@ class ExposuresController < ApplicationController
 
   # GET /exposures/1/edit
   def edit
-    @exposure = Exposure.find(params[:id])
+    @exposure = get_exposure_for_user #Exposure.find(params[:id])
   end
 
   # POST /exposures
@@ -125,7 +133,7 @@ class ExposuresController < ApplicationController
   # PUT /exposures/1
   # PUT /exposures/1.xml
   def update
-    @exposure = Exposure.find(params[:id])
+    @exposure = get_exposure_for_user #Exposure.find(params[:id])
 
     respond_to do |format|
       if @exposure.update_attributes(params[:exposure])
@@ -142,7 +150,7 @@ class ExposuresController < ApplicationController
   # DELETE /exposures/1
   # DELETE /exposures/1.xml
   def destroy
-    @exposure = Exposure.find(params[:id])
+    @exposure = get_exposure_for_user #Exposure.find(params[:id])
     @exposure.destroy
 
     respond_to do |format|

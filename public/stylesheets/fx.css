@@ -1,8 +1,13 @@
+.navItem {
+	clear: right;
+	font-size: 14px;
+	padding: 2px;
+}
+
 .header {
 	background-color: Green;
 	font:36px verdana,arial,sans-serif;
 	color: White;
-	height: 55px;
 	vertical-align: middle;
 	padding: 10px;
 }
@@ -13,7 +18,7 @@
 	color: White;
 }
 
-.login a{
+.header a{
 	color: Yellow;
 	font-weight: Normal;
 	text-decoration: none;

@@ -5,6 +5,8 @@
 #   
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
+#fill the exposures with dummy data
+Exposure.populate_exposures!
 
 ['user', 'admin', 'root'].each_with_index do |level, i|
 	Level.create(:name => level, :step => i+1)

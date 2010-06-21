@@ -1,8 +1,15 @@
 class TendersController < ApplicationController
+	before_filter :logged_in? 
+	
+	def get_tender_for_user
+		#the next line will cause an error if the tender is not found.
+		current_user.tenders.find(params[:id])
+	end
+	
   # GET /tenders
   # GET /tenders.xml
   def index
-    @tenders = Tender.all
+    @tenders = current_user.tenders
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +20,8 @@ class TendersController < ApplicationController
   # GET /tenders/1
   # GET /tenders/1.xml
   def show
-    @tender = Tender.find(params[:id])
+	  
+    @tender = get_tender_for_user #Tender.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,8 +32,10 @@ class TendersController < ApplicationController
   # GET /tenders/new
   # GET /tenders/new.xml
   def new
+	  #we should pass the cuurent_user 
     @tender = Tender.new
-
+	 @tender.user = current_user
+	 
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @tender }
@@ -34,7 +44,7 @@ class TendersController < ApplicationController
 
   # GET /tenders/1/edit
   def edit
-    @tender = Tender.find(params[:id])
+    @tender = get_tender_for_user #Tender.find(params[:id])
   end
 
   # POST /tenders
@@ -57,7 +67,7 @@ class TendersController < ApplicationController
   # PUT /tenders/1
   # PUT /tenders/1.xml
   def update
-    @tender = Tender.find(params[:id])
+    @tender = get_tender_for_user #Tender.find(params[:id])
 
     respond_to do |format|
       if @tender.update_attributes(params[:tender])
@@ -74,7 +84,7 @@ class TendersController < ApplicationController
   # DELETE /tenders/1
   # DELETE /tenders/1.xml
   def destroy
-    @tender = Tender.find(params[:id])
+    @tender = get_tender_for_user #Tender.find(params[:id])
     @tender.destroy
 
     respond_to do |format|

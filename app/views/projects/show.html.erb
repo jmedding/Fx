@@ -1,6 +1,6 @@
 <%= render(:partial => 'projects/display_projects', :locals => {:projects => [@project]})  %>
 
-<% tenders = @project.tenders %>
+<% tenders = @tenders %>
 <% tenders.each do |tender| %>
 	<table class="table">
 	<%=  render(:partial => 'exposures/exposure_table_rows', :locals => {:exposures => tender.exposures})  %>	

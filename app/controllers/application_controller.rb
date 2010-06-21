@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   
 	helper_method :current_user
+	
+	def logged_in?
+		redirect_to(login_path) unless current_user
+	end
 
 	private
 
