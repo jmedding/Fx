@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+#~ one:
+  #~ currency_in: 1
+  #~ currency_out: 1
+  #~ first: 2010-06-29
+  #~ last: 2010-06-29
+
+#~ two:
+  #~ currency_in: 1
+  #~ currency_out: 1
+  #~ first: 2010-06-29
+  #~ last: 2010-06-29

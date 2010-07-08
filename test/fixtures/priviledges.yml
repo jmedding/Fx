@@ -3,25 +3,25 @@
 j1:
   user: jon
   group: tphg
-  level: admin
+  level_id: 2
 
 j2:
   user: jon
   group: tpsn
-  level: admin
+  level_id: 2
 
 c1:
   user: chris
   group: tpgn
-  level: admin
+  level_id: 2
 
 c2:
   user: chris
   group: tpen
-  level: admin
+  level_id: 2
 
 d1:
   user: david
   group: power
-  level: admin
+  level_id: 1
 

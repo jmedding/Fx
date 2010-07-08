@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+#~ one:
+  #~ conversion_id: 1
+  #~ rate: 1.5
+  #~ day: 2010-06-29
+
+#~ two:
+  #~ conversion_id: 1
+  #~ rate: 1.5
+  #~ day: 2010-06-29

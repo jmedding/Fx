@@ -3,18 +3,12 @@
 <% form_for(@group) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :parent_id %><br />
-    <%= f.text_field :parent_id %>
+  <% if @groups.rindex(@group.parent)%>
+  <p>	
+		<%= f.label :parent_id %><br />
+		<%= f.collection_select(:parent_id, @groups, :id, :name) %> 
   </p>
-  <p>
-    <%= f.label :lft %><br />
-    <%= f.text_field :lft %>
-  </p>
-  <p>
-    <%= f.label :rgt %><br />
-    <%= f.text_field :rgt %>
-  </p>
+  <% end %>
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>

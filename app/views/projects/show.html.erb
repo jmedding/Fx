@@ -2,8 +2,10 @@
 
 <% tenders = @tenders %>
 <% tenders.each do |tender| %>
+	<% header_text =  tender.description %>
 	<table class="table">
-	<%=  render(:partial => 'exposures/exposure_table_rows', :locals => {:exposures => tender.exposures})  %>	
+	<%=  render(:partial => 'exposures/exposure_table_rows', 
+		:locals => {:exposures => tender.exposures, :header_text => header_text})  %>	
 	</table>
 <%- end -%>
 <br/>

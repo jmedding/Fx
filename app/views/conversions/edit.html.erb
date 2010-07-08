@@ -1,0 +1,28 @@
+<h1>Editing conversion</h1>
+
+<% form_for(@conversion) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :currency_in %><br />
+    <%= f.text_field :currency_in %>
+  </p>
+  <p>
+    <%= f.label :currency_out %><br />
+    <%= f.text_field :currency_out %>
+  </p>
+  <p>
+    <%= f.label :first %><br />
+    <%= f.date_select :first %>
+  </p>
+  <p>
+    <%= f.label :last %><br />
+    <%= f.date_select :last %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @conversion %> |
+<%= link_to 'Back', conversions_path %>

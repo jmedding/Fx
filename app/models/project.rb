@@ -6,6 +6,15 @@ class Project < ActiveRecord::Base
 	attr_reader :num_exposures, :num_currencies
 	attr_writer :num_exposures, :num_currencies
   
+	def accessible? user
+		return false unless user
+		tenders.each do |t|
+			return true if user.can_access_group?(t.group)
+		end
+		return false
+	end
+	
+			
 	def get_fields
 		set_field_data
 		f = Array.new

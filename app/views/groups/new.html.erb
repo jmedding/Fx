@@ -5,15 +5,7 @@
 
   <p>
     <%= f.label :parent_id %><br />
-    <%= f.text_field :parent_id %>
-  </p>
-  <p>
-    <%= f.label :lft %><br />
-    <%= f.text_field :lft %>
-  </p>
-  <p>
-    <%= f.label :rgt %><br />
-    <%= f.text_field :rgt %>
+	 <%= f.collection_select(:parent_id, @groups, :id, :name) %> 
   </p>
   <p>
     <%= f.label :name %><br />

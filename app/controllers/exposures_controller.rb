@@ -3,14 +3,15 @@ class ExposuresController < ApplicationController
 	
 	def get_exposure_for_user
 		e = Exposure.find(params[:id])
-		return nil unless e.tender.user == current_user
+		redirect_to exposures_path unless current_user.can_access_exposure?(e)
+		#return nil unless e.tender.user == current_user
 		return e		
 	end
 	
   # GET /exposures
   # GET /exposures.xml
   def index
-    @exposures = current_user.exposures
+    @exposures = current_user.get_accessible_exposures?
 
     respond_to do |format|
       format.html # index.html.erb
@@ -120,6 +121,7 @@ class ExposuresController < ApplicationController
 
     respond_to do |format|
       if @exposure.save
+			#need to update the rates and calculate recommended rate to carry
         flash[:notice] = 'Exposure was successfully created.'
         format.html { redirect_to(@exposure) }
         format.xml  { render :xml => @exposure, :status => :created, :location => @exposure }

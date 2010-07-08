@@ -6,6 +6,7 @@ class CreateRates < ActiveRecord::Migration
       t.string :description
       t.float :carried
       t.date :day
+		t.float :recommended
 
       t.timestamps
     end

@@ -14,8 +14,10 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.xml
   def show
-    @project = current_user.tenders.find_by_project_id(params[:id]).project
-	 @tenders = @project.tenders.find_all_by_user_id(current_user.id) if @project
+	 @project = Project.find(params[:id])
+	 @project = nil unless @project.accessible?(current_user)
+    #@project = current_user.tenders.find_by_project_id(params[:id]).project
+	 @tenders = current_user.get_accessible_tenders_by_project(@project)
 
     respond_to do |format|
       format.html # show.html.erb

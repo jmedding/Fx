@@ -5,27 +5,29 @@
 
   <p>
     <%= f.label :tender_id %><br />
-    <%= f.text_field :tender_id %>
+    <%= f.collection_select(:tender_id, current_user.get_accessible_tenders?, :id, :description) %> 
   </p>
-  <p>
+
+<p>
+    <%= f.label :supply, "Cash Out? <small><i>(Check if we are <b>buying</b> something in a foreign currency as opposed to <b>selling</b> something in a foreign currency)</i></small>" %><br />
+    <%= f.check_box :supply %>
+  </p>
+
+	<p>
     <%= f.label :currency_in %><br />
-    <%= f.text_field :currency_in %>
+	 <%= f.collection_select(:currency_in, Currency.all, :id, :symbol) %> 
   </p>
   <p>
     <%= f.label :currency_out %><br />
-    <%= f.text_field :currency_out %>
+    <%= f.collection_select(:currency_out, Currency.all, :id, :symbol) %> 
   </p>
   <p>
-    <%= f.label :factor %><br />
-    <%= f.text_field :factor %>
+    <%= f.label :carried_rate, "(What rate is being used in the cost calculation? <small><i>(Leave blank to use the recommended value)</i></small>" %><br />
+    <%= f.text_field :carried_rate %> 
   </p>
   <p>
-    <%= f.label :amount %><br />
+    <%= f.label :amount , "Amount   <small><i>(In foreign currency. Round off to the nearest whole unit - no decimals!)</i></small>"%><br />
     <%= f.text_field :amount %>
-  </p>
-  <p>
-    <%= f.label :supply %><br />
-    <%= f.check_box :supply %>
   </p>
   <p>
     <%= f.submit 'Update' %>

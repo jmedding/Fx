@@ -3,13 +3,16 @@ class TendersController < ApplicationController
 	
 	def get_tender_for_user
 		#the next line will cause an error if the tender is not found.
-		current_user.tenders.find(params[:id])
+		t = Tender.find(params[:id])
+		return t if current_user.can_access_tender?(t)
+		flash[:notice] = 'This tender is not accessible to ' + current_user
+		redirect to tenders_path
 	end
 	
   # GET /tenders
   # GET /tenders.xml
   def index
-    @tenders = current_user.tenders
+    @tenders = current_user.get_accessible_tenders?
 
     respond_to do |format|
       format.html # index.html.erb

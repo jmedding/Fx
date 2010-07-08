@@ -1,4 +1,4 @@
-<h1>Tenders for <i>User</i></h1>
+<h1>Tenders for <i><%= current_user.name %></i></h1>
 
 <table class="table">
 <%=  render(:partial => 'tenders/tender_table_rows', :locals => {:tenders => @tenders})  %>	

@@ -1,0 +1,23 @@
+<p>
+  <b>Currency in:</b>
+  <%=h @conversion.currency_in %>
+</p>
+
+<p>
+  <b>Currency out:</b>
+  <%=h @conversion.currency_out %>
+</p>
+
+<p>
+  <b>First:</b>
+  <%=h @conversion.first %>
+</p>
+
+<p>
+  <b>Last:</b>
+  <%=h @conversion.last %>
+</p>
+
+
+<%= link_to 'Edit', edit_conversion_path(@conversion) %> |
+<%= link_to 'Back', conversions_path %>

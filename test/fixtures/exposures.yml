@@ -2,19 +2,21 @@
 
 one_in:
   id: 1
+ # conversion_id: 1
   tender: zurich_tphg
-  currency_in: 9
-  currency_out: 1
-  carried_rate: 0.7
+  currency_in: 1
+  currency_out: 2
+#  carried_rate: 0.7
   amount: 30000000
   supply: true
 
 one_out_1:
   id: 2
   tender: zurich_tphg
+ # conversion_id: 2
   currency_in: 1
-  currency_out: 2
-  carried_rate: 1.2
+  currency_out: 3
+#  carried_rate: 1.2
   amount: 10000000
   supply: false
 
@@ -22,9 +24,10 @@ one_out_1:
 one_out_2:
   id: 3
   tender: zurich_tphg
+ # conversion_id: 3
   currency_in: 1
   currency_out: 4
-  carried_rate: 60
+#  carried_rate: 60
   amount: 4000000
   supply: false
 
@@ -32,18 +35,21 @@ one_out_2:
 one_out_3:
   id: 4
   tender: zurich_tphg
+#  conversion_id: 4
   currency_in: 1
-  currency_out: 9
-  carried_rate: 1.4
+  currency_out: 5
+#  carried_rate: 1.4
   amount: 5000000
   supply: false
   
 two_in:
   id: 5
   tender: london_tphg
-  currency_in: 8
+#  conversion_id: 1
+  invert: true
+  currency_in: 2
   currency_out: 1
-  carried_rate: 1.2
+#  carried_rate: 0.8
   amount: 18000000
   supply: true
 
@@ -51,9 +57,10 @@ two_in:
 two_out_1:
   id: 6
   tender: london_tphg
+#  conversion_id: 2
   currency_in: 1
-  currency_out: 8
-  carried_rate: 0.7
+  currency_out: 3
+#  carried_rate: 0.7
   amount: 5000000
   supply: false
 
@@ -61,9 +68,10 @@ two_out_1:
 two_out_2:
   id: 7
   tender: london_tphg
+#  conversion_id: 3
   currency_in: 1
-  currency_out: 2
-  carried_rate: 1.22
+  currency_out: 4
+#  carried_rate: 1.22
   amount: 7000000
   supply: false
 
@@ -71,9 +79,10 @@ two_out_2:
 two_out_3:
   id: 8
   tender: london_tphg
+#  conversion_id: 4
   currency_in: 1
-  currency_out: 9
-  carried_rate: 1.4
+  currency_out: 5
+#  carried_rate: 1.4
   amount: 12000000
   supply: false
 
@@ -81,9 +90,11 @@ two_out_3:
 three_in:
   id: 9
   tender: london_tpgn
-  currency_in: 8
+#  conversion_id: 2
+  invert: true
+  currency_in: 3
   currency_out: 1
-  carried_rate: 1.2
+#  carried_rate: 1.2
   amount: 50000000
   supply: true
 
@@ -91,9 +102,10 @@ three_in:
 three_out_1:
   id: 10
   tender: london_tpgn
+#  conversion_id: 1
   currency_in: 1
-  currency_out: 8
-  carried_rate: 0.7
+  currency_out: 2
+#  carried_rate: 1.2
   amount: 12000000
   supply: false
 
@@ -101,9 +113,10 @@ three_out_1:
 three_out_2:
   id: 11
   tender: london_tpgn
+#  conversion_id: 2
   currency_in: 1
-  currency_out: 9
-  carried_rate: 1.4
+  currency_out: 3
+#  carried_rate: 1.4
   amount: 25000000
   supply: false
  

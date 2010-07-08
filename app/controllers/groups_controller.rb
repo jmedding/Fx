@@ -21,7 +21,8 @@ class GroupsController < ApplicationController
   def show
     Group.rebuild! if nil.|Group.find(:first).rgt
 	 #this won't work - it won't find children groups
-	 @group = current_user.groups.find(params[:id])
+	 @group = Group.find(params[:id])
+	 @group = nil unless current_user.can_access_group?(@group)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,6 +35,7 @@ class GroupsController < ApplicationController
   def new
     Group.rebuild! if nil.|Group.find(:first).rgt
 	 @group = Group.new
+	 @groups = current_user.get_unique_group_branches
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,6 +47,7 @@ class GroupsController < ApplicationController
   def edit
     Group.rebuild! if nil.|Group.find(:first).rgt
 	 @group = Group.find(params[:id])
+	 @groups = current_user.get_unique_group_branches
   end
 
   # POST /groups

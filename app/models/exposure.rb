@@ -1,12 +1,52 @@
 class Exposure < ActiveRecord::Base
-	default_scope :order => 'currency_out'
+	default_scope 						:order => 'currency_out'
 	belongs_to :tender
-	has_many :rates,		:order => "day"
+	has_many :rates,					:order => "day"
+	belongs_to :conversion
 	#belongs_to :user, :through => :tender  #doesn't work,
+	
+	validates_associated :tender, :conversion, :on => :create
+	validates_numericality_of :carried_rate, :current_rate, :amount, :allow_nil => :true
+	validates_presence_of :tender, :on => :create
+	validate :currencies_are_valid_and_different
+	
+	def after_initialize
+		self.invert = set_conversion!
+	end
+		
+	def set_conversion!
+		c = Conversion.find_by_currency_in_and_currency_out(currency_in, currency_out)
+		unless c.blank?
+			self.conversion = c 
+			return false		#do not invert the rates
+		end
+		c = Conversion.find_by_currency_in_and_currency_out(currency_out, currency_in)
+		unless c.blank?
+			self.conversion = c
+			return true		#rates must be inverted
+		end
+		 #if we make it here, there is we did not find a valid conversion.
+		 #which is strange, because the currencies should have been validated
+		 #therefore, let make a conversion and populate it.
+		 c = Conversion.create(:currency_in => currency_in, :currency_out => currency_out)
+		 c.update!(1000)
+		 self.conversion = c
+		 return false		#do not invert the rates
+	end
+	 
+	
+	def currencies_are_valid_and_different
+		unless (currency_in.blank? && currency_out.blank?)
+			erros.add_to_base("Currency_In(#{currency_in}) is not valid!") if Currency.find_by_id(currency_in).blank?
+			erros.add_to_base("Currency_Out(#{currency_out}) is not valid!") if Currency.find_by_id(currency_out).blank?
+			errors.add_to_base("Currency_In and Currency_Out must be different!") if currency_in == currency_out
+		end		
+	end
 	
 	def Exposure.populate_exposures!
 		Exposure.find(:all).each do |e|
-			e.generate_dummy_rates
+			#e.generate_dummy_rates
+			e.update_rates!
 		end
 	end
 	
@@ -38,14 +78,19 @@ class Exposure < ActiveRecord::Base
 		d= "Cash Out"
 		d = "Cash In" if supply
 		f << Field.new("Direction", d)
-		f << Field.new("Current Rate", "%.4f" % current_rate, true)
-		f << Field.new("Carried Rate", "%.4f" % carried_rate, true)
+		f << Field.new("Current Rate", format_f(current_rate, 4), true)
+		f << Field.new("Carried Rate", format_f(carried_rate, 4), true)
 		f << Field.new("Amount", amount, true)
 		f.last.currency = amount_symbol?
-		f << Field.new("Buffer", "%.1f %" % (100*buffer?), true)
+		f << Field.new("Buffer", format_f((buffer?), 1)+"%", true)
 		f << Field.new("Remaining validity", "%d days" % tender.remaining_validity?, true)
 		f.last.hover_text = tender.validity
 		return f
+	end
+	
+	def format_f (value, decimals)
+		return "" if value.blank?
+		return  "%.#{decimals}f" % value
 	end
 	
 	
@@ -100,20 +145,44 @@ class Exposure < ActiveRecord::Base
 		t
 	end
 	def buffer?
-		(current_rate - carried_rate)/carried_rate
+		return nil if (current_rate.blank? || carried_rate.blank?)
+		(current_rate - carried_rate)/carried_rate*100
 	end
-	#~ def remaining_validity?
-		#~ v = 0
-		#~ if tender
-			#~ if Date.today > tender.bid_date
-				#~ v = (tender.validity - Date.today).to_i
-			#~ else
-				#~ v = (tender.validity - tender.bid_date).to_i
-			#~ end
-		#~ end		
-		#~ return v if v > 0
-		#~ return 0	#can not have a negative validity period...
-	#~ end
+	
+	def update_rates!
+		#first calculate remaining validity and multiply be xFactor(=2)
+		days_to_analyze = tender.remaining_validity? * 2
+		
+		#the conversion_id and invert paramater should be set when completing the exposure
+		#if there are no rates yet, then seed with the last ten days
+		if rates.empty?
+			if tender.bid_date > Date.today
+				days_back = 10 
+			else
+				days_back = (Date.today - tender.bid_date).to_i + 10
+			end			
+		else
+			days_back = Date.today - rates.find(:last).day
+		end
+		
+		i = invert ? -1 : 1
+		offset = conversion.data.count - days_back
+		data = conversion.data.find(:all, :offset => offset, :limit => days_back)
+		data.each do |d|
+			self.carried_rate = (d.rate ** i) / 1.05 if self.carried_rate.blank?
+			puts fx_symbol? + "=> " + d.day.to_s + " = " + carried_rate.to_s
+			r = Rate.new(
+				:exposure => self, 
+				:factor => d.rate  ** i, 
+				:carried => carried_rate, 
+				:description => (fx_symbol?),
+				:day => d.day)
+			rates << r
+			self.current_rate = r.factor
+		end
+		save!
+
+	end
 	
 	
 end

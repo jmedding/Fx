@@ -9,22 +9,43 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100616035438) do
+ActiveRecord::Schema.define(:version => 20100629190424) do
+
+  create_table "conversions", :force => true do |t|
+    t.integer  "currency_in"
+    t.integer  "currency_out"
+    t.date     "first"
+    t.date     "last"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "currencies", :force => true do |t|
     t.string   "symbol"
+    t.boolean  "base",        :default => false
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "data", :force => true do |t|
+    t.integer  "conversion_id"
+    t.float    "rate"
+    t.date     "day"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "exposures", :force => true do |t|
     t.integer  "tender_id"
+    t.integer  "conversion_id"
+    t.boolean  "invert",        :default => false
     t.integer  "currency_in"
     t.integer  "currency_out"
     t.float    "carried_rate"
     t.float    "current_rate"
     t.integer  "amount"
-    t.boolean  "supply"
+    t.boolean  "supply",        :default => true
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -69,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20100616035438) do
     t.string   "description"
     t.float    "carried"
     t.date     "day"
+    t.float    "recommended"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -3,11 +3,60 @@ class User < ActiveRecord::Base
 	has_many :groups, 				:through => :priviledges
 	has_many :tenders
 	has_many :projects	,			:order => "name"
-	has_many :priviledges
+	has_many :priviledges, 		:order => "level"
 	has_many :exposures, :through => :tenders
 	
 	acts_as_authentic
 	#attr_accessible :password, :password_confirmation
+	
+	def can_access_group? group
+		groups.each do |g|
+			return true if g.is_or_is_ancestor_of?(group)
+		end
+		return false				
+	end
+	
+	
+	def can_access_exposure? (exposure)
+		return can_access_group?(exposure.tender.group)
+	end
+	
+	def get_accessible_exposures?
+		exposures = []
+		groups.each do |node|
+			node.get_self_and_children?.each do |g|
+				g.tenders.each do |t|
+					exposures = exposures | t.exposures
+				end				
+			end
+		end
+		return exposures
+	end
+		
+	def get_accessible_tenders?
+		tenders = []
+		groups.each do |node|
+			node.get_self_and_children?.each do |g|
+				tenders = tenders | g.tenders
+			end
+		end
+		return tenders
+	end
+	
+def get_accessible_tenders_by_project (project)
+		tenders = []
+		project.tenders.each do |t|
+			tenders << t if can_access_group?(t.group)
+		end
+		return tenders
+	end
+	
+	def can_access_tender?(tender)
+		groups.each do |g|
+			return true if g.is_or_is_ancestor_of?(tender.group)
+		end 
+		return false
+	end
 	
 	def get_unique_group_branches
 		groups_to_display = []

@@ -1,0 +1,24 @@
+<h1>Listing data</h1>
+
+<table>
+  <tr>
+    <th>Conversion</th>
+    <th>Rate</th>
+    <th>Day</th>
+  </tr>
+
+<% @data.each do |datum| %>
+  <tr>
+    <td><%=h datum.conversion_id %></td>
+    <td><%=h datum.rate %></td>
+    <td><%=h datum.day %></td>
+    <td><%= link_to 'Show', datum %></td>
+    <td><%= link_to 'Edit', edit_datum_path(datum) %></td>
+    <td><%= link_to 'Destroy', datum, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New datum', new_datum_path %>

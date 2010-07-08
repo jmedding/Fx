@@ -5,5 +5,11 @@ namespace :fx do
 	 #Rake::Task["db:seed"].invoke	#Running this task here doesn't work.  db levels is empty...
     Rake::Task['db:fixtures:load'].invoke
 	 Rake::Task["db:seed"].invoke
-  end
+ end
+ 
+ desc "Update the conversions and exposures with the lates data"
+ task :daily_update => :environment do
+	 Conversion.update!
+	 Exposure.populate_exposures!
+ end
 end
