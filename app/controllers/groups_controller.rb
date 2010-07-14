@@ -35,7 +35,7 @@ class GroupsController < ApplicationController
   def new
     Group.rebuild! if nil.|Group.find(:first).rgt
 	 @group = Group.new
-	 @groups = current_user.get_unique_group_branches
+	 @groups = current_user.get_unique_group_branches.map {|g| g.get_self_and_children?}.flatten
 
     respond_to do |format|
       format.html # new.html.erb

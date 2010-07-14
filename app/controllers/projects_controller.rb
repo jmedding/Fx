@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   # GET /projects/new.xml
   def new
-    @project = Project.new
+    @project = Project.new(:user_id => current_user.id)
 
     respond_to do |format|
       format.html # new.html.erb

@@ -10,6 +10,10 @@ j2:
   group: tpsn
   level_id: 2
 
+j3:
+  user: jon
+  group: alstom
+  level_id: 2
 c1:
   user: chris
   group: tpgn

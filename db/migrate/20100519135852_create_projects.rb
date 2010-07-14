@@ -4,7 +4,7 @@ class CreateProjects < ActiveRecord::Migration
       t.integer :user_id
       t.string :name
       t.string :description
-	t.float :chance
+	   t.float :chance
 
       t.timestamps
     end

@@ -4,7 +4,7 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :parent_id %><br />
+    <%= f.label :parent_id, "Select the Parent Group" %><br />
 	 <%= f.collection_select(:parent_id, @groups, :id, :name) %> 
   </p>
   <p>

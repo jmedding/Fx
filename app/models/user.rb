@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 	has_many :groups, 				:through => :priviledges
 	has_many :tenders
 	has_many :projects	,			:order => "name"
-	has_many :priviledges, 		:order => "level"
+	has_many :priviledges
 	has_many :exposures, :through => :tenders
 	
 	acts_as_authentic
@@ -59,6 +59,7 @@ def get_accessible_tenders_by_project (project)
 	end
 	
 	def get_unique_group_branches
+		#returns the highest common nodes
 		groups_to_display = []
 		self.priviledges.each do|p|
 			keep = true
