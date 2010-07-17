@@ -1,7 +1,7 @@
 class Exposure < ActiveRecord::Base
 	default_scope 						:order => 'currency_out'
 	belongs_to :tender
-	has_many :rates,					:order => "day"
+	has_many :rates,					:order => "day", :dependent => :destroy
 	belongs_to :conversion
 	#belongs_to :user, :through => :tender  #doesn't work,
 	
@@ -25,11 +25,11 @@ class Exposure < ActiveRecord::Base
 			self.conversion = c
 			return true		#rates must be inverted
 		end
-		 #if we make it here, there is we did not find a valid conversion.
+		 #if we make it here, we did not find a valid conversion.
 		 #which is strange, because the currencies should have been validated
 		 #therefore, let make a conversion and populate it.
 		 c = Conversion.create(:currency_in => currency_in, :currency_out => currency_out)
-		 c.update!(1000)
+		 c.populate!
 		 self.conversion = c
 		 return false		#do not invert the rates
 	end

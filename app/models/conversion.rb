@@ -1,5 +1,5 @@
 class Conversion < ActiveRecord::Base
-	has_many :data, 		:order => "day"
+	has_many :data, 		:order => "day", 	:dependent => :destroy
 	has_many :expsosures
 	
 	def Conversion.generate_conversions!
@@ -28,6 +28,7 @@ class Conversion < ActiveRecord::Base
 			days = days 
 		elsif (self.first.blank? && days < 0)	#first call, use default num days
 			reset_data!
+			days = 1500
 		elsif self.first > Date.today - days #datums exist, but don't go back far enough
 			reset_data!
 		else

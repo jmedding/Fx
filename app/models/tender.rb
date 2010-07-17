@@ -1,7 +1,7 @@
 class Tender < ActiveRecord::Base
 	belongs_to :project
 	belongs_to :user
-	has_many :exposures
+	has_many :exposures, :dependent => :destroy
 	belongs_to :group
 	
 

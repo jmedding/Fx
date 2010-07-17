@@ -3,7 +3,7 @@ class Group < ActiveRecord::Base
   acts_as_nested_set
   has_many :users
   has_many :tenders
-  has_many :priviledges
+  has_many :priviledges, :dependent => :destroy
   
   
   attr_reader :num_projects, :num_tenders, :num_exposures, :num_currencies

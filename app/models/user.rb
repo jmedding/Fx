@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
 	default_scope :order => 'login'
 	has_many :groups, 				:through => :priviledges
-	has_many :tenders
+	has_many :tenders,				:dependent => :destroy
 	has_many :projects	,			:order => "name"
-	has_many :priviledges
+	has_many :priviledges, 		:dependent => :destroy
 	has_many :exposures, :through => :tenders
 	
 	acts_as_authentic

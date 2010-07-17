@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
+	 puts current_user.name
 
     respond_to do |format|
       format.html # show.html.erb
@@ -53,36 +54,27 @@ class UsersController < ApplicationController
 		#@group = Group.find_by_id(params[:group][id]) unless params[:group][id].blank?
 	 
 		#create a priviledge (level = 'user') for this new group. He is not an admin till he pays
-		p= Priviledge.new(:user => @user, :group => g, :level => Level.find_by_name('user'))
+		p= Priviledge.new(:user => @user, :group => @group, :level => Level.find_by_name('user'))
 	 
 		respond_to do |format|
 			User.transaction do
 				@user.save!
 				@group.save!
 				p.save!
-				@group.move_to_child_of(Group.find_by_name("Base")) if @group.parent_id.blank?
+				base = Group.find_by_name("Base")
+				new_group = @group.parent_id.blank?
+				@group.move_to_child_of(base) if @group.parent_id.blank?
 				flash[:notice] = 'Registration was successfull.'
-				format.html { redirect_to(@user) }
+				format.html { redirect_to(current_user) }
 				format.xml  { render :xml => @user, :status => :created, :location => @user }
 			end		
 		end
 	end
 	
-	rescue ActiveRecord::RecordInvalid => e
-		#can keep validating here
-		@group.valid?
-		p.valid?
-		respond_to do |format|
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-	  end	  
-	end
-
   # PUT /users/1
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
-
     respond_to do |format|
       if @user.update_attributes(params[:user])
         flash[:notice] = 'User was successfully updated.'
@@ -105,4 +97,13 @@ class UsersController < ApplicationController
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
     end
-  end
+ end
+rescue ActiveRecord::RecordInvalid => e
+	#can keep validating here
+	@group.valid?
+	p.valid?
+	respond_to do |format|
+       format.html { render :action => "new" }
+       format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+	end	
+end

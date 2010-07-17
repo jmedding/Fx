@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
 	default_scope :order => 'name'
 	belongs_to :user
-	has_many :tenders
+	has_many :tenders, :dependent => :destroy
 	
 	attr_reader :num_exposures, :num_currencies
 	attr_writer :num_exposures, :num_currencies
