@@ -1,1 +1,1 @@
-self.allow_forgery_protection = false
+#self.allow_forgery_protection = false

@@ -9,15 +9,11 @@
   </p>
   <p>
     <%= f.label :password %><br />
-    <%= f.text_field :password %>
+    <%= f.password_field :password %>
   </p>
   <p>
-    <%= f.label :rating %><br />
-    <%= f.text_field :rating %>
-  </p>
-  <p>
-    <%= f.label :group_id %><br />
-    <%= f.text_field :group_id %>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation%>
   </p>
   <p>
     <%= f.submit 'Update' %>

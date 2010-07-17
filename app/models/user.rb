@@ -64,10 +64,13 @@ def get_accessible_tenders_by_project (project)
 		self.priviledges.each do|p|
 			keep = true
 			#only include fresh branches 
+			groups_to_delete = []
 			groups_to_display.each do |displayed_group|
 				keep = false if p.group.is_or_is_descendant_of?(displayed_group)
-				groups_to_display.delete(displayed_group) if displayed_group.is_descendant_of?(p.group)
+				groups_to_delete << displayed_group if displayed_group.is_descendant_of?(p.group)
 			end
+			groups_to_display = groups_to_display - groups_to_delete
+			groups_to_delete = []
 			groups_to_display << p.group if keep
 		end		
 		return groups_to_display

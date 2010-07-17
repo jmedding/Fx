@@ -26,7 +26,12 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-    @user = User.new
+	  @group = Group.new()
+	  puts "ID = " + params[:group].to_s
+	  #if this new user is assigned to an existing group it should be in the params.
+	  @group = Group.find_by_id(params[:group][:id]) unless params[:group].blank?
+    @user = User.new 
+	 @group = Group.new()
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,20 +46,37 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.xml
-  def create
-    @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save
-        flash[:notice] = 'Registration was successfull.'
-        format.html { redirect_to(@user) }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
+	def create
+		@user = User.new(params[:user])
+		#a completely new group should only have a name, with id = nil.	 
+		@group = Group.new(params[:group])
+		#@group = Group.find_by_id(params[:group][id]) unless params[:group][id].blank?
+	 
+		#create a priviledge (level = 'user') for this new group. He is not an admin till he pays
+		p= Priviledge.new(:user => @user, :group => g, :level => Level.find_by_name('user'))
+	 
+		respond_to do |format|
+			User.transaction do
+				@user.save!
+				@group.save!
+				p.save!
+				@group.move_to_child_of(Group.find_by_name("Base")) if @group.parent_id.blank?
+				flash[:notice] = 'Registration was successfull.'
+				format.html { redirect_to(@user) }
+				format.xml  { render :xml => @user, :status => :created, :location => @user }
+			end		
+		end
+	end
+	
+	rescue ActiveRecord::RecordInvalid => e
+		#can keep validating here
+		@group.valid?
+		p.valid?
+		respond_to do |format|
         format.html { render :action => "new" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
+	  end	  
+	end
 
   # PUT /users/1
   # PUT /users/1.xml
@@ -84,4 +106,3 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
-end

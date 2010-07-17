@@ -4,7 +4,7 @@ class Datum < ActiveRecord::Base
 	def Datum.create_datums(conversion, days)
 		datums = conversion.scrape_rates(days)
 		datums.each do |d| 
-			Datum.create(:conversion_id => conversion.id, :day => d[0],	:rate => d[1])
+			conversion.data << Datum.create(:conversion_id => conversion.id, :day => d[0],	:rate => d[1])
 		end
 								
 	end

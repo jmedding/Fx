@@ -6,7 +6,7 @@ class TendersController < ApplicationController
 		t = Tender.find(params[:id])
 		return t if current_user.can_access_tender?(t)
 		flash[:notice] = 'This tender is not accessible to ' + current_user
-		redirect to tenders_path
+		redirect_to tenders_path
 	end
 	
   # GET /tenders

@@ -1,21 +1,19 @@
 <p>
-  <b>Name:</b>
+  <b>User Name:</b>
   <%=h @user.name %>
 </p>
 
 <p>
-  <b>Password:</b>
-  <%=h @user.password %>
+  <b>Login Identity:</b>
+  <%=h @user.login %>
 </p>
-
 <p>
-  <b>Rating:</b>
-  <%=h @user.rating %>
-</p>
-
-<p>
-  <b>Group:</b>
-  <%=h @user.group_id %>
+<table class="table">
+	<tr><td class="table_head" colspan="2">Group Access Levels</td></tr>
+	<% current_user.priviledges.each do |p| %>
+	<%= render(:partial => 'exposures/table_row', :locals => {:header => false, :fields => p.get_fields})  %>
+	<% end %>
+</table>
 </p>
 
 
