@@ -1,0 +1,60 @@
+<h1>Editing account</h1>
+
+<% form_for(@account) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :currency_id %><br />
+    <%= f.text_field :currency_id %>
+  </p>
+  <p>
+    <%= f.label :rules_id %><br />
+    <%= f.text_field :rules_id %>
+  </p>
+  <p>
+    <%= f.label :type_id %><br />
+    <%= f.text_field :type_id %>
+  </p>
+  <p>
+    <%= f.label :payment %><br />
+    <%= f.text_field :payment %>
+  </p>
+  <p>
+    <%= f.label :period %><br />
+    <%= f.text_field :period %>
+  </p>
+  <p>
+    <%= f.label :ccnum %><br />
+    <%= f.text_field :ccnum %>
+  </p>
+  <p>
+    <%= f.label :cc_exp %><br />
+    <%= f.date_select :cc_exp %>
+  </p>
+  <p>
+    <%= f.label :cc_name %><br />
+    <%= f.text_field :cc_name %>
+  </p>
+  <p>
+    <%= f.label :paypal %><br />
+    <%= f.text_field :paypal %>
+  </p>
+  <p>
+    <%= f.label :address_id %><br />
+    <%= f.text_field :address_id %>
+  </p>
+  <p>
+    <%= f.label :external_id %><br />
+    <%= f.text_field :external_id %>
+  </p>
+  <p>
+    <%= f.label :creator_id %><br />
+    <%= f.text_field :creator_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @account %> |
+<%= link_to 'Back', accounts_path %>

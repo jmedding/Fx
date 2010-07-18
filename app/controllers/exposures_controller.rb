@@ -8,6 +8,7 @@ class ExposuresController < ApplicationController
 		return e		
 	end
 	
+	
   # GET /exposures
   # GET /exposures.xml
   def index
@@ -21,34 +22,44 @@ class ExposuresController < ApplicationController
   
   #/exposure/graph/1
   def graph
-	  @exposure = get_exposure_for_user
-	  tender_desc = @exposure.tender.description
-	  project_name = @exposure.tender.project.name
-	  group_name = @exposure.tender.group.name
-	  direction = "Cash Out"
-	  direction = "Cash In" if @exposure.supply
-	  currency_1 = @exposure.currency_in_symbol?
-	  currency_2 = @exposure.currency_out_symbol?
-	  currency_1_and_2 = "#{currency_1} => #{currency_2}"
-	  title = "#{project_name}:#{group_name}:#{tender_desc}\n"
-	  title += "#{direction}:#{currency_1_and_2}"
-	  factors = Array.new
-	  carrieds = Array.new
-	  days = Array.new
-	  bid_to_ntp = Array.new
-	  @exposure.rates.each do |r|
-		  factors << r.factor
-		  carrieds << r.carried
-		  days << r.day
-	  end
-	  logger.warn("Factors: #{factors.size}")
-	  max = (factors+carrieds).max*1.05
-	  min = (factors+carrieds).min*0.95
-	  bid_to_ntp = days.map do |day|
+		main_title = nil
+		sub_title = nil
+		@exposure = get_exposure_for_user
+		if @exposure.tender.project
+			sub_title = ":" + @exposure.tender.description
+			main_title = @exposure.tender.project.name
+		else
+			main_title = @exposure.tender.description
+			sub_title = nil
+		end
+		group_name = @exposure.tender.group.name
+		direction = "Cash Out"
+		direction = "Cash In" if @exposure.supply
+		currency_1 = @exposure.currency_in_symbol?
+		currency_2 = @exposure.currency_out_symbol?
+		currency_1_and_2 = "#{currency_1} => #{currency_2}"
+		title = "#{main_title}:#{group_name}#{sub_title}\n"
+		title += "#{direction}:#{currency_1_and_2}"
+		factors = Array.new
+		carrieds = Array.new
+		days = Array.new
+		recs = Array.new
+		bid_to_ntp = Array.new
+		@exposure.rates.each do |r|
+			factors << r.factor
+			carrieds << r.carried
+			recs << r.recommended
+			days << r.day
+		end
+		logger.warn("Factors: #{factors.size}")
+		logger.warn("Factors: #{carrieds.size}")
+		max = (factors+carrieds+recs).compact.max*1.05	# .min and .max don't like nils
+		min = (factors+carrieds+recs).compact.min*0.95
+		bid_to_ntp = days.map do |day|
 		i = min
 		i = max if ((day >= @exposure.tender.bid_date) && (day < @exposure.tender.validity))		
 		i
-	  end	
+	end	
 	  
 	  g = Graph.new
 	  g.set_bg_color('#FFFFFF')
@@ -57,6 +68,8 @@ class ExposuresController < ApplicationController
 	  g.line(1, '0x80a033', 'Daily rate', 10)
 	  g.set_data(carrieds)
 	  g.line(1, '#CC3399', 'Carried rate', 10)
+	  g.set_data(recs)
+	  g.line(1, '#EE3399', 'Recomended rate', 10)
 	  g.set_x_labels(days)
 	  g.set_x_label_style( 10, '#CC3399', 2 ,10);
 	  g.set_y_legend( currency_1 + currency_2, 12, '#164166' )
@@ -88,7 +101,7 @@ class ExposuresController < ApplicationController
   # GET /exposures/1
   # GET /exposures/1.xml
   def show
-    @exposure = get_exposure_for_user #Exposure.find(params[:id])
+    @exposure = get_exposure_for_user
     @graph = open_flash_chart_object(700,250, "/exposures/graph/#{@exposure.id}")  
     
     respond_to do |format|
@@ -101,8 +114,22 @@ class ExposuresController < ApplicationController
   # GET /exposures/new.xml
   def new
     @exposure = Exposure.new
-	 #@exposure.tender = params[:tender]
-
+	 #case: free
+		# Create a new tender for each exposure.
+		#Include a field in the form for the tender bid date, validity and description
+		#The form will check @tender and if validity is nil then it will show the input fields for the tender
+	if current_user.account.type.blank?	#free plan, no tenders
+		@tender = Tender.new(:group => current_user.groups.find(:first), :user => current_user)
+	elsif
+		#case: paid
+			# can only create exposures from a tender, so if !params[:tender].blank? then pass this t0 @tender
+		if params[:tender].blank?
+			flash[:notice] = 'An exposure must be created from a tender. Pleae select or create one.'
+			redirect_to(tenders_path) 
+		end		
+		@exposure.tender = params[:tender]
+		@tender = nil
+	end
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @exposure }
@@ -112,20 +139,39 @@ class ExposuresController < ApplicationController
   # GET /exposures/1/edit
   def edit
     @exposure = get_exposure_for_user #Exposure.find(params[:id])
+	 @tender = @exposure.tender
   end
 
   # POST /exposures
   # POST /exposures.xml
   def create
     @exposure = Exposure.new(params[:exposure])
-
+	 
+	 #if the form submits a :tender hash, then the tender is new and needs created and assigned
+	 #by assigning it to the exposure it should get saved when the exposure is saved.
+	unless params[:tender].blank?
+		bid_date = (params["tender"]["bid_date(1i)"].to_s+"-"+params["tender"]["bid_date(2i)"].to_s+"-"+params["tender"]["bid_date(3i)"].to_s).to_date
+		tender = Tender.new(params[:tender]) 
+		tender.validity = tender.bid_date + params[:tender][:validity].to_i
+		tender.user = current_user
+		tender.group = current_user.groups[0]
+	end
+	
     respond_to do |format|
-      if @exposure.save
+		unless tender.save
+			flash[:notice] = 'Exposure duration information failed to save'
+			format.html { redirect_to(@exposure) }
+			format.xml  { render :xml => @exposure, :status => :created, :location => @exposure }
+	  end
+		@exposure.tender = tender
+		
+		if @exposure.save 
 			#need to update the rates and calculate recommended rate to carry
         flash[:notice] = 'Exposure was successfully created.'
         format.html { redirect_to(@exposure) }
         format.xml  { render :xml => @exposure, :status => :created, :location => @exposure }
       else
+			tender.destroy
         format.html { render :action => "new" }
         format.xml  { render :xml => @exposure.errors, :status => :unprocessable_entity }
       end
@@ -136,7 +182,11 @@ class ExposuresController < ApplicationController
   # PUT /exposures/1.xml
   def update
     @exposure = get_exposure_for_user #Exposure.find(params[:id])
-
+	 unless @exposure.tender.update_attributes(params[:tender])
+		flash[:notice] = 'Tender data update failed.'
+		redirect_to edit_path(@exposure)
+	end
+		
     respond_to do |format|
       if @exposure.update_attributes(params[:exposure])
         flash[:notice] = 'Exposure was successfully updated.'
@@ -153,6 +203,7 @@ class ExposuresController < ApplicationController
   # DELETE /exposures/1.xml
   def destroy
     @exposure = get_exposure_for_user #Exposure.find(params[:id])
+	 @exposure.tender.destroy
     @exposure.destroy
 
     respond_to do |format|

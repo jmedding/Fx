@@ -3,10 +3,29 @@
 <% form_for(@exposure) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :tender_id %><br />
-    <%= f.collection_select(:tender_id, current_user.get_accessible_tenders?, :id, :description) %> 
-  </p>
+<% if @current_user.account.rules.blank? %>
+	<% fields_for :tender do |t| %>
+	  <p>
+			<%= t.label :description, "Name or Description" %><br />
+			<%= t.text_field :description %>
+		</p>
+		<p>
+			<%= t.label :bid_date, "When does the exposure begin" %><br />
+			<%= t.date_select(:bid_date) %>
+		</p>
+		<p>
+			<%= t.label :validity, "What is the exposure's validity in days.<small><i> (Must be an integer)</i></small>" %><br />
+			<%= t.text_field :validity %>
+		</p>
+	<% end %>
+<% else %>
+	<p>
+		<%= f.label :tender_id %><br />
+		<%= f.collection_select(:tender_id, current_user.get_accessible_tenders?, :id, :description) %> 
+	</p>
+<% end %>
+
+
 
 <p>
     <%= f.label :supply, "Cash Out? <small><i>(Check if we are <b>buying</b> something in a foreign currency as opposed to <b>selling</b> something in a foreign currency)</i></small>"  %><br />
@@ -26,7 +45,7 @@
     <%= f.text_field :carried_rate %>
   </p>
   <p>
-    <%= f.label :amount , "Amount   <small><i>(In foreign currency. Round off to the nearest whole unit - no decimals!)</i></small>"%><br />
+    <%= f.label :amount , "Amount   <small><i>(In foreign currency. Must be and integer)</i></small>"%><br />
     <%= f.text_field :amount %>
   </p>
   <p>

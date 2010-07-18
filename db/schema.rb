@@ -9,7 +9,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100629190424) do
+ActiveRecord::Schema.define(:version => 20100717230450) do
+
+  create_table "accounts", :force => true do |t|
+    t.integer  "currency_id"
+    t.integer  "rules_id"
+    t.integer  "type_id"
+    t.float    "payment",     :default => 0.0
+    t.integer  "period",      :default => 1
+    t.string   "ccnum"
+    t.date     "cc_exp"
+    t.string   "cc_name"
+    t.string   "paypal"
+    t.integer  "address_id"
+    t.integer  "external_id"
+    t.integer  "creator_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "conversions", :force => true do |t|
     t.integer  "currency_in"
@@ -56,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20100629190424) do
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
+    t.integer  "account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -132,6 +150,7 @@ ActiveRecord::Schema.define(:version => 20100629190424) do
     t.string   "email",              :default => "", :null => false
     t.integer  "rating"
     t.integer  "group_id"
+    t.integer  "account_id"
     t.integer  "login_count",        :default => 0,  :null => false
     t.integer  "failed_login_count", :default => 0,  :null => false
     t.datetime "last_request_at"

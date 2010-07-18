@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration
 		t.string :email,								:null => false
       t.integer :rating
       t.integer :group_id
+		t.integer :account_id
 		t.integer :login_count, 				:null => false, :default => 0
 		t.integer :failed_login_count, 	:null => false, :default => 0
 		t.datetime :last_request_at

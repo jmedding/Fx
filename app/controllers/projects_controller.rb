@@ -1,15 +1,22 @@
 class ProjectsController < ApplicationController
 	before_filter :logged_in? 
+	before_filter :free?
   # GET /projects
   # GET /projects.xml
   def index
+	  #*********** Needs to be filtered by user **************
     @projects = Project.all
-
+	#**********************3*******************************
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @projects }
     end
-  end
+ end
+ 
+	def free?
+		redirect_to (exposures_url) if current_user.account.rules.blank?
+	end
+ 
 
   # GET /projects/1
   # GET /projects/1.xml

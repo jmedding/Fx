@@ -4533,3 +4533,1363 @@ Processing UsersController#update (for 0.0.0.0 at 2010-07-17 17:40:33) [PUT]
 Redirected to http://test.host/users/846114006
 Completed in 0ms (DB: 16) | 302 Found [http://test.host/users/846114006?]
   [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT `groups`.* FROM `groups` INNER JOIN `priviledges` ON `groups`.id = `priviledges`.group_id WHERE ((`priviledges`.user_id = 846114006)) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `groups` LEFT OUTER JOIN `groups` AS parent ON `groups`.`parent_id` = parent.id WHERE (`groups`.`lft` IS NULL OR `groups`.`rgt` IS NULL OR `groups`.`lft` >= `groups`.`rgt` OR (`groups`.`parent_id` IS NOT NULL AND (`groups`.`lft` <= parent.`lft` OR `groups`.`rgt` >= parent.`rgt`))) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` IS NULL) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 364659302 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 730464674 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 59149966 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 4, `lft` = 3, `updated_at` = '2010-07-18 01:38:27' WHERE `id` = 59149966[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 445636402 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 291385784 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 7, `lft` = 6, `updated_at` = '2010-07-18 01:38:27' WHERE `id` = 291385784[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 594039610 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 9, `lft` = 8, `updated_at` = '2010-07-18 01:38:28' WHERE `id` = 594039610[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 790271446 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 11, `lft` = 10, `updated_at` = '2010-07-18 01:38:28' WHERE `id` = 790271446[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 1072752365 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 13, `lft` = 12, `updated_at` = '2010-07-18 01:38:28' WHERE `id` = 1072752365[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 14, `lft` = 5, `updated_at` = '2010-07-18 01:38:28' WHERE `id` = 445636402[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 592668565 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 16, `lft` = 15, `updated_at` = '2010-07-18 01:38:28' WHERE `id` = 592668565[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 17, `lft` = 2, `updated_at` = '2010-07-18 01:38:28' WHERE `id` = 730464674[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 18, `lft` = 1, `updated_at` = '2010-07-18 01:38:28' WHERE `id` = 364659302[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mLevel Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `levels`[0m
+  [4;35;1mPriviledge Load Including Associations (0.0ms)[0m   [0mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114006) ORDER BY levels.step DESC[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 1072752365) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`id` = 364659302) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 790271446) [0m
+  [4;35;1mSQL (15.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (15.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCurrency Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mCurrency Load (0.0ms)[0m   [0mSELECT * FROM `currencies` WHERE (`currencies`.`symbol` = 'EUR') LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT `groups`.* FROM `groups` INNER JOIN `priviledges` ON `groups`.id = `priviledges`.group_id WHERE ((`priviledges`.user_id = 846114006)) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `groups` LEFT OUTER JOIN `groups` AS parent ON `groups`.`parent_id` = parent.id WHERE (`groups`.`lft` IS NULL OR `groups`.`rgt` IS NULL OR `groups`.`lft` >= `groups`.`rgt` OR (`groups`.`parent_id` IS NOT NULL AND (`groups`.`lft` <= parent.`lft` OR `groups`.`rgt` >= parent.`rgt`))) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` IS NULL) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 364659302 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 730464674 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 59149966 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 4, `lft` = 3, `updated_at` = '2010-07-18 01:42:00' WHERE `id` = 59149966[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 445636402 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 291385784 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 7, `lft` = 6, `updated_at` = '2010-07-18 01:42:00' WHERE `id` = 291385784[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 594039610 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 9, `lft` = 8, `updated_at` = '2010-07-18 01:42:00' WHERE `id` = 594039610[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 790271446 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 11, `lft` = 10, `updated_at` = '2010-07-18 01:42:00' WHERE `id` = 790271446[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 1072752365 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 13, `lft` = 12, `updated_at` = '2010-07-18 01:42:00' WHERE `id` = 1072752365[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 14, `lft` = 5, `updated_at` = '2010-07-18 01:42:00' WHERE `id` = 445636402[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 592668565 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 16, `lft` = 15, `updated_at` = '2010-07-18 01:42:00' WHERE `id` = 592668565[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 17, `lft` = 2, `updated_at` = '2010-07-18 01:42:00' WHERE `id` = 730464674[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 18, `lft` = 1, `updated_at` = '2010-07-18 01:42:00' WHERE `id` = 364659302[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mLevel Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `levels`[0m
+  [4;35;1mPriviledge Load Including Associations (0.0ms)[0m   [0mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114006) ORDER BY levels.step DESC[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 790271446) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`id` = 1072752365) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 364659302) [0m
+  [4;35;1mSQL (46.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (47.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCurrency Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mCurrency Load (0.0ms)[0m   [0mSELECT * FROM `currencies` WHERE (`currencies`.`symbol` = 'EUR') LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT `groups`.* FROM `groups` INNER JOIN `priviledges` ON `groups`.id = `priviledges`.group_id WHERE ((`priviledges`.user_id = 846114006)) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `groups` LEFT OUTER JOIN `groups` AS parent ON `groups`.`parent_id` = parent.id WHERE (`groups`.`lft` IS NULL OR `groups`.`rgt` IS NULL OR `groups`.`lft` >= `groups`.`rgt` OR (`groups`.`parent_id` IS NOT NULL AND (`groups`.`lft` <= parent.`lft` OR `groups`.`rgt` >= parent.`rgt`))) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` IS NULL) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 364659302 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 730464674 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 59149966 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 4, `lft` = 3, `updated_at` = '2010-07-18 01:43:21' WHERE `id` = 59149966[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 445636402 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 291385784 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 7, `lft` = 6, `updated_at` = '2010-07-18 01:43:21' WHERE `id` = 291385784[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 594039610 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 9, `lft` = 8, `updated_at` = '2010-07-18 01:43:21' WHERE `id` = 594039610[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 790271446 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 11, `lft` = 10, `updated_at` = '2010-07-18 01:43:21' WHERE `id` = 790271446[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 1072752365 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 13, `lft` = 12, `updated_at` = '2010-07-18 01:43:21' WHERE `id` = 1072752365[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 14, `lft` = 5, `updated_at` = '2010-07-18 01:43:21' WHERE `id` = 445636402[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 592668565 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 16, `lft` = 15, `updated_at` = '2010-07-18 01:43:21' WHERE `id` = 592668565[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 17, `lft` = 2, `updated_at` = '2010-07-18 01:43:21' WHERE `id` = 730464674[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 18, `lft` = 1, `updated_at` = '2010-07-18 01:43:21' WHERE `id` = 364659302[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mLevel Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `levels`[0m
+  [4;35;1mPriviledge Load Including Associations (0.0ms)[0m   [0mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114006) ORDER BY levels.step DESC[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 1072752365) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`id` = 364659302) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 790271446) [0m
+  [4;35;1mSQL (31.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (47.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCurrency Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mCurrency Load (16.0ms)[0m   [0mSELECT * FROM `currencies` WHERE (`currencies`.`symbol` = 'EUR') LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT `groups`.* FROM `groups` INNER JOIN `priviledges` ON `groups`.id = `priviledges`.group_id WHERE ((`priviledges`.user_id = 846114006)) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `groups` LEFT OUTER JOIN `groups` AS parent ON `groups`.`parent_id` = parent.id WHERE (`groups`.`lft` IS NULL OR `groups`.`rgt` IS NULL OR `groups`.`lft` >= `groups`.`rgt` OR (`groups`.`parent_id` IS NOT NULL AND (`groups`.`lft` <= parent.`lft` OR `groups`.`rgt` >= parent.`rgt`))) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` IS NULL) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 364659302 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (15.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 730464674 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 59149966 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 4, `lft` = 3, `updated_at` = '2010-07-18 01:45:41' WHERE `id` = 59149966[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 445636402 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 291385784 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 7, `lft` = 6, `updated_at` = '2010-07-18 01:45:41' WHERE `id` = 291385784[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 594039610 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 9, `lft` = 8, `updated_at` = '2010-07-18 01:45:41' WHERE `id` = 594039610[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 790271446 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 11, `lft` = 10, `updated_at` = '2010-07-18 01:45:41' WHERE `id` = 790271446[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 1072752365 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 13, `lft` = 12, `updated_at` = '2010-07-18 01:45:41' WHERE `id` = 1072752365[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 14, `lft` = 5, `updated_at` = '2010-07-18 01:45:41' WHERE `id` = 445636402[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 592668565 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 16, `lft` = 15, `updated_at` = '2010-07-18 01:45:41' WHERE `id` = 592668565[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 17, `lft` = 2, `updated_at` = '2010-07-18 01:45:41' WHERE `id` = 730464674[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 18, `lft` = 1, `updated_at` = '2010-07-18 01:45:41' WHERE `id` = 364659302[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mLevel Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `levels`[0m
+  [4;35;1mPriviledge Load Including Associations (0.0ms)[0m   [0mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114006) ORDER BY levels.step DESC[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 364659302) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`id` = 790271446) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 1072752365) [0m
+  [4;35;1mSQL (31.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCurrency Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mSELECT count(*) AS count_all FROM `currencies` [0m
+  [4;36;1mCurrency Load (0.0ms)[0m   [0;1mSELECT * FROM `currencies` WHERE (`currencies`.`symbol` = 'EUR') LIMIT 1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT `groups`.* FROM `groups` INNER JOIN `priviledges` ON `groups`.id = `priviledges`.group_id WHERE ((`priviledges`.user_id = 846114006)) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `groups` LEFT OUTER JOIN `groups` AS parent ON `groups`.`parent_id` = parent.id WHERE (`groups`.`lft` IS NULL OR `groups`.`rgt` IS NULL OR `groups`.`lft` >= `groups`.`rgt` OR (`groups`.`parent_id` IS NOT NULL AND (`groups`.`lft` <= parent.`lft` OR `groups`.`rgt` >= parent.`rgt`))) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` IS NULL) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (15.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 364659302 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 730464674 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 59149966 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 4, `lft` = 3, `updated_at` = '2010-07-18 01:46:46' WHERE `id` = 59149966[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 445636402 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 291385784 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 7, `lft` = 6, `updated_at` = '2010-07-18 01:46:46' WHERE `id` = 291385784[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 594039610 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 9, `lft` = 8, `updated_at` = '2010-07-18 01:46:46' WHERE `id` = 594039610[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (16.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 790271446 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 11, `lft` = 10, `updated_at` = '2010-07-18 01:46:46' WHERE `id` = 790271446[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 1072752365 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 13, `lft` = 12, `updated_at` = '2010-07-18 01:46:46' WHERE `id` = 1072752365[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 14, `lft` = 5, `updated_at` = '2010-07-18 01:46:46' WHERE `id` = 445636402[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 592668565 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 16, `lft` = 15, `updated_at` = '2010-07-18 01:46:46' WHERE `id` = 592668565[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 17, `lft` = 2, `updated_at` = '2010-07-18 01:46:46' WHERE `id` = 730464674[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 18, `lft` = 1, `updated_at` = '2010-07-18 01:46:46' WHERE `id` = 364659302[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mLevel Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `levels`[0m
+  [4;36;1mPriviledge Load Including Associations (0.0ms)[0m   [0;1mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114006) ORDER BY levels.step DESC[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`id` = 1072752365) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 364659302) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`id` = 790271446) [0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (47.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCurrency Columns (15.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `currencies` [0m
+  [4;36;1mCurrency Load (0.0ms)[0m   [0;1mSELECT * FROM `currencies` WHERE (`currencies`.`symbol` = 'EUR') LIMIT 1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;36;1mGroup Load (16.0ms)[0m   [0;1mSELECT `groups`.* FROM `groups` INNER JOIN `priviledges` ON `groups`.id = `priviledges`.group_id WHERE ((`priviledges`.user_id = 846114006)) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `groups` LEFT OUTER JOIN `groups` AS parent ON `groups`.`parent_id` = parent.id WHERE (`groups`.`lft` IS NULL OR `groups`.`rgt` IS NULL OR `groups`.`lft` >= `groups`.`rgt` OR (`groups`.`parent_id` IS NOT NULL AND (`groups`.`lft` <= parent.`lft` OR `groups`.`rgt` >= parent.`rgt`))) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` IS NULL) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 364659302 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 730464674 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 59149966 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 4, `lft` = 3, `updated_at` = '2010-07-18 01:50:25' WHERE `id` = 59149966[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 445636402 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 291385784 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 7, `lft` = 6, `updated_at` = '2010-07-18 01:50:25' WHERE `id` = 291385784[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 594039610 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 9, `lft` = 8, `updated_at` = '2010-07-18 01:50:25' WHERE `id` = 594039610[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 790271446 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 11, `lft` = 10, `updated_at` = '2010-07-18 01:50:25' WHERE `id` = 790271446[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 1072752365 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 13, `lft` = 12, `updated_at` = '2010-07-18 01:50:25' WHERE `id` = 1072752365[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 14, `lft` = 5, `updated_at` = '2010-07-18 01:50:25' WHERE `id` = 445636402[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 592668565 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 16, `lft` = 15, `updated_at` = '2010-07-18 01:50:25' WHERE `id` = 592668565[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 17, `lft` = 2, `updated_at` = '2010-07-18 01:50:25' WHERE `id` = 730464674[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 18, `lft` = 1, `updated_at` = '2010-07-18 01:50:25' WHERE `id` = 364659302[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mLevel Columns (15.0ms)[0m   [0mSHOW FIELDS FROM `levels`[0m
+  [4;36;1mPriviledge Load Including Associations (0.0ms)[0m   [0;1mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114006) ORDER BY levels.step DESC[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`id` = 1072752365) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 364659302) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`id` = 790271446) [0m
+  [4;36;1mSQL (47.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (31.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCurrency Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `currencies` [0m
+  [4;36;1mCurrency Load (0.0ms)[0m   [0;1mSELECT * FROM `currencies` WHERE (`currencies`.`symbol` = 'EUR') LIMIT 1[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT `groups`.* FROM `groups` INNER JOIN `priviledges` ON `groups`.id = `priviledges`.group_id WHERE ((`priviledges`.user_id = 846114006)) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `groups` LEFT OUTER JOIN `groups` AS parent ON `groups`.`parent_id` = parent.id WHERE (`groups`.`lft` IS NULL OR `groups`.`rgt` IS NULL OR `groups`.`lft` >= `groups`.`rgt` OR (`groups`.`parent_id` IS NOT NULL AND (`groups`.`lft` <= parent.`lft` OR `groups`.`rgt` >= parent.`rgt`))) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` IS NULL) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 364659302 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 730464674 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 59149966 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 4, `lft` = 3, `updated_at` = '2010-07-18 01:51:58' WHERE `id` = 59149966[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 445636402 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 291385784 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 7, `lft` = 6, `updated_at` = '2010-07-18 01:51:58' WHERE `id` = 291385784[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 594039610 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 9, `lft` = 8, `updated_at` = '2010-07-18 01:51:58' WHERE `id` = 594039610[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 790271446 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 11, `lft` = 10, `updated_at` = '2010-07-18 01:51:58' WHERE `id` = 790271446[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 1072752365 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 13, `lft` = 12, `updated_at` = '2010-07-18 01:51:58' WHERE `id` = 1072752365[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 14, `lft` = 5, `updated_at` = '2010-07-18 01:51:58' WHERE `id` = 445636402[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 592668565 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 16, `lft` = 15, `updated_at` = '2010-07-18 01:51:58' WHERE `id` = 592668565[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (15.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 17, `lft` = 2, `updated_at` = '2010-07-18 01:51:58' WHERE `id` = 730464674[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 18, `lft` = 1, `updated_at` = '2010-07-18 01:51:58' WHERE `id` = 364659302[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mLevel Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `levels`[0m
+  [4;36;1mPriviledge Load Including Associations (0.0ms)[0m   [0;1mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114006) ORDER BY levels.step DESC[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`id` = 364659302) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 790271446) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`id` = 1072752365) [0m
+  [4;36;1mSQL (31.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (15.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (15.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (31.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCurrency Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mCurrency Create (0.0ms)[0m   [0;1mINSERT INTO `currencies` (`updated_at`, `symbol`, `description`, `base`, `created_at`) VALUES('2010-07-18 01:58:13', 'EUR', NULL, 0, '2010-07-18 01:58:13')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mCurrency Create (0.0ms)[0m   [0mINSERT INTO `currencies` (`updated_at`, `symbol`, `description`, `base`, `created_at`) VALUES('2010-07-18 01:58:13', 'USD', NULL, 0, '2010-07-18 01:58:13')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `currencies` [0m
+  [4;36;1mCurrency Load (0.0ms)[0m   [0;1mSELECT * FROM `currencies` WHERE (`currencies`.`symbol` = 'EUR') LIMIT 1[0m
+  [4;35;1mCurrency Load (0.0ms)[0m   [0mSELECT * FROM `currencies` WHERE (`currencies`.`symbol` = 'USD') LIMIT 1[0m
+  [4;36;1mSQL (31.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT `groups`.* FROM `groups` INNER JOIN `priviledges` ON `groups`.id = `priviledges`.group_id WHERE ((`priviledges`.user_id = 846114006)) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `groups` LEFT OUTER JOIN `groups` AS parent ON `groups`.`parent_id` = parent.id WHERE (`groups`.`lft` IS NULL OR `groups`.`rgt` IS NULL OR `groups`.`lft` >= `groups`.`rgt` OR (`groups`.`parent_id` IS NOT NULL AND (`groups`.`lft` <= parent.`lft` OR `groups`.`rgt` >= parent.`rgt`))) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` IS NULL) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 364659302 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 730464674 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 59149966 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 4, `lft` = 3, `updated_at` = '2010-07-18 01:58:13' WHERE `id` = 59149966[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 445636402 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 291385784 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 7, `lft` = 6, `updated_at` = '2010-07-18 01:58:13' WHERE `id` = 291385784[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 594039610 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 9, `lft` = 8, `updated_at` = '2010-07-18 01:58:13' WHERE `id` = 594039610[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 790271446 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (16.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 11, `lft` = 10, `updated_at` = '2010-07-18 01:58:13' WHERE `id` = 790271446[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 1072752365 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 13, `lft` = 12, `updated_at` = '2010-07-18 01:58:13' WHERE `id` = 1072752365[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 14, `lft` = 5, `updated_at` = '2010-07-18 01:58:13' WHERE `id` = 445636402[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 592668565 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 16, `lft` = 15, `updated_at` = '2010-07-18 01:58:13' WHERE `id` = 592668565[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 17, `lft` = 2, `updated_at` = '2010-07-18 01:58:13' WHERE `id` = 730464674[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 18, `lft` = 1, `updated_at` = '2010-07-18 01:58:13' WHERE `id` = 364659302[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mLevel Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `levels`[0m
+  [4;35;1mPriviledge Load Including Associations (0.0ms)[0m   [0mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114006) ORDER BY levels.step DESC[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 1072752365) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`id` = 364659302) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 790271446) [0m
+  [4;35;1mSQL (16.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (32.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCurrency Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mCurrency Create (0.0ms)[0m   [0;1mINSERT INTO `currencies` (`updated_at`, `symbol`, `description`, `base`, `created_at`) VALUES('2010-07-18 02:01:23', 'EUR', NULL, 0, '2010-07-18 02:01:23')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mCurrency Create (0.0ms)[0m   [0mINSERT INTO `currencies` (`updated_at`, `symbol`, `description`, `base`, `created_at`) VALUES('2010-07-18 02:01:23', 'USD', NULL, 0, '2010-07-18 02:01:23')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `currencies` [0m
+  [4;36;1mCurrency Load (0.0ms)[0m   [0;1mSELECT * FROM `currencies` WHERE (`currencies`.`symbol` = 'EUR') LIMIT 1[0m
+  [4;35;1mCurrency Load (0.0ms)[0m   [0mSELECT * FROM `currencies` WHERE (`currencies`.`symbol` = 'USD') LIMIT 1[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT `groups`.* FROM `groups` INNER JOIN `priviledges` ON `groups`.id = `priviledges`.group_id WHERE ((`priviledges`.user_id = 846114006)) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `groups` LEFT OUTER JOIN `groups` AS parent ON `groups`.`parent_id` = parent.id WHERE (`groups`.`lft` IS NULL OR `groups`.`rgt` IS NULL OR `groups`.`lft` >= `groups`.`rgt` OR (`groups`.`parent_id` IS NOT NULL AND (`groups`.`lft` <= parent.`lft` OR `groups`.`rgt` >= parent.`rgt`))) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` IS NULL) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 364659302 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 730464674 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 59149966 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 4, `lft` = 3, `updated_at` = '2010-07-18 02:01:23' WHERE `id` = 59149966[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 445636402 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 291385784 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 7, `lft` = 6, `updated_at` = '2010-07-18 02:01:23' WHERE `id` = 291385784[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 594039610 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 9, `lft` = 8, `updated_at` = '2010-07-18 02:01:23' WHERE `id` = 594039610[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 790271446 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 11, `lft` = 10, `updated_at` = '2010-07-18 02:01:23' WHERE `id` = 790271446[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 1072752365 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 13, `lft` = 12, `updated_at` = '2010-07-18 02:01:23' WHERE `id` = 1072752365[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 14, `lft` = 5, `updated_at` = '2010-07-18 02:01:23' WHERE `id` = 445636402[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 592668565 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 16, `lft` = 15, `updated_at` = '2010-07-18 02:01:23' WHERE `id` = 592668565[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 17, `lft` = 2, `updated_at` = '2010-07-18 02:01:23' WHERE `id` = 730464674[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 18, `lft` = 1, `updated_at` = '2010-07-18 02:01:23' WHERE `id` = 364659302[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mLevel Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `levels`[0m
+  [4;35;1mPriviledge Load Including Associations (0.0ms)[0m   [0mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114006) ORDER BY levels.step DESC[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 1072752365) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`id` = 364659302) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 790271446) [0m
+  [4;35;1mSQL (31.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCurrency Columns (15.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mCurrency Create (16.0ms)[0m   [0;1mINSERT INTO `currencies` (`updated_at`, `symbol`, `description`, `base`, `created_at`) VALUES('2010-07-18 02:25:41', 'EUR', NULL, 0, '2010-07-18 02:25:41')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mCurrency Create (0.0ms)[0m   [0mINSERT INTO `currencies` (`updated_at`, `symbol`, `description`, `base`, `created_at`) VALUES('2010-07-18 02:25:41', 'USD', NULL, 0, '2010-07-18 02:25:41')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `currencies` [0m
+  [4;36;1mCurrency Load (0.0ms)[0m   [0;1mSELECT * FROM `currencies` WHERE (`currencies`.`symbol` = 'EUR') LIMIT 1[0m
+  [4;35;1mCurrency Load (0.0ms)[0m   [0mSELECT * FROM `currencies` WHERE (`currencies`.`symbol` = 'USD') LIMIT 1[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (15.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT `groups`.* FROM `groups` INNER JOIN `priviledges` ON `groups`.id = `priviledges`.group_id WHERE ((`priviledges`.user_id = 846114006)) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `groups` LEFT OUTER JOIN `groups` AS parent ON `groups`.`parent_id` = parent.id WHERE (`groups`.`lft` IS NULL OR `groups`.`rgt` IS NULL OR `groups`.`lft` >= `groups`.`rgt` OR (`groups`.`parent_id` IS NOT NULL AND (`groups`.`lft` <= parent.`lft` OR `groups`.`rgt` >= parent.`rgt`))) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` IS NULL) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 364659302 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 730464674 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 59149966 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 4, `lft` = 3, `updated_at` = '2010-07-18 02:25:41' WHERE `id` = 59149966[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 445636402 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 291385784 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 7, `lft` = 6, `updated_at` = '2010-07-18 02:25:41' WHERE `id` = 291385784[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 594039610 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 9, `lft` = 8, `updated_at` = '2010-07-18 02:25:41' WHERE `id` = 594039610[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 790271446 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 11, `lft` = 10, `updated_at` = '2010-07-18 02:25:41' WHERE `id` = 790271446[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`parent_id` = 1072752365 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 13, `lft` = 12, `updated_at` = '2010-07-18 02:25:41' WHERE `id` = 1072752365[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 14, `lft` = 5, `updated_at` = '2010-07-18 02:25:41' WHERE `id` = 445636402[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`parent_id` = 592668565 ) ORDER BY `lft`, `rgt`, id[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 16, `lft` = 15, `updated_at` = '2010-07-18 02:25:41' WHERE `id` = 592668565[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `rgt` = 17, `lft` = 2, `updated_at` = '2010-07-18 02:25:41' WHERE `id` = 730464674[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `rgt` = 18, `lft` = 1, `updated_at` = '2010-07-18 02:25:41' WHERE `id` = 364659302[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mLevel Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `levels`[0m
+  [4;35;1mPriviledge Load Including Associations (0.0ms)[0m   [0mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114006) ORDER BY levels.step DESC[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 790271446) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`id` = 1072752365) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`id` = 364659302) [0m
+  [4;35;1mSQL (31.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (15.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (31.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mGroup Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `groups`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mSELECT max(`groups`.rgt) AS max_rgt FROM `groups` [0m
+  [4;35;1mGroup Create (0.0ms)[0m   [0mINSERT INTO `groups` (`name`, `updated_at`, `account_id`, `lft`, `parent_id`, `rgt`, `created_at`) VALUES('Base', '2010-07-18 02:33:51', NULL, 1, NULL, 2, '2010-07-18 02:33:51')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `users` [0m
+
+
+Processing UsersController#create (for 0.0.0.0 at 2010-07-18 04:33:51) [POST]
+  Parameters: {"user"=>{"name"=>"Tester", "password_confirmation"=>"tested", "password"=>"tested", "login"=>"tester", "email"=>"tester@testing.com"}, "group"=>{"name"=>"test group"}}
+  [4;36;1mLevel Load (15.0ms)[0m   [0;1mSELECT * FROM `levels` WHERE (`levels`.`name` = 'user') ORDER BY step DESC LIMIT 1[0m
+  [4;35;1mPriviledge Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `priviledges`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`email`) = BINARY 'tester@testing.com') LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`login`) = BINARY 'tester') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY 'e5db15aebc086b31319001bb87ec10e9d75068ab2e7ec1516d083bd6fac90f55c1bb88bcdc93c0a5fbc0cbf8ad76bc4c84b46b173bd9110a721091594a763bc3') LIMIT 1[0m
+  [4;36;1mUser Create (0.0ms)[0m   [0;1mINSERT INTO `users` (`name`, `rating`, `last_login_at`, `last_request_at`, `updated_at`, `crypted_password`, `account_id`, `password_salt`, `current_login_at`, `group_id`, `failed_login_count`, `persistence_token`, `login_count`, `login`, `email`, `created_at`) VALUES('Tester', NULL, NULL, '2010-07-18 02:33:52', '2010-07-18 02:33:52', 'd53000a60360b877013f94bd7dcd91e467e9d76177caa3e4795013d6ed82701583d6bf1b7429fdffd5a761ffea58714cc5ac8774d37557c67c3845c7e50f8e74', NULL, 'Axk3boC280jbQ0_Yh__-', '2010-07-18 02:33:52', NULL, 0, 'e5db15aebc086b31319001bb87ec10e9d75068ab2e7ec1516d083bd6fac90f55c1bb88bcdc93c0a5fbc0cbf8ad76bc4c84b46b173bd9110a721091594a763bc3', 1, 'tester', 'tester@testing.com', '2010-07-18 02:33:52')[0m
+  [4;35;1mAccount Create (0.0ms)[0m   [0mINSERT INTO `accounts` (`period`, `paypal`, `updated_at`, `currency_id`, `cc_name`, `creator_id`, `type_id`, `external_id`, `payment`, `ccnum`, `address_id`, `rules_id`, `cc_exp`, `created_at`) VALUES(1, NULL, '2010-07-18 02:33:52', NULL, NULL, 846114007, NULL, NULL, 0.0, NULL, NULL, NULL, NULL, '2010-07-18 02:33:52')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT max(`groups`.rgt) AS max_rgt FROM `groups` [0m
+  [4;35;1mGroup Create (0.0ms)[0m   [0mINSERT INTO `groups` (`name`, `updated_at`, `account_id`, `lft`, `parent_id`, `rgt`, `created_at`) VALUES('test group', '2010-07-18 02:33:52', 221168074, 3, NULL, 4, '2010-07-18 02:33:52')[0m
+  [4;36;1mPriviledge Create (0.0ms)[0m   [0;1mINSERT INTO `priviledges` (`level_id`, `updated_at`, `group_id`, `user_id`, `created_at`) VALUES(1, '2010-07-18 02:33:52', 1072752367, 846114007, '2010-07-18 02:33:52')[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`name` = 'Base') LIMIT 1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752366) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752367) [0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `lft` = CASE WHEN `lft` BETWEEN 2 AND 2 THEN `lft` + 4 - 2 WHEN `lft` BETWEEN 3 AND 4 THEN `lft` + 2 - 3 ELSE `lft` END, `rgt` = CASE WHEN `rgt` BETWEEN 2 AND 2 THEN `rgt` + 4 - 2 WHEN `rgt` BETWEEN 3 AND 4 THEN `rgt` + 2 - 3 ELSE `rgt` END, `parent_id` = CASE WHEN id = 1072752367 THEN 1072752366 ELSE `parent_id` END [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752366) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752367) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`persistence_token` = 'e5db15aebc086b31319001bb87ec10e9d75068ab2e7ec1516d083bd6fac90f55c1bb88bcdc93c0a5fbc0cbf8ad76bc4c84b46b173bd9110a721091594a763bc3') ORDER BY login LIMIT 1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Update (0.0ms)[0m   [0;1mUPDATE `users` SET `updated_at` = '2010-07-18 02:33:52', `last_request_at` = '2010-07-18 02:33:52' WHERE `id` = 846114007[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users/846114007
+Completed in 735ms (DB: 218) | 302 Found [http://test.host/users?group%5Bname%5D=test+group&user%5Bemail%5D=tester%40testing.com&user%5Blogin%5D=tester&user%5Bname%5D=Tester&user%5Bpassword%5D=tested&user%5Bpassword_confirmation%5D=tested]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `users` [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`name` = 'test group') LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`name` = 'Tester') ORDER BY login LIMIT 1[0m
+  [4;35;1mSQL (62.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `users` [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+
+
+Processing UsersController#destroy (for 0.0.0.0 at 2010-07-18 04:33:52) [DELETE]
+  Parameters: {"id"=>"846114006"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mTender Load (0.0ms)[0m   [0mSELECT * FROM `tenders` WHERE (`tenders`.user_id = 846114006) [0m
+  [4;36;1mPriviledge Load Including Associations (0.0ms)[0m   [0;1mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114006) ORDER BY levels.step DESC[0m
+  [4;35;1mUser Destroy (0.0ms)[0m   [0mDELETE FROM `users` WHERE `id` = 846114006[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users
+Completed in 0ms (DB: 62) | 302 Found [http://test.host/users/846114006]
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `users` [0m
+  [4;36;1mSQL (31.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+
+
+Processing UsersController#edit (for 0.0.0.0 at 2010-07-18 04:33:52) [GET]
+  Parameters: {"id"=>"846114006"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered shared/_header (15.0ms)
+Completed in 31ms (View: 31, DB: 31) | 200 OK [http://test.host/users/846114006/edit]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+
+
+Processing UsersController#index (for 0.0.0.0 at 2010-07-18 04:33:52) [GET]
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` ORDER BY login[0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered shared/_header (0.0ms)
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://test.host/users]
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+
+
+Processing UsersController#new (for 0.0.0.0 at 2010-07-18 04:33:52) [GET]
+Rendering template within layouts/application
+Rendering users/new
+Rendered shared/_header (0.0ms)
+Completed in 0ms (View: 0, DB: 0) | 200 OK [http://test.host/users/new]
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`email`) = BINARY 'tester@testing.com') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`login`) = BINARY 'tester') LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY '7439207bcfca489b4285e023032371b599ddab1394230f8f6a69daf4664d700126d52fc4f8e5418b7583e9b643697fce2ff0ceb15fe4945bb12edc3ba88aa424') LIMIT 1[0m
+  [4;35;1mUser Create (0.0ms)[0m   [0mINSERT INTO `users` (`name`, `rating`, `last_login_at`, `last_request_at`, `updated_at`, `crypted_password`, `account_id`, `password_salt`, `current_login_at`, `group_id`, `failed_login_count`, `persistence_token`, `login_count`, `login`, `email`, `created_at`) VALUES('Tester', NULL, NULL, '2010-07-18 02:33:52', '2010-07-18 02:33:52', '066c8c0cdc352fb492e7fc6e105186d57c445263f88e9073af2045ebdaf7fc7332cfc49b2110883f46536defc61abc65995ba6636cf90a741fd4fa5cc5b53ddf', NULL, 'Ax9RAGeEXjOi5xslHjVs', '2010-07-18 02:33:52', NULL, 0, '7439207bcfca489b4285e023032371b599ddab1394230f8f6a69daf4664d700126d52fc4f8e5418b7583e9b643697fce2ff0ceb15fe4945bb12edc3ba88aa424', 1, 'tester', 'tester@testing.com', '2010-07-18 02:33:52')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (LOWER(`users`.login) = 'tester') ORDER BY login LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Update (0.0ms)[0m   [0mUPDATE `users` SET `login_count` = 2, `last_login_at` = '2010-07-18 02:33:52', `updated_at` = '2010-07-18 02:33:52', `last_request_at` = '2010-07-18 02:33:52', `current_login_at` = '2010-07-18 02:33:52' WHERE `id` = 846114008[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+
+
+Processing UsersController#show (for 0.0.0.0 at 2010-07-18 04:33:52) [GET]
+  Parameters: {"id"=>"846114008"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114008) ORDER BY login[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114008) ORDER BY login LIMIT 1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Update (0.0ms)[0m   [0;1mUPDATE `users` SET `updated_at` = '2010-07-18 02:33:52', `last_request_at` = '2010-07-18 02:33:52' WHERE `id` = 846114008[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+Rendering template within layouts/application
+Rendering users/show
+  [4;36;1mPriviledge Load Including Associations (0.0ms)[0m   [0;1mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114008) ORDER BY levels.step DESC[0m
+Rendered shared/_header (0.0ms)
+Completed in 15ms (View: 0, DB: 0) | 200 OK [http://test.host/users/846114008]
+  [4;35;1mSQL (32.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+
+
+Processing UsersController#update (for 0.0.0.0 at 2010-07-18 04:33:52) [PUT]
+  Parameters: {"user"=>{}, "id"=>"846114006"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users/846114006
+Completed in 0ms (DB: 32) | 302 Found [http://test.host/users/846114006?]
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mGroup Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `groups`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT max(`groups`.rgt) AS max_rgt FROM `groups` [0m
+  [4;35;1mGroup Create (0.0ms)[0m   [0mINSERT INTO `groups` (`name`, `updated_at`, `account_id`, `lft`, `parent_id`, `rgt`, `created_at`) VALUES('Base', '2010-07-18 02:35:11', NULL, 1, NULL, 2, '2010-07-18 02:35:11')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `users` [0m
+
+
+Processing UsersController#create (for 0.0.0.0 at 2010-07-18 04:35:11) [POST]
+  Parameters: {"user"=>{"name"=>"Tester", "password_confirmation"=>"tested", "password"=>"tested", "login"=>"tester", "email"=>"tester@testing.com"}, "group"=>{"name"=>"test group"}}
+  [4;36;1mLevel Load (0.0ms)[0m   [0;1mSELECT * FROM `levels` WHERE (`levels`.`name` = 'user') ORDER BY step DESC LIMIT 1[0m
+  [4;35;1mPriviledge Columns (16.0ms)[0m   [0mSHOW FIELDS FROM `priviledges`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`email`) = BINARY 'tester@testing.com') LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`login`) = BINARY 'tester') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY '9080c3e90ac3b4c06b35ae88100fb12eb0ae985d27966808207a9f70f661fa3145d82d922b1bc1e12531db9b75d1c49d68cb441eb0f26ccccfc19a26393b6510') LIMIT 1[0m
+  [4;36;1mUser Create (0.0ms)[0m   [0;1mINSERT INTO `users` (`name`, `rating`, `last_login_at`, `last_request_at`, `updated_at`, `crypted_password`, `account_id`, `password_salt`, `current_login_at`, `group_id`, `failed_login_count`, `persistence_token`, `login_count`, `login`, `email`, `created_at`) VALUES('Tester', NULL, NULL, '2010-07-18 02:35:11', '2010-07-18 02:35:11', '914476cb7ffbd8e1ccb7f762b536a2be5a8251c122d3551edaf72f2c787f01262bfce90a4b4b08bdf97aa5d36e1821e3b9e7523833f3d916191df447b9e71066', NULL, '403NCJrspUQI9j2NBM9k', '2010-07-18 02:35:11', NULL, 0, '9080c3e90ac3b4c06b35ae88100fb12eb0ae985d27966808207a9f70f661fa3145d82d922b1bc1e12531db9b75d1c49d68cb441eb0f26ccccfc19a26393b6510', 1, 'tester', 'tester@testing.com', '2010-07-18 02:35:11')[0m
+  [4;35;1mAccount Create (0.0ms)[0m   [0mINSERT INTO `accounts` (`period`, `paypal`, `updated_at`, `currency_id`, `cc_name`, `creator_id`, `type_id`, `external_id`, `payment`, `ccnum`, `address_id`, `rules_id`, `cc_exp`, `created_at`) VALUES(1, NULL, '2010-07-18 02:35:12', NULL, NULL, 846114009, NULL, NULL, 0.0, NULL, NULL, NULL, NULL, '2010-07-18 02:35:12')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT max(`groups`.rgt) AS max_rgt FROM `groups` [0m
+  [4;35;1mGroup Create (0.0ms)[0m   [0mINSERT INTO `groups` (`name`, `updated_at`, `account_id`, `lft`, `parent_id`, `rgt`, `created_at`) VALUES('test group', '2010-07-18 02:35:12', 221168075, 3, NULL, 4, '2010-07-18 02:35:12')[0m
+  [4;36;1mPriviledge Create (0.0ms)[0m   [0;1mINSERT INTO `priviledges` (`level_id`, `updated_at`, `group_id`, `user_id`, `created_at`) VALUES(1, '2010-07-18 02:35:12', 1072752369, 846114009, '2010-07-18 02:35:12')[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`name` = 'Base') LIMIT 1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752368) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752369) [0m
+  [4;36;1mGroup Update (0.0ms)[0m   [0;1mUPDATE `groups` SET `lft` = CASE WHEN `lft` BETWEEN 2 AND 2 THEN `lft` + 4 - 2 WHEN `lft` BETWEEN 3 AND 4 THEN `lft` + 2 - 3 ELSE `lft` END, `rgt` = CASE WHEN `rgt` BETWEEN 2 AND 2 THEN `rgt` + 4 - 2 WHEN `rgt` BETWEEN 3 AND 4 THEN `rgt` + 2 - 3 ELSE `rgt` END, `parent_id` = CASE WHEN id = 1072752369 THEN 1072752368 ELSE `parent_id` END [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752368) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752369) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`persistence_token` = '9080c3e90ac3b4c06b35ae88100fb12eb0ae985d27966808207a9f70f661fa3145d82d922b1bc1e12531db9b75d1c49d68cb441eb0f26ccccfc19a26393b6510') ORDER BY login LIMIT 1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Update (0.0ms)[0m   [0;1mUPDATE `users` SET `updated_at` = '2010-07-18 02:35:12', `last_request_at` = '2010-07-18 02:35:12' WHERE `id` = 846114009[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users/846114009
+Completed in 735ms (DB: 112) | 302 Found [http://test.host/users?group%5Bname%5D=test+group&user%5Bemail%5D=tester%40testing.com&user%5Blogin%5D=tester&user%5Bname%5D=Tester&user%5Bpassword%5D=tested&user%5Bpassword_confirmation%5D=tested]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `users` [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`name` = 'test group') LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`name` = 'Tester') ORDER BY login LIMIT 1[0m
+  [4;35;1mUser Load (15.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`name` = 'Tester') ORDER BY login LIMIT 1[0m
+  [4;36;1mSQL (47.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `users` [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+
+
+Processing UsersController#destroy (for 0.0.0.0 at 2010-07-18 04:35:12) [DELETE]
+  Parameters: {"id"=>"846114006"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mTender Load (0.0ms)[0m   [0;1mSELECT * FROM `tenders` WHERE (`tenders`.user_id = 846114006) [0m
+  [4;35;1mPriviledge Load Including Associations (0.0ms)[0m   [0mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114006) ORDER BY levels.step DESC[0m
+  [4;36;1mUser Destroy (0.0ms)[0m   [0;1mDELETE FROM `users` WHERE `id` = 846114006[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users
+Completed in 16ms (DB: 62) | 302 Found [http://test.host/users/846114006]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `users` [0m
+  [4;35;1mSQL (16.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+
+
+Processing UsersController#edit (for 0.0.0.0 at 2010-07-18 04:35:12) [GET]
+  Parameters: {"id"=>"846114006"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered shared/_header (0.0ms)
+Completed in 16ms (View: 16, DB: 16) | 200 OK [http://test.host/users/846114006/edit]
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+
+
+Processing UsersController#index (for 0.0.0.0 at 2010-07-18 04:35:12) [GET]
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` ORDER BY login[0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered shared/_header (0.0ms)
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://test.host/users]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+
+
+Processing UsersController#new (for 0.0.0.0 at 2010-07-18 04:35:12) [GET]
+Rendering template within layouts/application
+Rendering users/new
+Rendered shared/_header (0.0ms)
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://test.host/users/new]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`email`) = BINARY 'tester@testing.com') LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`login`) = BINARY 'tester') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY '8b6edcdd28585c7144393599927210b4f5fa317736f436b89737a2ffe04d22900736da0b5c1db6e98b3e1c9fe8d9735a87ef4b4af522269f80c48a98fe22fb29') LIMIT 1[0m
+  [4;36;1mUser Create (0.0ms)[0m   [0;1mINSERT INTO `users` (`name`, `rating`, `last_login_at`, `last_request_at`, `updated_at`, `crypted_password`, `account_id`, `password_salt`, `current_login_at`, `group_id`, `failed_login_count`, `persistence_token`, `login_count`, `login`, `email`, `created_at`) VALUES('Tester', NULL, NULL, '2010-07-18 02:35:12', '2010-07-18 02:35:12', '3d8dec336f67d9d12a49a7d4e126f8c4f7ad905ef4002a096acd173ff456e9ee6e18064a0def00006d995b15238eb79b332c63c629a1f96ad33e838ecf091195', NULL, 'o6Yx96PckILX62G9mbHg', '2010-07-18 02:35:12', NULL, 0, '8b6edcdd28585c7144393599927210b4f5fa317736f436b89737a2ffe04d22900736da0b5c1db6e98b3e1c9fe8d9735a87ef4b4af522269f80c48a98fe22fb29', 1, 'tester', 'tester@testing.com', '2010-07-18 02:35:12')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (LOWER(`users`.login) = 'tester') ORDER BY login LIMIT 1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Update (0.0ms)[0m   [0;1mUPDATE `users` SET `login_count` = 2, `last_login_at` = '2010-07-18 02:35:12', `updated_at` = '2010-07-18 02:35:12', `last_request_at` = '2010-07-18 02:35:12', `current_login_at` = '2010-07-18 02:35:12' WHERE `id` = 846114010[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+
+
+Processing UsersController#show (for 0.0.0.0 at 2010-07-18 04:35:12) [GET]
+  Parameters: {"id"=>"846114010"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114010) ORDER BY login[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114010) ORDER BY login LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Update (0.0ms)[0m   [0mUPDATE `users` SET `updated_at` = '2010-07-18 02:35:12', `last_request_at` = '2010-07-18 02:35:12' WHERE `id` = 846114010[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Rendering template within layouts/application
+Rendering users/show
+  [4;35;1mPriviledge Load Including Associations (0.0ms)[0m   [0mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114010) ORDER BY levels.step DESC[0m
+Rendered shared/_header (0.0ms)
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://test.host/users/846114010]
+  [4;36;1mSQL (15.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+
+
+Processing UsersController#update (for 0.0.0.0 at 2010-07-18 04:35:12) [PUT]
+  Parameters: {"user"=>{}, "id"=>"846114006"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users/846114006
+Completed in 0ms (DB: 15) | 302 Found [http://test.host/users/846114006?]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mGroup Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `groups`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT max(`groups`.rgt) AS max_rgt FROM `groups` [0m
+  [4;35;1mGroup Create (0.0ms)[0m   [0mINSERT INTO `groups` (`name`, `updated_at`, `account_id`, `lft`, `parent_id`, `rgt`, `created_at`) VALUES('Base', '2010-07-18 02:37:56', NULL, 1, NULL, 2, '2010-07-18 02:37:56')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `users` [0m
+
+
+Processing UsersController#create (for 0.0.0.0 at 2010-07-18 04:37:56) [POST]
+  Parameters: {"user"=>{"name"=>"Tester", "password_confirmation"=>"tested", "password"=>"tested", "login"=>"tester", "email"=>"tester@testing.com"}, "group"=>{"name"=>"test group"}}
+  [4;36;1mLevel Load (0.0ms)[0m   [0;1mSELECT * FROM `levels` WHERE (`levels`.`name` = 'user') ORDER BY step DESC LIMIT 1[0m
+  [4;35;1mPriviledge Columns (16.0ms)[0m   [0mSHOW FIELDS FROM `priviledges`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`email`) = BINARY 'tester@testing.com') LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`login`) = BINARY 'tester') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY '6e5acfb05b94e33a8d53f7803c5807aabf88fd6945178c4faae3ce267506745a2ae80d6b35fb060dac8fc16bf15cf204819a2853335740107640d2a2c4dfe472') LIMIT 1[0m
+  [4;36;1mUser Create (0.0ms)[0m   [0;1mINSERT INTO `users` (`name`, `rating`, `last_login_at`, `last_request_at`, `updated_at`, `crypted_password`, `account_id`, `password_salt`, `current_login_at`, `group_id`, `failed_login_count`, `persistence_token`, `login_count`, `login`, `email`, `created_at`) VALUES('Tester', NULL, NULL, '2010-07-18 02:37:56', '2010-07-18 02:37:56', '31afb6f3ae7d4c72945c34d01d1406ef831b637e350f8b42b75627e3cb53853cc0b0fd4e09dcbb9081c56d1d1b30f6a396e8e0a03494128cdbb8e03720234aa5', NULL, '03DCD4FOGM4US4V5adCc', '2010-07-18 02:37:56', NULL, 0, '6e5acfb05b94e33a8d53f7803c5807aabf88fd6945178c4faae3ce267506745a2ae80d6b35fb060dac8fc16bf15cf204819a2853335740107640d2a2c4dfe472', 1, 'tester', 'tester@testing.com', '2010-07-18 02:37:56')[0m
+  [4;35;1mAccount Create (0.0ms)[0m   [0mINSERT INTO `accounts` (`period`, `paypal`, `updated_at`, `currency_id`, `cc_name`, `creator_id`, `type_id`, `external_id`, `payment`, `ccnum`, `address_id`, `rules_id`, `cc_exp`, `created_at`) VALUES(1, NULL, '2010-07-18 02:37:56', NULL, NULL, 846114011, NULL, NULL, 0.0, NULL, NULL, NULL, NULL, '2010-07-18 02:37:56')[0m
+  [4;36;1mUser Update (0.0ms)[0m   [0;1mUPDATE `users` SET `account_id` = 221168076, `updated_at` = '2010-07-18 02:37:56' WHERE `id` = 846114011[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT max(`groups`.rgt) AS max_rgt FROM `groups` [0m
+  [4;36;1mGroup Create (0.0ms)[0m   [0;1mINSERT INTO `groups` (`name`, `updated_at`, `account_id`, `lft`, `parent_id`, `rgt`, `created_at`) VALUES('test group', '2010-07-18 02:37:56', 221168076, 3, NULL, 4, '2010-07-18 02:37:56')[0m
+  [4;35;1mPriviledge Create (0.0ms)[0m   [0mINSERT INTO `priviledges` (`level_id`, `updated_at`, `group_id`, `user_id`, `created_at`) VALUES(1, '2010-07-18 02:37:56', 1072752371, 846114011, '2010-07-18 02:37:56')[0m
+  [4;36;1mGroup Load (16.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`name` = 'Base') LIMIT 1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752370) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752371) [0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `lft` = CASE WHEN `lft` BETWEEN 2 AND 2 THEN `lft` + 4 - 2 WHEN `lft` BETWEEN 3 AND 4 THEN `lft` + 2 - 3 ELSE `lft` END, `rgt` = CASE WHEN `rgt` BETWEEN 2 AND 2 THEN `rgt` + 4 - 2 WHEN `rgt` BETWEEN 3 AND 4 THEN `rgt` + 2 - 3 ELSE `rgt` END, `parent_id` = CASE WHEN id = 1072752371 THEN 1072752370 ELSE `parent_id` END [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752370) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752371) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`persistence_token` = '6e5acfb05b94e33a8d53f7803c5807aabf88fd6945178c4faae3ce267506745a2ae80d6b35fb060dac8fc16bf15cf204819a2853335740107640d2a2c4dfe472') ORDER BY login LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Update (0.0ms)[0m   [0mUPDATE `users` SET `updated_at` = '2010-07-18 02:37:57', `last_request_at` = '2010-07-18 02:37:57' WHERE `id` = 846114011[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users/846114011
+Completed in 766ms (DB: 126) | 302 Found [http://test.host/users?group%5Bname%5D=test+group&user%5Bemail%5D=tester%40testing.com&user%5Blogin%5D=tester&user%5Bname%5D=Tester&user%5Bpassword%5D=tested&user%5Bpassword_confirmation%5D=tested]
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `users` [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`name` = 'test group') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`name` = 'Tester') ORDER BY login LIMIT 1[0m
+  [4;36;1mAccount Load (0.0ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 221168076) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`name` = 'Tester') ORDER BY login LIMIT 1[0m
+  [4;36;1mAccount Load (0.0ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 221168076) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.account_id = 221168076) LIMIT 1[0m
+  [4;36;1mSQL (63.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `users` [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+
+
+Processing UsersController#destroy (for 0.0.0.0 at 2010-07-18 04:37:57) [DELETE]
+  Parameters: {"id"=>"846114006"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mTender Load (0.0ms)[0m   [0;1mSELECT * FROM `tenders` WHERE (`tenders`.user_id = 846114006) [0m
+  [4;35;1mPriviledge Load Including Associations (0.0ms)[0m   [0mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114006) ORDER BY levels.step DESC[0m
+  [4;36;1mUser Destroy (0.0ms)[0m   [0;1mDELETE FROM `users` WHERE `id` = 846114006[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users
+Completed in 15ms (DB: 63) | 302 Found [http://test.host/users/846114006]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `users` [0m
+  [4;35;1mSQL (16.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+
+
+Processing UsersController#edit (for 0.0.0.0 at 2010-07-18 04:37:57) [GET]
+  Parameters: {"id"=>"846114006"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered shared/_header (0.0ms)
+Completed in 15ms (View: 15, DB: 16) | 200 OK [http://test.host/users/846114006/edit]
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+
+
+Processing UsersController#index (for 0.0.0.0 at 2010-07-18 04:37:57) [GET]
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` ORDER BY login[0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered shared/_header (0.0ms)
+Completed in 15ms (View: 15, DB: 0) | 200 OK [http://test.host/users]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+
+
+Processing UsersController#new (for 0.0.0.0 at 2010-07-18 04:37:57) [GET]
+Rendering template within layouts/application
+Rendering users/new
+Rendered shared/_header (0.0ms)
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://test.host/users/new]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`email`) = BINARY 'tester@testing.com') LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`login`) = BINARY 'tester') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY 'b842ead92372bfa0ce48850a145940ac5b4fd2cdbcf940d76bd9ed8aa9c68d4e76859946b7d7bd248edc2c8a7cf5685c78fb47a9e23e116e5c26a1826c12508e') LIMIT 1[0m
+  [4;36;1mUser Create (0.0ms)[0m   [0;1mINSERT INTO `users` (`name`, `rating`, `last_login_at`, `last_request_at`, `updated_at`, `crypted_password`, `account_id`, `password_salt`, `current_login_at`, `group_id`, `failed_login_count`, `persistence_token`, `login_count`, `login`, `email`, `created_at`) VALUES('Tester', NULL, NULL, '2010-07-18 02:37:57', '2010-07-18 02:37:57', 'a4b13d89776fb6adeee2f87d1cef240fb341f9f0d6ae8b4c24f5e3b4ea7b950af76f1698a9a62303c67c80fb1a738a43b81fe7cd9b693e8917a45c3acd86a3ca', NULL, 'rJV1KBFNLVDRmgjrmGZW', '2010-07-18 02:37:57', NULL, 0, 'b842ead92372bfa0ce48850a145940ac5b4fd2cdbcf940d76bd9ed8aa9c68d4e76859946b7d7bd248edc2c8a7cf5685c78fb47a9e23e116e5c26a1826c12508e', 1, 'tester', 'tester@testing.com', '2010-07-18 02:37:57')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (LOWER(`users`.login) = 'tester') ORDER BY login LIMIT 1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Update (15.0ms)[0m   [0;1mUPDATE `users` SET `login_count` = 2, `last_login_at` = '2010-07-18 02:37:57', `updated_at` = '2010-07-18 02:37:57', `last_request_at` = '2010-07-18 02:37:57', `current_login_at` = '2010-07-18 02:37:57' WHERE `id` = 846114012[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+
+
+Processing UsersController#show (for 0.0.0.0 at 2010-07-18 04:37:57) [GET]
+  Parameters: {"id"=>"846114012"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114012) ORDER BY login[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114012) ORDER BY login LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Update (0.0ms)[0m   [0mUPDATE `users` SET `updated_at` = '2010-07-18 02:37:57', `last_request_at` = '2010-07-18 02:37:57' WHERE `id` = 846114012[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Rendering template within layouts/application
+Rendering users/show
+  [4;35;1mPriviledge Load Including Associations (0.0ms)[0m   [0mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114012) ORDER BY levels.step DESC[0m
+Rendered shared/_header (0.0ms)
+Completed in 16ms (View: 16, DB: 15) | 200 OK [http://test.host/users/846114012]
+  [4;36;1mSQL (16.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+
+
+Processing UsersController#update (for 0.0.0.0 at 2010-07-18 04:37:57) [PUT]
+  Parameters: {"user"=>{}, "id"=>"846114006"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users/846114006
+Completed in 0ms (DB: 16) | 302 Found [http://test.host/users/846114006?]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mGroup Columns (15.0ms)[0m   [0;1mSHOW FIELDS FROM `groups`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT max(`groups`.rgt) AS max_rgt FROM `groups` [0m
+  [4;35;1mGroup Create (0.0ms)[0m   [0mINSERT INTO `groups` (`name`, `updated_at`, `account_id`, `lft`, `parent_id`, `rgt`, `created_at`) VALUES('Base', '2010-07-18 02:42:22', NULL, 1, NULL, 2, '2010-07-18 02:42:22')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `users` [0m
+
+
+Processing UsersController#create (for 0.0.0.0 at 2010-07-18 04:42:22) [POST]
+  Parameters: {"user"=>{"name"=>"Tester", "password_confirmation"=>"tested", "password"=>"tested", "login"=>"tester", "email"=>"tester@testing.com"}, "group"=>{"name"=>"test group"}}
+  [4;36;1mLevel Load (0.0ms)[0m   [0;1mSELECT * FROM `levels` WHERE (`levels`.`name` = 'user') ORDER BY step DESC LIMIT 1[0m
+  [4;35;1mPriviledge Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `priviledges`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`email`) = BINARY 'tester@testing.com') LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`login`) = BINARY 'tester') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY '985c3be8a44b5dedf350b9efc0fdaf676fc3b34534c1554f177c6cd3b187d13456b06b6580b305ec8ca3591fd6d0d9779b17ba8f3842eb96079ee4b0b20de853') LIMIT 1[0m
+  [4;36;1mUser Create (15.0ms)[0m   [0;1mINSERT INTO `users` (`name`, `rating`, `last_login_at`, `last_request_at`, `updated_at`, `crypted_password`, `account_id`, `password_salt`, `current_login_at`, `group_id`, `failed_login_count`, `persistence_token`, `login_count`, `login`, `email`, `created_at`) VALUES('Tester', NULL, NULL, '2010-07-18 02:42:23', '2010-07-18 02:42:23', '67526a71e689dd83534d4e5f46c49a2e50eb87c566818b4f017e713e331a2d509afd1ff82976765331b8ba5aa2df821ed44deaa0cd0d48f17c31e88e25bdc865', NULL, 'H2i0Dl-nEx0_tjw3WiBd', '2010-07-18 02:42:23', NULL, 0, '985c3be8a44b5dedf350b9efc0fdaf676fc3b34534c1554f177c6cd3b187d13456b06b6580b305ec8ca3591fd6d0d9779b17ba8f3842eb96079ee4b0b20de853', 1, 'tester', 'tester@testing.com', '2010-07-18 02:42:23')[0m
+  [4;35;1mAccount Create (0.0ms)[0m   [0mINSERT INTO `accounts` (`period`, `paypal`, `updated_at`, `currency_id`, `cc_name`, `creator_id`, `type_id`, `external_id`, `payment`, `ccnum`, `address_id`, `rules_id`, `cc_exp`, `created_at`) VALUES(1, NULL, '2010-07-18 02:42:23', NULL, NULL, 846114013, NULL, NULL, 0.0, NULL, NULL, NULL, NULL, '2010-07-18 02:42:23')[0m
+  [4;36;1mUser Update (0.0ms)[0m   [0;1mUPDATE `users` SET `account_id` = 221168077, `updated_at` = '2010-07-18 02:42:23' WHERE `id` = 846114013[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT max(`groups`.rgt) AS max_rgt FROM `groups` [0m
+  [4;36;1mGroup Create (16.0ms)[0m   [0;1mINSERT INTO `groups` (`name`, `updated_at`, `account_id`, `lft`, `parent_id`, `rgt`, `created_at`) VALUES('test group', '2010-07-18 02:42:23', 221168077, 3, NULL, 4, '2010-07-18 02:42:23')[0m
+  [4;35;1mPriviledge Create (0.0ms)[0m   [0mINSERT INTO `priviledges` (`level_id`, `updated_at`, `group_id`, `user_id`, `created_at`) VALUES(1, '2010-07-18 02:42:23', 1072752373, 846114013, '2010-07-18 02:42:23')[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`name` = 'Base') LIMIT 1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752372) [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752373) [0m
+  [4;35;1mGroup Update (0.0ms)[0m   [0mUPDATE `groups` SET `lft` = CASE WHEN `lft` BETWEEN 2 AND 2 THEN `lft` + 4 - 2 WHEN `lft` BETWEEN 3 AND 4 THEN `lft` + 2 - 3 ELSE `lft` END, `rgt` = CASE WHEN `rgt` BETWEEN 2 AND 2 THEN `rgt` + 4 - 2 WHEN `rgt` BETWEEN 3 AND 4 THEN `rgt` + 2 - 3 ELSE `rgt` END, `parent_id` = CASE WHEN id = 1072752373 THEN 1072752372 ELSE `parent_id` END [0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752372) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT `lft`, `rgt`, `parent_id` FROM `groups` WHERE (`groups`.`id` = 1072752373) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`persistence_token` = '985c3be8a44b5dedf350b9efc0fdaf676fc3b34534c1554f177c6cd3b187d13456b06b6580b305ec8ca3591fd6d0d9779b17ba8f3842eb96079ee4b0b20de853') ORDER BY login LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Update (0.0ms)[0m   [0mUPDATE `users` SET `updated_at` = '2010-07-18 02:42:23', `last_request_at` = '2010-07-18 02:42:23' WHERE `id` = 846114013[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users/846114013
+Completed in 750ms (DB: 123) | 302 Found [http://test.host/users?group%5Bname%5D=test+group&user%5Bemail%5D=tester%40testing.com&user%5Blogin%5D=tester&user%5Bname%5D=Tester&user%5Bpassword%5D=tested&user%5Bpassword_confirmation%5D=tested]
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM `users` [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`name` = 'Tester') ORDER BY login LIMIT 1[0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.`name` = 'test group') LIMIT 1[0m
+  [4;36;1mAccount Load (0.0ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 221168077) [0m
+  [4;35;1mGroup Load (0.0ms)[0m   [0mSELECT * FROM `groups` WHERE (`groups`.account_id = 221168077) LIMIT 1[0m
+  [4;36;1mGroup Load (0.0ms)[0m   [0;1mSELECT * FROM `groups` WHERE (`groups`.`name` = 'test group') LIMIT 1[0m
+  [4;35;1mAccount Load (0.0ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 221168077) [0m
+  [4;36;1mSQL (62.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `users` [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+
+
+Processing UsersController#destroy (for 0.0.0.0 at 2010-07-18 04:42:23) [DELETE]
+  Parameters: {"id"=>"846114006"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mTender Load (0.0ms)[0m   [0;1mSELECT * FROM `tenders` WHERE (`tenders`.user_id = 846114006) [0m
+  [4;35;1mPriviledge Load Including Associations (0.0ms)[0m   [0mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114006) ORDER BY levels.step DESC[0m
+  [4;36;1mUser Destroy (0.0ms)[0m   [0;1mDELETE FROM `users` WHERE `id` = 846114006[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users
+Completed in 0ms (DB: 62) | 302 Found [http://test.host/users/846114006]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM `users` [0m
+  [4;35;1mSQL (15.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+
+
+Processing UsersController#edit (for 0.0.0.0 at 2010-07-18 04:42:23) [GET]
+  Parameters: {"id"=>"846114006"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered shared/_header (0.0ms)
+Completed in 32ms (View: 16, DB: 15) | 200 OK [http://test.host/users/846114006/edit]
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+
+
+Processing UsersController#index (for 0.0.0.0 at 2010-07-18 04:42:23) [GET]
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` ORDER BY login[0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered shared/_header (0.0ms)
+Completed in 31ms (View: 31, DB: 0) | 200 OK [http://test.host/users]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+
+
+Processing UsersController#new (for 0.0.0.0 at 2010-07-18 04:42:23) [GET]
+Rendering template within layouts/application
+Rendering users/new
+Rendered shared/_header (0.0ms)
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://test.host/users/new]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`email`) = BINARY 'tester@testing.com') LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT `users`.id FROM `users` WHERE (LOWER(`users`.`login`) = BINARY 'tester') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT `users`.id FROM `users` WHERE (`users`.`persistence_token` = BINARY '0b5e9e3ca043215ea7e3274d9a2f1d7fc3dbac9b20de6290a6eae34de21999bf33bce26a068428b46ab05670fb5b7703fac56197306e6ee9318b0f34f7227aa6') LIMIT 1[0m
+  [4;36;1mUser Create (0.0ms)[0m   [0;1mINSERT INTO `users` (`name`, `rating`, `last_login_at`, `last_request_at`, `updated_at`, `crypted_password`, `account_id`, `password_salt`, `current_login_at`, `group_id`, `failed_login_count`, `persistence_token`, `login_count`, `login`, `email`, `created_at`) VALUES('Tester', NULL, NULL, '2010-07-18 02:42:23', '2010-07-18 02:42:23', '86c8d32adea7e780f5244a011f1eb2424fbcf6bbf0a2c691d187650a7a5b11cfc7e4b4f8af9a5ff6156992c3901571c7d4cb7ab247a16cdb3c8de8b722dfd986', NULL, '20Vpc7l_y3KGv1wOCnzY', '2010-07-18 02:42:23', NULL, 0, '0b5e9e3ca043215ea7e3274d9a2f1d7fc3dbac9b20de6290a6eae34de21999bf33bce26a068428b46ab05670fb5b7703fac56197306e6ee9318b0f34f7227aa6', 1, 'tester', 'tester@testing.com', '2010-07-18 02:42:23')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (LOWER(`users`.login) = 'tester') ORDER BY login LIMIT 1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mUser Update (0.0ms)[0m   [0;1mUPDATE `users` SET `login_count` = 2, `last_login_at` = '2010-07-18 02:42:23', `updated_at` = '2010-07-18 02:42:23', `last_request_at` = '2010-07-18 02:42:23', `current_login_at` = '2010-07-18 02:42:23' WHERE `id` = 846114014[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+
+
+Processing UsersController#show (for 0.0.0.0 at 2010-07-18 04:42:23) [GET]
+  Parameters: {"id"=>"846114014"}
+  [4;36;1mUser Load (16.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114014) ORDER BY login[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114014) ORDER BY login LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mUser Update (0.0ms)[0m   [0mUPDATE `users` SET `updated_at` = '2010-07-18 02:42:23', `last_request_at` = '2010-07-18 02:42:23' WHERE `id` = 846114014[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+Rendering template within layouts/application
+Rendering users/show
+  [4;35;1mPriviledge Load Including Associations (0.0ms)[0m   [0mSELECT `priviledges`.`id` AS t0_r0, `priviledges`.`user_id` AS t0_r1, `priviledges`.`group_id` AS t0_r2, `priviledges`.`level_id` AS t0_r3, `priviledges`.`created_at` AS t0_r4, `priviledges`.`updated_at` AS t0_r5, `levels`.`id` AS t1_r0, `levels`.`name` AS t1_r1, `levels`.`step` AS t1_r2, `levels`.`created_at` AS t1_r3, `levels`.`updated_at` AS t1_r4 FROM `priviledges` LEFT OUTER JOIN `levels` ON `levels`.id = `priviledges`.level_id WHERE (`priviledges`.user_id = 846114014) ORDER BY levels.step DESC[0m
+Rendered shared/_header (0.0ms)
+Completed in 16ms (View: 0, DB: 16) | 200 OK [http://test.host/users/846114014]
+  [4;36;1mSQL (16.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+
+
+Processing UsersController#update (for 0.0.0.0 at 2010-07-18 04:42:23) [PUT]
+  Parameters: {"user"=>{}, "id"=>"846114006"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 846114006) ORDER BY login[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/users/846114006
+Completed in 16ms (DB: 16) | 302 Found [http://test.host/users/846114006?]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m

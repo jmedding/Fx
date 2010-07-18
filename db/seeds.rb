@@ -6,7 +6,7 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
 #fill the exposures with dummy data
-
+Currency.all.delete	#get rid of any dummy currencies used in the test fixtures
 Currency.create(:symbol => 'EUR', :description => 'Euro', :base => true)
 Currency.create(:symbol => 'USD', :description => 'US Dollar', :base => false)
 Currency.create(:symbol => 'CHF', :description => 'Swiss Franc')

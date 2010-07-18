@@ -12,11 +12,17 @@ class TendersController < ApplicationController
   # GET /tenders
   # GET /tenders.xml
   def index
+	  
     @tenders = current_user.get_accessible_tenders?
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @tenders }
+		if free?
+			format.html {redirect_to exposures_path }
+		else
+			format.html # index.html.erb
+			format.xml  { render :xml => @tenders }
+		end
+		
     end
   end
 

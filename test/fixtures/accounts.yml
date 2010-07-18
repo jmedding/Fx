@@ -1,0 +1,16 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+free:
+  currency_id: nil
+  rules_id: nil
+  type_id: nil
+  payment: 1.5
+  period: 1
+  ccnum: MyString
+  cc_exp: 2010-07-18
+  cc_name: MyString
+  paypal: MyString
+  address_id: 1
+  external_id: 1
+  creator_id: 1
+

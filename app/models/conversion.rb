@@ -141,8 +141,14 @@ class Conversion < ActiveRecord::Base
 			results << series
 			p += 0.1
 		end
-		return results
-		
+		return results		
 	end
+	
+	def get_recommended_rate(invert=1)
+		val = nil
+		val = (data.last.rate ** invert) / 1.05 unless data.last.blank?
+		val
+	end
+	
 	
 end

@@ -8,6 +8,7 @@ class UsersControllerTest < ActionController::TestCase
 	self.fixture_path = File.join(File.dirname(__FILE__), "../fixtures/functional")
 	fixtures :levels
 	fixtures :users
+	fixtures :accounts
 	
 	test "should get index" do
     get :index
@@ -29,10 +30,12 @@ class UsersControllerTest < ActionController::TestCase
 														:password => 'tested',
 														:password_confirmation => 'tested'},
 									:group => {:name => 'test group'}			
-		end
+								end
+		user = User.find_by_name('Tester')
 		assert Group.find_by_name('test group'), "Test Group not created"						
-
-    assert_redirected_to user_path(assigns(:user))
+		assert user.account.group.name == 'test group', "Account test failed in user creation"
+		assert  Group.find_by_name('test group').account.creator_id == user.id, "Account test failed in user creation"
+		assert_redirected_to user_path(assigns(:user))
   end
 
 	test "should show user" do

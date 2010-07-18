@@ -11,10 +11,13 @@ class Tender < ActiveRecord::Base
 		f = Array.new
 		f << Field.new("Group", group.name)
 		f.last.link_object = group
-		f << Field.new("Project", project.name)
-		f.last.link_object = project
-		f << Field.new("Tender", description)
-		f.last.link_object = self
+		unless user.account.rules.blank?
+			f << Field.new("Project", project.name)
+			f.last.link_object = project
+			f << Field.new("Tender", description)
+			f.last.link_object = self
+		end
+		
 		f << Field.new("Owner", user.name)
 		f.last.link_object = user
 		f << Field.new("Bid Date", bid_date)

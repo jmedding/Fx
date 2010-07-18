@@ -1,0 +1,88 @@
+<% @set_min_w = " min-width: 700px;" %>
+
+.navItem {
+	clear: right;
+	font-size: 14px;
+	padding: 2px;
+}
+
+.header {
+	background-color: Green;
+	font:36px verdana,arial,sans-serif;
+	color: White;
+	vertical-align: middle;
+	padding: 10px	;
+	<%= @set_min_w %>
+}
+
+.login {
+	font:12px verdana,arial,sans-serif;
+	float:right;
+	color: White;
+}
+
+.header a{
+	color: Yellow;
+	font-weight: Normal;
+	text-decoration: none;
+}
+
+.exposure {
+	background-color: Linen;
+	margin:5px 0px 0px 0px;
+	padding: 3px;
+	width: 973px;
+	font:12px verdana,arial,sans-serif;
+	-moz-border-radius: 6px;
+}
+
+.table {
+	background-color: white;
+	margin-bottom: 20px;
+	border:0px solid red;
+	-moz-border-radius: 3px;
+	font:10px verdana,arial,sans-serif;
+	border-collapse:collapse;
+	border: 2px solid grey;
+	<%= @set_min_w %>
+}
+
+.table a{
+	color: DarkSlateGrey;
+	font-weight: Bold;
+	text-decoration: none;
+}
+.table a:link{}
+
+.table a:hover{
+	color: Blue;
+}
+
+.cell {
+	padding: 0px 10px;
+	text-align: center;
+	border-collapse:collapse;
+	border: 1px solid grey;
+}
+ .table_head {
+	 font-size: 16px;
+	 font-weight: bold;
+ }
+.graph {
+	clear: right;
+	background-color: white;
+	padding: 5px;
+	width: 710px;
+	border:1px solid grey;
+	margin-bottom: 20px;
+	-moz-border-radius: 3px;
+}
+
+div.spacer {
+  clear: both;
+  display: block;
+  height: 0;
+  }
+
+body {
+	font-family:verdana,arial,sans-serif;

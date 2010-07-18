@@ -1,0 +1,42 @@
+<h1>Listing accounts</h1>
+
+<table>
+  <tr>
+    <th>Currency</th>
+    <th>Rules</th>
+    <th>Type</th>
+    <th>Payment</th>
+    <th>Period</th>
+    <th>Ccnum</th>
+    <th>Cc exp</th>
+    <th>Cc name</th>
+    <th>Paypal</th>
+    <th>Address</th>
+    <th>External</th>
+    <th>Creator</th>
+  </tr>
+
+<% @accounts.each do |account| %>
+  <tr>
+    <td><%=h account.currency_id %></td>
+    <td><%=h account.rules_id %></td>
+    <td><%=h account.type_id %></td>
+    <td><%=h account.payment %></td>
+    <td><%=h account.period %></td>
+    <td><%=h account.ccnum %></td>
+    <td><%=h account.cc_exp %></td>
+    <td><%=h account.cc_name %></td>
+    <td><%=h account.paypal %></td>
+    <td><%=h account.address_id %></td>
+    <td><%=h account.external_id %></td>
+    <td><%=h account.creator_id %></td>
+    <td><%= link_to 'Show', account %></td>
+    <td><%= link_to 'Edit', edit_account_path(account) %></td>
+    <td><%= link_to 'Destroy', account, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New account', new_account_path %>

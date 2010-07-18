@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :accounts
+
   map.resources :data
 
   map.resources :conversions
@@ -27,6 +29,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   
   map.resources :graph
+  
+	map.connect 'stylesheets/:id.:format', :controller => 'stylesheets', :action => 'application'  
 
   # The priority is based upon order of creation: first created -> highest priority.
 

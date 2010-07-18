@@ -10,10 +10,14 @@ class Exposure < ActiveRecord::Base
 	validates_presence_of :tender, :on => :create
 	validate :currencies_are_valid_and_different
 	
-	def after_initialize
+	def before_save
 		self.invert = set_conversion!
+		update_rates!
 	end
 		
+	def check_carried_blank?
+		self.carried_rate.blank? || self.carried_rate <= 0
+	end
 	def set_conversion!
 		c = Conversion.find_by_currency_in_and_currency_out(currency_in, currency_out)
 		unless c.blank?
@@ -46,6 +50,7 @@ class Exposure < ActiveRecord::Base
 	def Exposure.populate_exposures!
 		Exposure.find(:all).each do |e|
 			#e.generate_dummy_rates
+			#puts e.id
 			e.update_rates!
 		end
 	end
@@ -61,14 +66,19 @@ class Exposure < ActiveRecord::Base
 	end
 	
 	def get_fields
+		free = tender.user.account.rules.blank?
 		f = Array.new
-		f << Field.new("Group", tender.group.name)
-		f.last.link_object = tender.group
-		f << Field.new("Project", tender.project.name)
-		f.last.link_object = tender.project
-		#f << Field.new("Tender", description)
-		f << Field.new("Owner", tender.user.name)
-		f.last.link_object = tender.user
+		#The following fields should not be shown to users on the free plan
+		unless free
+			f << Field.new("Group", tender.group.name)
+			f.last.link_object = tender.group
+			f << Field.new("Project", tender.project.name)
+			f.last.link_object = tender.project
+			f << Field.new("Owner", tender.user.name)
+			f.last.link_object = tender.user
+		end
+		
+		f << Field.new("Tender", tender.description) if free
 		f << Field.new("Bid Date", tender.bid_date)
 		#f << Field.new("Validity", tender.validity)
 		f << Field.new("Fx", fx_symbol?)
@@ -156,31 +166,42 @@ class Exposure < ActiveRecord::Base
 		#the conversion_id and invert paramater should be set when completing the exposure
 		#if there are no rates yet, then seed with the last ten days
 		if rates.empty?
-			if tender.bid_date > Date.today
-				days_back = 10 
-			else
-				days_back = (Date.today - tender.bid_date).to_i + 10
-			end			
+			start_date = [Date.today - 2 * tender.remaining_validity?, tender.bid_date - 10].min
 		else
-			days_back = Date.today - rates.find(:last).day
+			start_date = rates.find(:last).day
 		end
+		end_date = tender.validity + 10
 		
+		j = 0
 		i = invert ? -1 : 1
-		offset = conversion.data.count - days_back
-		data = conversion.data.find(:all, :offset => offset, :limit => days_back)
+		
+		puts start_date.to_s + "  --->   " + end_date.to_s
+		
+		data = conversion.data.find(:all, :conditions => ['day > ? and day <= ?', start_date, end_date])
+		puts data.size
+		# **** This must be fixed  ************
+		#self.carried_rate = (data.first.rate ** i) / 1.05 if self.carried_rate.blank?
+		#***********************************
+		#update new rates with lates recommended rate
+		rec = conversion.get_recommended_rate(i)
+			
 		data.each do |d|
-			self.carried_rate = (d.rate ** i) / 1.05 if self.carried_rate.blank?
-			puts fx_symbol? + "=> " + d.day.to_s + " = " + carried_rate.to_s
+			j+=1		
+			puts j.to_s + " " + fx_symbol? + "=> " + d.day.to_s + " = " + d.rate.to_s
 			r = Rate.new(
 				:exposure => self, 
-				:factor => d.rate  ** i, 
+				:factor => d.rate  ** i,
+				:recommended => rec,
 				:carried => carried_rate, 
 				:description => (fx_symbol?),
 				:day => d.day)
 			rates << r
-			self.current_rate = r.factor
 		end
-		save!
+		self.current_rate = data.last.rate ** i if data.last
+		#carried rate is not set automatically, until just before bid date. I can be set manually before
+		self.carried_rate = rec if check_carried_blank? && Date.today >= tender.bid_date - 1
+		puts carried_rate
+		#save
 
 	end
 	

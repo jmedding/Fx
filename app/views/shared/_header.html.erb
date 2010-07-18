@@ -11,9 +11,10 @@
 		<%- end -%>
 	</div>
 	<div class= "navItem">
-		<%= link_to('Groups | ', groups_path) %>
-		<%= link_to('Projects | ', projects_path) %>
-		<%= link_to('Tenders | ', tenders_path) %>
-		<%= link_to('Exposures', exposures_path) %>
+		<%= link_to('My Groups | ', groups_path) unless free? %>
+		<%= link_to('My Group | ', current_user.groups.first) if free? %>
+		<%= link_to('My Projects | ', projects_path) unless free? %>
+		<%= link_to('My Tenders | ', tenders_path) unless free? %>
+		<%= link_to('My Exposures', exposures_path) %>
 	</div>
 </div>

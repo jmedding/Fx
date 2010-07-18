@@ -18,7 +18,7 @@
   
   <% fields_for :group do |group| %>
 		<p>
-		<%= group.label 			:name%><br />
+		<%= group.label 			:name, "Enter the top-level name of your organization." %><br />
 		<%= group.text_field 	:name %>
 		</p>
 	<% end %>

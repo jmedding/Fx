@@ -6,13 +6,21 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+  filter_parameter_logging :password
   
 	helper_method :current_user
+	helper_method :free?
 	
 	def logged_in?
 		redirect_to(login_path) unless current_user
 	end
+	
+	def admin?
+			aps = current_user.priviledges.find(:all, :conditions => ['level_id >= ?', 2])			
+			redirect_to(groups_path) if aps.empty?
+			aps
+	end
+	
 
 	private
 
@@ -25,5 +33,10 @@ class ApplicationController < ActionController::Base
 		return @current_user if defined?(@current_user)
 			@current_user = current_user_session && current_user_session.record
 	end
+	
+	def free?
+		current_user.account.rules.blank?
+	end
+	
 
 end

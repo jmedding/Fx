@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 	has_many :projects	,			:order => "name"
 	has_many :priviledges, 		:dependent => :destroy
 	has_many :exposures, :through => :tenders
+	belongs_to :account
 	
 	acts_as_authentic
 	#attr_accessible :password, :password_confirmation

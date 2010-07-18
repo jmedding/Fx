@@ -1,0 +1,63 @@
+<p>
+  <b>Currency:</b>
+  <%=h @account.currency_id %>
+</p>
+
+<p>
+  <b>Rules:</b>
+  <%=h @account.rules_id %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%=h @account.type_id %>
+</p>
+
+<p>
+  <b>Payment:</b>
+  <%=h @account.payment %>
+</p>
+
+<p>
+  <b>Period:</b>
+  <%=h @account.period %>
+</p>
+
+<p>
+  <b>Ccnum:</b>
+  <%=h @account.ccnum %>
+</p>
+
+<p>
+  <b>Cc exp:</b>
+  <%=h @account.cc_exp %>
+</p>
+
+<p>
+  <b>Cc name:</b>
+  <%=h @account.cc_name %>
+</p>
+
+<p>
+  <b>Paypal:</b>
+  <%=h @account.paypal %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%=h @account.address_id %>
+</p>
+
+<p>
+  <b>External:</b>
+  <%=h @account.external_id %>
+</p>
+
+<p>
+  <b>Creator:</b>
+  <%=h @account.creator_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>

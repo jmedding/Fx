@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
+	before_filter :logged_in? 
+	before_filter :admin? 
 	protect_from_forgery :except => [:delete, :create]
+	
 	
   # GET /users
   # GET /users.xml
@@ -27,12 +30,14 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.xml
   def new
-	  @group = Group.new()
-	  puts "ID = " + params[:group].to_s
-	  #if this new user is assigned to an existing group it should be in the params.
-	  @group = Group.find_by_id(params[:group][:id]) unless params[:group].blank?
-    @user = User.new 
-	 @group = Group.new()
+		#	get business rules for each account type
+	  
+		@group = Group.new()
+		puts "Group = " + params[:group].to_s
+		#if this new user is assigned to an existing group it should be in the params.
+		@group = Group.find_by_id(params[:group][:id]) unless params[:group].blank?
+		@user = User.new 
+		@group = Group.new()
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,6 +52,7 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.xml
+  #This action is tied to the regestration of a new user and implies a new account
 	def create
 		@user = User.new(params[:user])
 		#a completely new group should only have a name, with id = nil.	 
@@ -59,11 +65,15 @@ class UsersController < ApplicationController
 		respond_to do |format|
 			User.transaction do
 				@user.save!
+				account = Account.create!(:creator_id => @user.id)
+				account.users << @user
+				@group.account = account
 				@group.save!
 				p.save!
 				base = Group.find_by_name("Base")
 				new_group = @group.parent_id.blank?
 				@group.move_to_child_of(base) if @group.parent_id.blank?
+				
 				flash[:notice] = 'Registration was successfull.'
 				format.html { redirect_to(current_user) }
 				format.xml  { render :xml => @user, :status => :created, :location => @user }

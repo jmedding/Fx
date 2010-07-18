@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
   has_many :users
   has_many :tenders
   has_many :priviledges, :dependent => :destroy
+  belongs_to :account
   
   
   attr_reader :num_projects, :num_tenders, :num_exposures, :num_currencies
@@ -14,8 +15,10 @@ class Group < ActiveRecord::Base
 	f = Array.new
 	f << Field.new("Group", name, false, true, self.level)
 	f.last.link_object = self
-	f << Field.new("Projects", num_projects, true)
-	f << Field.new("Tenders", num_tenders, true)
+	unless account.rules.blank?
+		f << Field.new("Projects", num_projects, true)
+		f << Field.new("Tenders", num_tenders, true)
+	end
 	f << Field.new("Exposures", num_exposures, true)
 	f << Field.new("Currencies", num_currencies, true)
 	return f

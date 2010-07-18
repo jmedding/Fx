@@ -6,6 +6,7 @@ class CreateGroups < ActiveRecord::Migration
       t.integer :lft
       t.integer :rgt
       t.string :name
+		t.integer :account_id
 
       t.timestamps
     end

@@ -8,4 +8,5 @@
 <% end %>
 
 <%= link_to 'Edit', edit_tender_path(@tender) %> |
-<%= link_to 'Back', tenders_path %>
+<%= link_to 'Back', tenders_path %> | 
+<%= link_to 'Delete', @tender, :confirm => 'Are you sure?', :method => :delete %>
