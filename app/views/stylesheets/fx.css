@@ -13,6 +13,7 @@
 	vertical-align: middle;
 	padding: 10px	;
 	<%= @set_min_w %>
+	height: 75px;
 }
 
 .login {

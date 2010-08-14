@@ -78,7 +78,8 @@ class Exposure < ActiveRecord::Base
 			f.last.link_object = tender.user
 		end
 		
-		f << Field.new("Tender", tender.description) if free
+		f << Field.new("Name", tender.description) if free
+		f.last.link_object = self if free
 		f << Field.new("Bid Date", tender.bid_date)
 		#f << Field.new("Validity", tender.validity)
 		f << Field.new("Fx", fx_symbol?)

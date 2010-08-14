@@ -11,10 +11,14 @@
 		<%- end -%>
 	</div>
 	<div class= "navItem">
-		<%= link_to('My Groups | ', groups_path) unless free? %>
-		<%= link_to('My Group | ', current_user.groups.first) if free? %>
-		<%= link_to('My Projects | ', projects_path) unless free? %>
-		<%= link_to('My Tenders | ', tenders_path) unless free? %>
-		<%= link_to('My Exposures', exposures_path) %>
+		<%- if current_user -%>
+			<%= link_to('My Groups | ', groups_path) unless free? %>
+			<%= link_to('My Group | ', current_user.groups.first) if free? %>
+			<%= link_to('My Projects | ', projects_path) unless free? %>
+			<%= link_to('My Tenders | ', tenders_path) unless free? %>
+			<%= link_to('My Exposures', exposures_path) %>
+		<%- else -%>
+				Risk analysis and monitoring.
+		<%- end -%>
 	</div>
 </div>

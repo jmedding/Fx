@@ -21,9 +21,14 @@ class ApplicationController < ActionController::Base
 			aps
 	end
 	
-
+	
 	private
-
+	
+	def multiple?(validity)
+		m = 101 / validity
+		m = 3 if m < 3.0
+	end
+	
 	def current_user_session
 		return @current_user_session if defined?(@current_user_session)
 		@current_user_session = UserSession.find
@@ -35,6 +40,7 @@ class ApplicationController < ActionController::Base
 	end
 	
 	def free?
+		puts current_user.account_id
 		current_user.account.rules.blank?
 	end
 	

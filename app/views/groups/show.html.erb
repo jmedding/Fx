@@ -3,10 +3,11 @@
 <table class="table">
 <%= render(:partial => 'groups/display_groups', :locals => {:groups => [@group]})  %>
 </table>
-<table class="table">
-<%= render(:partial => 'tenders/tender_table_rows', :locals => {:tenders => tenders})  %>
-</table>
-<%= "No tenders in this group!<br/><br/>" if tenders.empty? %>
-
+<% unless free? %>
+	<table class="table">
+	<%= render(:partial => 'tenders/tender_table_rows', :locals => {:tenders => tenders})  %>
+	</table>
+	<%= "No tenders in this group!<br/><br/>" if tenders.empty? %>
+<% end %>
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

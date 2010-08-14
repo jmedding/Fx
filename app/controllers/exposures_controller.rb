@@ -56,10 +56,10 @@ class ExposuresController < ApplicationController
 		max = (factors+carrieds+recs).compact.max*1.05	# .min and .max don't like nils
 		min = (factors+carrieds+recs).compact.min*0.95
 		bid_to_ntp = days.map do |day|
-		i = min
-		i = max if ((day >= @exposure.tender.bid_date) && (day < @exposure.tender.validity))		
-		i
-	end	
+			i = min
+			i = max if ((day >= @exposure.tender.bid_date) && (day < @exposure.tender.validity))		
+			i
+		end	
 	  
 	  g = Graph.new
 	  g.set_bg_color('#FFFFFF')
@@ -103,7 +103,8 @@ class ExposuresController < ApplicationController
   def show
     @exposure = get_exposure_for_user
     @graph = open_flash_chart_object(700,250, "/exposures/graph/#{@exposure.id}")  
-    
+    @prob_plot = open_flash_chart_object(700, 250, "/exposures/prob_plot/#{@exposure.id}")  
+	 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @exposure }
@@ -186,7 +187,11 @@ class ExposuresController < ApplicationController
 		flash[:notice] = 'Tender data update failed.'
 		redirect_to edit_path(@exposure)
 	end
-		
+	unless params[:exposure][:currency_in] == @exposure.currency_in &&	params[:exposure][:currency_out] == @exposure.currency_out
+		#currency has changed
+		@exposure.rates.delete_all
+		#conversion will be set with 'before_save' callback to set_conversion!
+	end
     respond_to do |format|
       if @exposure.update_attributes(params[:exposure])
         flash[:notice] = 'Exposure was successfully updated.'
@@ -210,5 +215,57 @@ class ExposuresController < ApplicationController
       format.html { redirect_to(exposures_url) }
       format.xml  { head :ok }
     end
+ end
+ 
+ #/exposure/graph/1
+  def prob_plot
+		@exposure = get_exposure_for_user #Exposure.find(params[:id])
+		v = @exposure.tender.remaining_validity?
+		m = 3.0 #multiple
+		buffers = @exposure.conversion.get_buffer_probabilities(v, m)
+		n = buffers.size
+		main_title = nil
+		sub_title = nil
+		@exposure = get_exposure_for_user
+		currency_1 = @exposure.currency_in_symbol?
+		currency_2 = @exposure.currency_out_symbol?
+		currency_1_and_2 = "#{currency_1} => #{currency_2}"
+		sub_title = ":" + @exposure.tender.description
+		main_title = "Fx Provision Effectiveness"
+		
+		
+		
+		
+		title = "#{main_title}\n"
+		title += "#{currency_1_and_2}, Multiple = #{m}, Exposure length = #{v} days, n = #{n}"
+		probs = Array.new
+		#days = Array.new
+		#recs = Array.new
+		#bid_to_ntp = Array.new
+		buffers.each_with_index { |buffer, i| probs << Point.new(buffer, (i+1.0)/buffers.size, 3)}
+		logger.warn("Factors: #{buffers.size}")
+		max = 1
+		min = 0
+		
+		#Should change graph to an XY type with just points
+		g = Graph.new
+		g.set_bg_color('#FFFFFF')
+		g.title(title, '{font-size: 12px;}')
+		#g.set_data(probs)
+		#g.line(1, '0x80a033', 'Buffer Distribution', 10)
+		#g.set_x_labels(buffers)
+		g.set_x_label_style( 10, '#CC3399', 2 ,10);
+		g.set_y_legend( 'Probability', 12, '#164166' )
+			
+		g.set_y_min(min)
+		g.set_y_max(max) 
+		g.set_y_label_steps(10)
+		g.set_x_min(buffers.first.floor)
+		g.set_x_max(buffers.last.ceil)
+		
+		#bid << Point.new(@exposure.tender.bid_date, max, 3)
+		g.scatter(probs, 2, '#736aff', 'Probability', 10)
+
+		render :text => g.render
   end
 end

@@ -14,8 +14,8 @@
 			<%= t.date_select(:bid_date) %>
 		</p>
 		<p>
-			<%= t.label :validity, "What is the exposure's validity in days.<small><i> (Must be an integer)</i></small>" %><br />
-			<%= t.text_field :validity %>
+			<%= t.label :validity, "What is the exposure's validity in days." %><br />
+			<%= t.text_field :validity %> <small><i> (Must be an integer)</i></small>
 		</p>
 	<% end %>
 <% else %>
@@ -28,8 +28,8 @@
 
 
 <p>
-    <%= f.label :supply, "Cash Out? <small><i>(Check if we are <b>buying</b> something in a foreign currency as opposed to <b>selling</b> something in a foreign currency)</i></small>"  %><br />
-    <%= f.check_box :supply %>
+    <%= f.label :supply, "Cash Out? "  %><br />
+    <%= f.check_box :supply %> <small><i>(Check if we are <b>buying</b> something in a foreign currency as opposed to <b>selling</b> something in a foreign currency)</i></small>
   </p>
 
 	<p>
@@ -41,12 +41,12 @@
     <%= f.collection_select(:currency_out, Currency.all, :id, :symbol) %> 
   </p>
   <p>
-    <%= f.label :carried_rate, "What rate is used in the cost calculation?  <small><i>(Leave blank to use the recommended value)</i></small>" %><br />
-    <%= f.text_field :carried_rate %>
+    <%= f.label :carried_rate, "What rate is used in the cost calculation?  " %><br />
+    <%= f.text_field :carried_rate %> <small><i>(Leave blank to use the recommended value)</i></small>
   </p>
   <p>
-    <%= f.label :amount , "Amount   <small><i>(In foreign currency. Must be and integer)</i></small>"%><br />
-    <%= f.text_field :amount %>
+    <%= f.label :amount , "Amount   "%><br />
+    <%= f.text_field :amount %> <small><i>(In foreign currency. Must be and integer)</i></small>
   </p>
   <p>
     <%= f.submit 'Update' %>
