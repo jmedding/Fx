@@ -18,7 +18,15 @@ class Exposure < ActiveRecord::Base
 	def check_carried_blank?
 		self.carried_rate.blank? || self.carried_rate <= 0
 	end
+	
 	def set_conversion!
+		#try = [conversion, invert]
+		try = Conversion.get_conversion(currency_in, currency_out, true)
+		self.conversion = try[0]
+		return try[1]	#= -1 if we have to invert
+	end
+	
+	def set_conversion_old!
 		c = Conversion.find_by_currency_in_and_currency_out(currency_in, currency_out)
 		unless c.blank?
 			self.conversion = c 
@@ -31,7 +39,7 @@ class Exposure < ActiveRecord::Base
 		end
 		 #if we make it here, we did not find a valid conversion.
 		 #which is strange, because the currencies should have been validated
-		 #therefore, let make a conversion and populate it.
+		 #therefore, lets make a conversion and populate it.
 		 c = Conversion.create(:currency_in => currency_in, :currency_out => currency_out)
 		 c.populate!
 		 self.conversion = c
@@ -201,7 +209,7 @@ class Exposure < ActiveRecord::Base
 		self.current_rate = data.last.rate ** i if data.last
 		#carried rate is not set automatically, until just before bid date. I can be set manually before
 		self.carried_rate = rec if check_carried_blank? && Date.today >= tender.bid_date - 1
-		puts carried_rate
+		puts "carried rate: " + carried_rate.to_s
 		#save
 
 	end

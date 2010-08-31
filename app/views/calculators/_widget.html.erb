@@ -1,0 +1,50 @@
+<H1>Calculate Foreign Exchange (ForEx) Risk Provision</H1>
+<% form_for(@calculator) do |f| %>
+<%= f.error_messages %>
+<div class="calculator">
+<div class="widget">
+
+<% len = 15 %>
+
+	<p><H4>Calculate your FX risk</H4></p>
+	<p>
+		<div class="label"><%= f.label :from %></div> 
+		<div class="label"><%= f.label :to %> </div>
+		<div class="label"><%= f.label :duration %><small><i>(days)</i></small></div>
+		
+	</p>
+	<p>
+		<div class="label"><%= f.collection_select(:from, Currency.all, :symbol, :symbol)%></div> 
+		<div class="label"><%= f.collection_select(:to, Currency.all, :symbol, :symbol)%></div> 
+		<div class="label"><%= f.text_field :duration, :size => 5 %> </div> 
+	</p>
+	</br>
+	<p>
+	 <%= f.submit 'Calculate Risk Provision now!' %>
+  </p>
+   <div class="calculator_results">
+	<% if @current_rate %>
+		<div class="label2">Currencies:</div> 
+		<div class="label3"><%= "From #{@calculator.from} to #{@calculator.to}" %></div> 
+		<div class="label2">Current Date:</div> 
+		<div class="label3"><%= Date.today %></div> 
+		<div class="label2">Current Rate:</div> 
+		<div class="label3"><%= "%0.3f" % @current_rate %></div> 
+		<div class="label2">Duration:</div> 
+		<div class="label3"><%= "#{@calculator.duration} days" %></div> 
+		<div class="label2">Provision:</div> 
+		<div class="label3"><%= "%0.2f%" % @provision  %></div> 
+		<div class="label2">Effective Rate:</div> 
+		<div class="label3"><%= "%0.3f" % @recommended_rate %></div> 
+		<% end %>
+	</div>
+<% end %>
+</div>
+
+<div class="calculator_graph">
+	<% if @current_rate %>
+	<%= open_flash_chart_object(275,275, "/calculators/graph/#{@orig_calculator.id}")  %>
+	<% end %>
+</div>
+
+</div>

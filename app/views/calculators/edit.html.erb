@@ -1,0 +1,32 @@
+<h1>Editing calculator</h1>
+
+<% form_for(@calculator) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :from %><br />
+    <%= f.text_field :from %>
+  </p>
+  <p>
+    <%= f.label :to %><br />
+    <%= f.text_field :to %>
+  </p>
+  <p>
+    <%= f.label :duration %><br />
+    <%= f.text_field :duration %>
+  </p>
+  <p>
+    <%= f.label :session %><br />
+    <%= f.text_field :session %>
+  </p>
+  <p>
+    <%= f.label :source_id %><br />
+    <%= f.text_field :source_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @calculator %> |
+<%= link_to 'Back', calculators_path %>

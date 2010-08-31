@@ -4,12 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Fx: <%= controller.controller_name  %>: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'fx' %>
-  <%= javascript_include_tag "swfobject" %>
+  <title>Calculators: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'scaffold' %>
 </head>
 <body>
-<%= render :partial => "shared/header", :locals => {:hide_login => @hide_login} %> 
+
 <p style="color: green"><%= flash[:notice] %></p>
 
 <%= yield %>

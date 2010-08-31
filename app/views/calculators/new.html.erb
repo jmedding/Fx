@@ -1,0 +1,21 @@
+<% form_for(@calculator) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :from %><br />
+	 <%= f.collection_select(:from, Currency.all, :symbol, :symbol)%></div> 
+    
+  </p>
+  <p>
+    <%= f.label :to %><br />
+   <%= f.collection_select(:to, Currency.all, :symbol, :symbol)%></div> 
+  </p>
+  <p>
+    <%= f.label :duration, 'Duration (days)' %><br />
+    <%= f.text_field :duration, :size => 5 %> </div> 
+  </p>
+  
+  <p>
+    <%= f.submit 'Try again!' %>
+  </p>
+<% end %>

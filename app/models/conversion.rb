@@ -1,6 +1,7 @@
 class Conversion < ActiveRecord::Base
 	has_many :data, 		:order => "day", 	:dependent => :destroy
-	has_many :expsosures
+	has_many :expsosures, 								:dependent => :destroy
+	has_many :calculators,								:dependent => :destroy
 	
 	def Conversion.generate_conversions!
 		Conversion.delete_all
@@ -8,16 +9,73 @@ class Conversion < ActiveRecord::Base
 		bases = Currency.find_all_by_base(true)
 		bases.each do |base|
 			Currency.all.each do |c|
-				Conversion.create(:currency_in => base.id, :currency_out => c.id) unless (base.id == c.id)
+				unless (base.id == c.id)
+					con = Conversion.create(:currency_in => base.id, :currency_out => c.id)
+					con.yaml_import(1500, false)
+				end				
 			end
 		end
-		Conversion.update!(1500)
+		Conversion.export_all_to_yaml
 	end
+	
+	def Conversion.export_all_to_yaml
+		Conversion.find(:all).each { |c| c.yaml_export}
+	end
+	
+	def yaml_export
+		text = data.to_yaml
+		text.gsub!("/\n/", "\r\n")
+		File.open(".\\db\\seeds\\#{pair?}.yaml", 'w') {|f| f.write(text) }
+	end
+		
+	def yaml_import (days = 1500, export = false)
+		reset_data!
+		file = './db/seeds/'+pair?+'.yaml'
+		# check to see if 'file' exists. If so, then load it
+		if File.exists? file
+			puts 'loading file: ' + file
+			data = YAML.load_file(file)
+			data.each do |d|
+				#d.id = nil
+				d.instance_variable_set "@new_record", true
+				self.data << d
+			end			
+			self.save!
+		end		
+		set_data #set this conversions first and last day attributes
+		#finally, run update to make the dataset current
+		populate!(days)
+		#export the data so that next time is current
+		yaml_export if export	#seems to cause problems in the YAML export. Test before using...
+	end
+	
 	
 	def Conversion.update!(days = -1) 
 		Conversion.all.each {|c| c.populate!(days)}
 	end
 	
+	def Conversion.get_conversion(currency_in, currency_out, create_new = false)
+		c = Conversion.find_by_currency_in_and_currency_out(currency_in, currency_out)
+		unless c.blank?
+			return [c, 1]		#do not invert the rates
+		end
+		c = Conversion.find_by_currency_in_and_currency_out(currency_out, currency_in)
+		unless c.blank?
+			return [c,-1]		#rates must be inverted
+		end
+		 #if we make it here, we did not find a valid conversion.
+		 #which is strange, because the currencies should have been validated
+		 #therefore, lets make a conversion and populate it.
+		if create_new
+			c = Conversion.create(:currency_in => currency_in, :currency_out => currency_out)
+			c.populate!
+			return [c, 1]		#do not invert the rates
+		else
+			return [nil,nil]		#not allowed to create a new conversion
+		end
+		
+	 end
+	 
 	def pair?
 		return Currency.find(currency_in).symbol + Currency.find(currency_out).symbol
 	end
@@ -26,27 +84,32 @@ class Conversion < ActiveRecord::Base
 		if (self.first.blank? && days > 0)	#first call to new Conversion
 			days = days 
 		elsif (self.first.blank? && days < 0)	#first call, use default num days
+			puts 'first:' + self.first.to_s
+			puts 'days: ' + days.to_s
 			reset_data!
 			days = 1500
-		elsif self.first > Date.today - days #datums exist, but don't go back far enough
+		elsif self.first > Date.today - days + 2 #datums exist, but don't go back far enough
 			reset_data!
 		else
 			days = Date.today - last 
 		end
 		# date - integer => rational. Must 	convert rational to integer
 		Datum.create_datums(self, days.to_i)
+		set_data		
+	end
+	
+	def set_data
 		if self.data.all.size < 1 #empty?
-			puts pair? + " no data found for #{days} days"
+			puts pair? + " no data found"
 		else
 			#puts "is first blank? " + self.first.blank?.to_s
-			self.first = data.find(:first).day if self.first.blank?
-			#puts "Replace old first? " + ((Date.today - days) < self.first).to_s
-			self.first = data.find(:first).day if (Date.today - days) < self.first			
+			self.first = data.find(:first).day 
 			self.last = data.find(:last).day
 			puts pair? + " " + self.first.to_s + " - " + self.last.to_s 
 			self.save!
 		end
 	end
+	
 	
 	def reset_data!
 			data.delete_all #	must rewrite entire series
@@ -70,6 +133,7 @@ class Conversion < ActiveRecord::Base
 			uri = URI.parse("http://www.fxstreet.com/forex-tools/rate-history-tools/?tf=1d&period=#{num_days}&pair=#{pair?}")
 			p uri
 			rates = scraper.scrape(uri, {:timeout => 600}) #an array filled with arrays of days [date, o, h, l, c]
+			p 'data downloaded'
 			vals = []
 			unless rates.blank?
 				rates.delete_at(0)	#first row has header text
@@ -81,12 +145,12 @@ class Conversion < ActiveRecord::Base
 		return []	#days was less than one, so return an empty set.
 	end
 	
-	def find_buffer(validity, multiple, probability, start = 0)
-		probs =  get_buffer_probabilities(validity, multiple, start = 0)
+	def find_buffer(validity, multiple, probability, invert, start = 0)
+		probs =  get_buffer_probabilities(validity, multiple, invert, start = 0)
 		probs[(probability * probs.size).to_i]
 	end
 	
-	def get_buffer_probabilities(validity, multiple, start = 0)
+	def get_buffer_probabilities(validity, multiple, invert, start = 0)
 		nmax = data.size
 		if (nmax - start) < validity * (multiple + 1)
 			p pair? + "returned nil.  data = #{nmax.to_s} start = #{start} validity = #{validity} multiple = #{multiple}"
@@ -98,9 +162,12 @@ class Conversion < ActiveRecord::Base
 		deltas = []
 		#p pair? + "  data = #{data.count.to_s} start = #{start_point} validity = #{validity} multiple = #{multiple}"
 		while i > start_point - validity * multiple do
-			delta = (data[i].rate - data[i - validity].rate)/data[i].rate #%
+			s = data[i - validity].rate ** invert
+			e = data[i].rate ** invert
+			#delta = (data[i].rate - data[i - validity].rate)/data[i].rate #%
 			#p "Run  on #{data[i].day.to_s} has a delta of #{delta}"
-			deltas << (data[i].rate - data[i - validity].rate)/data[i].rate * 100 #%
+			#deltas << - (e - s)/e * 100 #% - provision will be based on the trend
+			deltas << (e - s).abs/e * 100 #% - provision based on volatility
 			i = i - 1
 		end
 		#p deltas.size
@@ -190,10 +257,14 @@ class Conversion < ActiveRecord::Base
 		return array_of_arrays
 	end
 	
-	def get_recommended_rate(invert=1)
+	def get_recommended_rate(buffer, invert=1)
 		val = nil
-		val = (data.last.rate ** invert) / 1.05 unless data.last.blank?
+		val = get_current_rate(invert) * (1-0 - buffer) unless data.last.blank?
 		val
+	end
+	
+	def get_current_rate(invert = 1)
+		(data.last.rate ** invert)
 	end
 	
 	

@@ -1,0 +1,28 @@
+<h1>Listing calculators</h1>
+
+<table>
+  <tr>
+    <th>From</th>
+    <th>To</th>
+    <th>Duration</th>
+    <th>Session_ID</th>
+    <th>Source</th>
+  </tr>
+
+<% @calculators.each do |calculator| %>
+  <tr>
+    <td><%=h calculator.from %></td>
+    <td><%=h calculator.to %></td>
+    <td><%=h calculator.duration %></td>
+    <td><%=h calculator.session_id %></td>
+    <td><%=h calculator.source_id %></td>
+    <td><%= link_to 'Show', calculator %></td>
+    <td><%= link_to 'Edit', edit_calculator_path(calculator) %></td>
+    <td><%= link_to 'Destroy', calculator, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New calculator', new_calculator_path %>

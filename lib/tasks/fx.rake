@@ -3,7 +3,11 @@ namespace :fx do
   task :reset => :environment do
     Rake::Task["db:migrate:reset"].invoke
 	 #Rake::Task["db:seed"].invoke	#Running this task here doesn't work.  db levels is empty...
-    Rake::Task['db:fixtures:load'].invoke
+    
+	 #have to make db:seed run without fixtures for production setup.
+	 
+	p "Rails environement = " + RAILS_ENV  
+	 Rake::Task['db:fixtures:load'].invoke unless RAILS_ENV == 'production'
 	 Rake::Task["db:seed"].invoke
  end
  

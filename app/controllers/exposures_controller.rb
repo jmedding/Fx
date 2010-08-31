@@ -232,13 +232,9 @@ class ExposuresController < ApplicationController
 		currency_1_and_2 = "#{currency_1} => #{currency_2}"
 		sub_title = ":" + @exposure.tender.description
 		main_title = "Fx Provision Effectiveness"
-		
-		
-		
-		
 		title = "#{main_title}\n"
 		title += "#{currency_1_and_2}, Multiple = #{m}, Exposure length = #{v} days, n = #{n}"
-		probs = Array.new
+		probs = Array.new	#an array of points for the graph
 		#days = Array.new
 		#recs = Array.new
 		#bid_to_ntp = Array.new
@@ -254,14 +250,16 @@ class ExposuresController < ApplicationController
 		#g.set_data(probs)
 		#g.line(1, '0x80a033', 'Buffer Distribution', 10)
 		#g.set_x_labels(buffers)
-		g.set_x_label_style( 10, '#CC3399', 2 ,10);
+		g.set_x_label_style( 10, '#CC3399', 2,1);
 		g.set_y_legend( 'Probability', 12, '#164166' )
-			
+		g.set_x_legend( 'Fx Provision (%)', 12, '#164166' )	
 		g.set_y_min(min)
 		g.set_y_max(max) 
 		g.set_y_label_steps(10)
 		g.set_x_min(buffers.first.floor)
 		g.set_x_max(buffers.last.ceil)
+		
+		
 		
 		#bid << Point.new(@exposure.tender.bid_date, max, 3)
 		g.scatter(probs, 2, '#736aff', 'Probability', 10)

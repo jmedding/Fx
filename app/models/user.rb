@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 	has_many :exposures, :through => :tenders
 	belongs_to :account
 	
+	validates_presence_of :account
 	acts_as_authentic
 	#attr_accessible :password, :password_confirmation
 	

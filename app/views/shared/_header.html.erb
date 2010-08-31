@@ -1,6 +1,7 @@
+<% hide_login = "visible" if local_assigns[:hide_login].nil? %>
 <div class= "header">
-	Risk Rules
-	<div class= "login">
+	Pragmatic Risk Management
+	<div class= "login" style="visibility:<%= hide_login %>" >
 		<%- if current_user -%>
 				<%= current_user.login %> is logged in<br/>
 				<%= link_to "Edit Profile", edit_user_path(current_user) %><br/>

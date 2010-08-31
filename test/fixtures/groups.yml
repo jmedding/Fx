@@ -2,36 +2,44 @@
 
 alstom:  
   name: Alstom
+  account: alstom
 
 power:
   parent: alstom
   name: Power
+  account: alstom
 
 ty:
   parent: power
   name: TY
-
+  account: alstom
+  
 tp:
   parent: power
   name: TP
-
+  account: alstom
+  
 ts:
   parent: power
   name: TS
-
+  account: alstom
+  
 tpgn:
   parent: tp
   name: TPGN
-
+  account: alstom
+  
 tpsn:
   parent: tp
   name: TPSN
-
+  account: alstom
+  
 tpen:
   parent: tp
   name: TPEN
-
+  account: alstom
 
 tphg:
   parent: tp
   name: TPHG
+  account: alstom

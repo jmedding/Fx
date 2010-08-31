@@ -1,5 +1,64 @@
 <% @set_min_w = " min-width: 700px;" %>
 
+.calculator{
+	width: 600px;
+	height: 300px;
+	border: 2px solid green;
+	padding: 10 px;
+	background-color:White;
+}
+
+.widget {
+	width: 46%;
+	height: 92%;
+	margin: 10px;
+	border: 0px solid green;
+	float: left;
+	
+}
+
+.calculator_graph{
+	width: 46%;
+	height: 92%;
+	margin: 10px;
+	float: left;
+	border: 0px solid green;
+}
+.label{
+	width: 75px;
+	float: left;
+	margin-bottom: 5px;
+}
+
+.label1{
+	width: 90%;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+.label2{
+	width: 110px;
+	float: left;
+	margin-bottom: 5px;	
+	font-weight: bold;
+}
+.label3{
+	width: 120px;
+	float: left;
+	clear: right;
+	margin-bottom: 5px;
+}
+
+.calculator_results{
+	width: 90%;
+	height: 100px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	background-color: Linen;
+	padding: 10px;
+	font-size:12px;
+}
+
 .navItem {
 	clear: right;
 	font-size: 14px;

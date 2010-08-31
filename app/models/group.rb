@@ -6,6 +6,7 @@ class Group < ActiveRecord::Base
   has_many :priviledges, :dependent => :destroy
   belongs_to :account
   
+  validates_presence_of :account
   
   attr_reader :num_projects, :num_tenders, :num_exposures, :num_currencies
   attr_writer :num_projects, :num_tenders, :num_exposures, :num_currencies
