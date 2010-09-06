@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.root :controller => :calculators
+	
   map.resources :calculators
 
   map.resources :accounts
