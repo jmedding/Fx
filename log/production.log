@@ -1,0 +1,259 @@
+
+
+Processing UserSessionsController#destroy (for 127.0.0.1 at 2010-08-20 16:49:17) [GET]
+  Parameters: {"action"=>"destroy", "controller"=>"user_sessions"}
+
+NoMethodError (undefined method `destroy' for nil:NilClass):
+  app/controllers/user_sessions_controller.rb:37:in `destroy'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-08-20 16:49:33) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 297ms (View: 297, DB: 63) | 200 OK [http://127.0.0.1/login]
+
+
+Processing StylesheetsController#application to css (for 127.0.0.1 at 2010-08-20 16:49:33) [GET]
+  Parameters: {"format"=>"css", "action"=>"application", "id"=>"fx", "controller"=>"stylesheets"}
+Rendering stylesheets/fx
+Completed in 15ms (View: 15, DB: 63) | 200 OK [http://127.0.0.1/stylesheets/fx.css]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-08-20 16:49:42) [POST]
+  Parameters: {"commit"=>"Create", "user_session"=>{"password"=>"[FILTERED]", "login"=>"demo"}, "action"=>"create", "authenticity_token"=>"vSrtxLi1/Kty67tUCYPURAE1CjOZAf1jwCntRA3PKLc=", "controller"=>"user_sessions"}
+
+NoMethodError (undefined method `valid_password?' for #<User:0x4677b00>):
+  authlogic (2.1.5) lib/authlogic/session/password.rb:191:in `send'
+  authlogic (2.1.5) lib/authlogic/session/password.rb:191:in `validate_by_password'
+  authlogic (2.1.5) lib/authlogic/session/callbacks.rb:83:in `validate'
+  authlogic (2.1.5) lib/authlogic/session/validation.rb:64:in `valid?'
+  authlogic (2.1.5) lib/authlogic/session/existence.rb:65:in `save'
+  app/controllers/user_sessions_controller.rb:21:in `create'
+  app/controllers/user_sessions_controller.rb:20:in `create'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-08-21 04:24:58) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as [:logged_in?] rendered_or_redirected.
+Completed in 5953ms (DB: 93) | 302 Found [http://127.0.0.1/users]
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-08-21 04:25:06) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 4000ms (View: 3595, DB: 233) | 200 OK [http://127.0.0.1/login]
+
+
+Processing StylesheetsController#application to css (for 127.0.0.1 at 2010-08-21 04:25:12) [GET]
+  Parameters: {"format"=>"css", "action"=>"application", "id"=>"fx", "controller"=>"stylesheets"}
+Rendering stylesheets/fx
+Completed in 453ms (View: 312, DB: 110) | 200 OK [http://127.0.0.1/stylesheets/fx.css]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-08-21 04:25:22) [POST]
+  Parameters: {"commit"=>"Create", "user_session"=>{"password"=>"[FILTERED]", "login"=>"demo"}, "action"=>"create", "authenticity_token"=>"IvqwoiltUTKYjCtxzGjYK8iUms1Ik2zkSjSNLKA7FoM=", "controller"=>"user_sessions"}
+
+NoMethodError (undefined method `valid_password?' for #<User:0x4687f64>):
+  authlogic (2.1.5) lib/authlogic/session/password.rb:191:in `send'
+  authlogic (2.1.5) lib/authlogic/session/password.rb:191:in `validate_by_password'
+  authlogic (2.1.5) lib/authlogic/session/callbacks.rb:83:in `validate'
+  authlogic (2.1.5) lib/authlogic/session/validation.rb:64:in `valid?'
+  authlogic (2.1.5) lib/authlogic/session/existence.rb:65:in `save'
+  app/controllers/user_sessions_controller.rb:21:in `create'
+  app/controllers/user_sessions_controller.rb:20:in `create'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-08-21 04:42:20) [POST]
+  Parameters: {"commit"=>"Create", "user_session"=>{"password"=>"[FILTERED]", "login"=>"demo"}, "action"=>"create", "authenticity_token"=>"IvqwoiltUTKYjCtxzGjYK8iUms1Ik2zkSjSNLKA7FoM=", "controller"=>"user_sessions"}
+
+NoMethodError (undefined method `valid_password?' for #<User:0x4587970>):
+  authlogic (2.1.5) lib/authlogic/session/password.rb:191:in `send'
+  authlogic (2.1.5) lib/authlogic/session/password.rb:191:in `validate_by_password'
+  authlogic (2.1.5) lib/authlogic/session/callbacks.rb:83:in `validate'
+  authlogic (2.1.5) lib/authlogic/session/validation.rb:64:in `valid?'
+  authlogic (2.1.5) lib/authlogic/session/existence.rb:65:in `save'
+  app/controllers/user_sessions_controller.rb:21:in `create'
+  app/controllers/user_sessions_controller.rb:20:in `create'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-08-21 04:43:11) [POST]
+  Parameters: {"commit"=>"Create", "user_session"=>{"password"=>"[FILTERED]", "login"=>"demo"}, "action"=>"create", "authenticity_token"=>"IvqwoiltUTKYjCtxzGjYK8iUms1Ik2zkSjSNLKA7FoM=", "controller"=>"user_sessions"}
+
+NoMethodError (undefined method `valid_password?' for #<User:0x46f4038>):
+  authlogic (2.1.5) lib/authlogic/session/password.rb:191:in `send'
+  authlogic (2.1.5) lib/authlogic/session/password.rb:191:in `validate_by_password'
+  authlogic (2.1.5) lib/authlogic/session/callbacks.rb:83:in `validate'
+  authlogic (2.1.5) lib/authlogic/session/validation.rb:64:in `valid?'
+  authlogic (2.1.5) lib/authlogic/session/existence.rb:65:in `save'
+  app/controllers/user_sessions_controller.rb:21:in `create'
+  app/controllers/user_sessions_controller.rb:20:in `create'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-08-21 04:43:41) [POST]
+  Parameters: {"commit"=>"Create", "user_session"=>{"password"=>"[FILTERED]", "login"=>"doookd"}, "action"=>"create", "authenticity_token"=>"IvqwoiltUTKYjCtxzGjYK8iUms1Ik2zkSjSNLKA7FoM=", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 94ms (View: 63, DB: 0) | 200 OK [http://127.0.0.1/user_sessions]
+
+
+Processing StylesheetsController#application to css (for 127.0.0.1 at 2010-08-21 04:43:41) [GET]
+  Parameters: {"format"=>"css", "action"=>"application", "id"=>"fx", "controller"=>"stylesheets"}
+Rendering stylesheets/fx
+Completed in 16ms (View: 16, DB: 0) | 200 OK [http://127.0.0.1/stylesheets/fx.css]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-08-21 04:43:59) [POST]
+  Parameters: {"commit"=>"Create", "user_session"=>{"password"=>"[FILTERED]", "login"=>"root"}, "action"=>"create", "authenticity_token"=>"IvqwoiltUTKYjCtxzGjYK8iUms1Ik2zkSjSNLKA7FoM=", "controller"=>"user_sessions"}
+
+NoMethodError (undefined method `valid_password?' for #<User:0x4579474>):
+  authlogic (2.1.5) lib/authlogic/session/password.rb:191:in `send'
+  authlogic (2.1.5) lib/authlogic/session/password.rb:191:in `validate_by_password'
+  authlogic (2.1.5) lib/authlogic/session/callbacks.rb:83:in `validate'
+  authlogic (2.1.5) lib/authlogic/session/validation.rb:64:in `valid?'
+  authlogic (2.1.5) lib/authlogic/session/existence.rb:65:in `save'
+  app/controllers/user_sessions_controller.rb:21:in `create'
+  app/controllers/user_sessions_controller.rb:20:in `create'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-08-21 04:52:37) [POST]
+  Parameters: {"commit"=>"Create", "user_session"=>{"password"=>"[FILTERED]", "login"=>"demo"}, "action"=>"create", "authenticity_token"=>"IvqwoiltUTKYjCtxzGjYK8iUms1Ik2zkSjSNLKA7FoM=", "controller"=>"user_sessions"}
+
+NoMethodError (undefined method `valid_password?' for #<User:0x46c385c>):
+  authlogic (2.1.5) lib/authlogic/session/password.rb:191:in `send'
+  authlogic (2.1.5) lib/authlogic/session/password.rb:191:in `validate_by_password'
+  authlogic (2.1.5) lib/authlogic/session/callbacks.rb:83:in `validate'
+  authlogic (2.1.5) lib/authlogic/session/validation.rb:64:in `valid?'
+  authlogic (2.1.5) lib/authlogic/session/existence.rb:65:in `save'
+  app/controllers/user_sessions_controller.rb:21:in `create'
+  app/controllers/user_sessions_controller.rb:20:in `create'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UserSessionsController#new (for 127.0.0.1 at 2010-08-21 06:08:45) [GET]
+  Parameters: {"action"=>"new", "controller"=>"user_sessions"}
+Rendering template within layouts/application
+Rendering user_sessions/new
+Completed in 328ms (View: 281, DB: 47) | 200 OK [http://127.0.0.1/login]
+
+
+Processing StylesheetsController#application to css (for 127.0.0.1 at 2010-08-21 06:08:46) [GET]
+  Parameters: {"format"=>"css", "action"=>"application", "id"=>"fx", "controller"=>"stylesheets"}
+Rendering stylesheets/fx
+Completed in 16ms (View: 16, DB: 78) | 200 OK [http://127.0.0.1/stylesheets/fx.css]
+
+
+Processing UserSessionsController#create (for 127.0.0.1 at 2010-08-21 06:08:56) [POST]
+  Parameters: {"commit"=>"Create", "user_session"=>{"password"=>"[FILTERED]", "login"=>"demo"}, "action"=>"create", "authenticity_token"=>"u8AOd+6JyabzFTL99GOAd97K3VzpSsJsEi6OdnqzXH0=", "controller"=>"user_sessions"}
+Redirected to http://127.0.0.1:3000/users/2
+Completed in 687ms (DB: 47) | 302 Found [http://127.0.0.1/user_sessions]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-08-21 06:08:57) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"users"}
+Redirected to http://127.0.0.1:3000/groups
+Filter chain halted as [:admin?] rendered_or_redirected.
+Completed in 62ms (DB: 63) | 302 Found [http://127.0.0.1/users/2]
+
+
+Processing GroupsController#index (for 127.0.0.1 at 2010-08-21 06:08:57) [GET]
+  Parameters: {"action"=>"index", "controller"=>"groups"}
+Rendering template within layouts/application
+Rendering groups/index
+Completed in 110ms (View: 32, DB: 79) | 200 OK [http://127.0.0.1/groups]
+
+
+Processing StylesheetsController#application to css (for 127.0.0.1 at 2010-08-21 06:08:57) [GET]
+  Parameters: {"format"=>"css", "action"=>"application", "id"=>"fx", "controller"=>"stylesheets"}
+Rendering stylesheets/fx
+Completed in 0ms (View: 0, DB: 46) | 200 OK [http://127.0.0.1/stylesheets/fx.css]
+
+
+Processing ExposuresController#index (for 127.0.0.1 at 2010-08-21 06:09:06) [GET]
+  Parameters: {"action"=>"index", "controller"=>"exposures"}
+Rendering template within layouts/application
+Rendering exposures/index
+Completed in 141ms (View: 47, DB: 62) | 200 OK [http://127.0.0.1/exposures]
+
+
+Processing StylesheetsController#application to css (for 127.0.0.1 at 2010-08-21 06:09:06) [GET]
+  Parameters: {"format"=>"css", "action"=>"application", "id"=>"fx", "controller"=>"stylesheets"}
+Rendering stylesheets/fx
+Completed in 0ms (View: 0, DB: 47) | 200 OK [http://127.0.0.1/stylesheets/fx.css]
+
+
+Processing ExposuresController#show (for 127.0.0.1 at 2010-08-21 06:09:10) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"exposures"}
+Rendering template within layouts/application
+Rendering exposures/show
+Completed in 156ms (View: 62, DB: 47) | 200 OK [http://127.0.0.1/exposures/2]
+
+
+Processing StylesheetsController#application to css (for 127.0.0.1 at 2010-08-21 06:09:11) [GET]
+  Parameters: {"format"=>"css", "action"=>"application", "id"=>"fx", "controller"=>"stylesheets"}
+Rendering stylesheets/fx
+Completed in 0ms (View: 0, DB: 32) | 200 OK [http://127.0.0.1/stylesheets/fx.css]
+
+
+Processing ExposuresController#graph (for 127.0.0.1 at 2010-08-21 06:09:11) [GET]
+  Parameters: {"action"=>"graph", "id"=>"2", "controller"=>"exposures"}
+Factors: 107
+Factors: 107
+Completed in 156ms (View: 16, DB: 62) | 200 OK [http://127.0.0.1/exposures/graph/2]
+
+
+Processing ExposuresController#prob_plot (for 127.0.0.1 at 2010-08-21 06:09:11) [GET]
+  Parameters: {"action"=>"prob_plot", "id"=>"2", "controller"=>"exposures"}
+
+NoMethodError (undefined method `size' for nil:NilClass):
+  app/controllers/exposures_controller.rb:226:in `prob_plot'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ExposuresController#show (for 127.0.0.1 at 2010-08-21 06:09:21) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"exposures"}
+Rendering template within layouts/application
+Rendering exposures/show
+Completed in 63ms (View: 16, DB: 157) | 200 OK [http://127.0.0.1/exposures/1]
+
+
+Processing StylesheetsController#application to css (for 127.0.0.1 at 2010-08-21 06:09:21) [GET]
+  Parameters: {"format"=>"css", "action"=>"application", "id"=>"fx", "controller"=>"stylesheets"}
+Rendering stylesheets/fx
+Completed in 15ms (View: 15, DB: 31) | 200 OK [http://127.0.0.1/stylesheets/fx.css]
+
+
+Processing ExposuresController#graph (for 127.0.0.1 at 2010-08-21 06:09:21) [GET]
+  Parameters: {"action"=>"graph", "id"=>"1", "controller"=>"exposures"}
+Factors: 0
+Factors: 0
+
+NoMethodError (undefined method `*' for nil:NilClass):
+  app/controllers/exposures_controller.rb:56:in `graph'
+
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ExposuresController#prob_plot (for 127.0.0.1 at 2010-08-21 06:09:21) [GET]
+  Parameters: {"action"=>"prob_plot", "id"=>"1", "controller"=>"exposures"}
+
+NoMethodError (undefined method `size' for nil:NilClass):
+  app/controllers/exposures_controller.rb:226:in `prob_plot'
+
+Rendering rescues/layout (internal_server_error)

@@ -1,0 +1,18 @@
+  * executing `deploy'
+  * executing `deploy:update'
+ ** transaction: start
+  * executing `deploy:update_code'
+    updating the cached checkout on all servers
+    executing locally: "git ls-remote git@github.com:jmedding/Fx.git master"
+  * executing "if [ -d /var/www/fx/shared/cached-copy ]; then cd /var/www/fx/shared/cached-copy && git fetch  origin && git reset  --hard d1e6adf8d27597c3a6b17a3bb78f136d03e47a45 && git clean  -d -x -f; else git clone  git@github.com:jmedding/Fx.git /var/www/fx/shared/cached-copy && cd /var/www/fx/shared/cached-copy && git checkout  -b deploy d1e6adf8d27597c3a6b17a3bb78f136d03e47a45; fi"
+    servers: ["pragmaticriskmanagement.com"]
+    [pragmaticriskmanagement.com] executing command
+ ** [pragmaticriskmanagement.com :: out] Cloning into /var/www/fx/shared/cached-copy...
+ ** [pragmaticriskmanagement.com :: err] Permission denied (publickey).
+ ** [pragmaticriskmanagement.com :: err] fatal: The remote end hung up unexpectedly
+    command finished
+*** [deploy:update_code] rolling back
+  * executing "rm -rf /var/www/fx/releases/20100905223256; true"
+    servers: ["pragmaticriskmanagement.com"]
+    [pragmaticriskmanagement.com] executing command
+    command finished
