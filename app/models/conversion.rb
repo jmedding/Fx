@@ -9,15 +9,18 @@ class Conversion < ActiveRecord::Base
 		bases = Currency.find_all_by_base(true)
 		bases.each do |base|
 			Currency.all.each do |c|
-				unless (base.id == c.id)
-					con = Conversion.create(:currency_in => base.id, :currency_out => c.id)
-					con.yaml_import(1500, false)
+				unless (base.id == c.id || Conversion.find_by_currency_in_and_currency_out(c.id, base.id))
+					con = Conversion.create(:currency_in => base.id, :currency_out => c.id)					
 				end				
 			end
 		end
+		Conversion.import_all_from_yaml
 		Conversion.export_all_to_yaml
 	end
 	
+	def Conversion.import_all_from_yaml
+		Conversion.find(:all).each { |c| c.yaml_import(1500, false)}
+	end
 	def Conversion.export_all_to_yaml
 		Conversion.find(:all).each { |c| c.yaml_export}
 	end
@@ -25,12 +28,13 @@ class Conversion < ActiveRecord::Base
 	def yaml_export
 		text = data.to_yaml
 		text.gsub!("/\n/", "\r\n")
-		File.open(".\\db\\seeds\\#{pair?}.yaml", 'w') {|f| f.write(text) }
+		File.open("./db/seeds//#{RAILS_ENV}/#{pair?}.yaml", 'w') {|f| f.write(text) }
 	end
 		
 	def yaml_import (days = 1500, export = false)
 		reset_data!
-		file = './db/seeds/'+pair?+'.yaml'
+		file = "./db/seeds/#{RAILS_ENV}/"+pair?+".yaml"
+		p 'try to load from ' + file 
 		# check to see if 'file' exists. If so, then load it
 		if File.exists? file
 			puts 'loading file: ' + file
@@ -152,12 +156,13 @@ class Conversion < ActiveRecord::Base
 	
 	def get_buffer_probabilities(validity, multiple, invert, start = 0)
 		nmax = data.size
-		if (nmax - start) < validity * (multiple + 1)
-			p pair? + "returned nil.  data = #{nmax.to_s} start = #{start} validity = #{validity} multiple = #{multiple}"
+		start_point = nmax - 1 - start
+		if (start_point) < (validity * (multiple ) + 1 )
+			p pair? + " returned nil.  data = #{nmax.to_s} start = #{start} validity = #{validity} multiple = #{multiple}"
 			return nil #span = (nmax - start - validity)/validity
 		end
 		#simulate runs over v*m and find 0 delta pos and prob pos then find the offset
-		start_point = nmax - 1 - start
+		
 		i = start_point
 		deltas = []
 		#p pair? + "  data = #{data.count.to_s} start = #{start_point} validity = #{validity} multiple = #{multiple}"
@@ -167,18 +172,21 @@ class Conversion < ActiveRecord::Base
 			#delta = (data[i].rate - data[i - validity].rate)/data[i].rate #%
 			#p "Run  on #{data[i].day.to_s} has a delta of #{delta}"
 			#deltas << - (e - s)/e * 100 #% - provision will be based on the trend
-			deltas << (e - s).abs/e * 100 #% - provision based on volatility
+			#p (e - s).abs/e * 100
+			deltas << (e - s).abs/s * 100 #% - provision based on volatility
+			
 			i = i - 1
 		end
 		#p deltas.size
 		deltas.sort!
+		
 		return deltas
 	end
 	
 	def Conversion.evaluate_buffer_params(maxRuns = 100)
 		heat_map = []			#heat_map[multiple][probability]
 		minV = 15	#minimum validity in days
-		maxV = 200#days
+		maxV = (270.0*5/7).floor #days
 		minM = 1.5 #multiple in validities
 		maxM = 4.0
 		puts
@@ -201,18 +209,30 @@ class Conversion < ActiveRecord::Base
 			v = minV + rand(maxV - minV)
 			c = Conversion.all[rand(Conversion.count)]
 			m = minM
-			start = rand(c.data.size - (v * (maxM+1)).to_i )
+			start = v * maxM + 1 + rand(c.data.size - (1 + v * (maxM+1)).to_i )
+			#find actual variation for this exposure			
 			results = []
+			invert = [-1,1]
+			inv = invert[rand(2)]
+			s = c.data[start].rate**inv
+			e = c.data[start + v].rate**inv
+			var_actual = ((e - s)/s * 100).abs
 			
-			#p c.pair?
+			#p c.pair? + " #{inv}"
+			#p var_actual
+			#p v
 			while m < maxM do
-				deltas = c.get_buffer_probabilities(v, m, start).collect! {|delta| delta.abs}	
+				deltas = c.get_buffer_probabilities(v, m, inv, start) #.collect! {|delta| delta.abs}	#don't need to take abs as it is done before now
 				vars = []
-				probabilities.each {|prob| vars<< deltas[(prob * deltas.size).to_i]}
+				#p m
+				#probabilities.each {|prob| puts "#{deltas[(prob * deltas.size).to_i] } #{deltas[(prob * deltas.size).to_i]-var_actual }"}
+				
+				probabilities.each {|prob| vars<< (deltas[(prob * deltas.size).to_i] - var_actual).abs}
 				results << [c.pair?, v, start, p, m, vars]	
 			
 				m += (maxM - minM)/10.0
 			end
+			p results[9][0].to_s + " " + "#{results[9][1]}       %.3f" % results[9][5][4]
 			#normalize results	
 			n_results = c.normalize!(results,5)
 			#create summary by adding the normalized results to that place in the matrix
@@ -227,13 +247,13 @@ class Conversion < ActiveRecord::Base
 			i += 1
 		end
 		c.normalize!(heat_map.collect! {|row| [row]},0)		#wrap heat_map in an array to match the input format of c.normalize! ([[a,b,c,[]],[a,b,c,[]],[a,b,c,[]],...])
-		heat_map.collect!{|row| row[0]}	#undwrap heat_map to bring it back into a usable data format ([[],[],[],...])
+		heat_map.collect!{|row| row[0]}	#unwrap heat_map to bring it back into a usable data format ([[],[],[],...])
 		puts
 		#puts "Number of runs = " + maxRuns.to_s
 		ps =  probabilities.map {|p| "   %.2f" % p}
-		puts "              " + ps.to_s
+		puts "             " + ps.to_s
 		heat_map.each_with_index do |row, m|
-			string = "Multiple %.2f:  " % (minM + (maxM - minM)/10.0 *(m))
+			string = "Multiple %.2f  " % (minM + (maxM - minM)/10.0 *(m))
 			row.each { |var| string += "%.2f   " % var }
 			
 			p string
@@ -243,6 +263,11 @@ class Conversion < ActiveRecord::Base
 		#return results		
 	end
 	
+	def p_row (m, vars)
+		string = "Multiple %.2f  " % (minM + (maxM - minM)/10.0 *(m))
+		vars.each { |var| string += "%.2f   " % var }
+		p string
+	end
 	def normalize!(array_of_arrays, element_to_be_normalized)
 		e = element_to_be_normalized
 		vals = array_of_arrays.map{|ar| ar[e] }.flatten	

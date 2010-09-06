@@ -62,6 +62,7 @@ class ExposuresController < ApplicationController
 		end	
 	  
 	  g = Graph.new
+	  g.set_num_decimals(3)
 	  g.set_bg_color('#FFFFFF')
 	  g.title(title, '{font-size: 12px;}')
 	  g.set_data(factors)
@@ -245,6 +246,7 @@ class ExposuresController < ApplicationController
 		
 		#Should change graph to an XY type with just points
 		g = Graph.new
+		g.set_num_decimals(3)
 		g.set_bg_color('#FFFFFF')
 		g.title(title, '{font-size: 12px;}')
 		#g.set_data(probs)

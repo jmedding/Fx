@@ -10,9 +10,9 @@
 Currency.delete_all	unless Currency.all.empty? #get rid of any dummy currencies used in the test fixtures
 
 eur = Currency.create(:symbol => 'EUR', :description => 'Euro', :base => true)
-usd = Currency.create(:symbol => 'USD', :description => 'US Dollar', :base => false)
-chf = Currency.create(:symbol => 'CHF', :description => 'Swiss Franc')
-thb = Currency.create(:symbol => 'THB', :description => 'Thai Bhat' )
+usd = Currency.create(:symbol => 'USD', :description => 'US Dollar', :base => true)
+chf = Currency.create(:symbol => 'CHF', :description => 'Swiss Franc', :base => true)
+thb = Currency.create(:symbol => 'THB', :description => 'Thai Bhat')
 cny = Currency.create(:symbol => 'CNY', :description => 'Chinese Yuan')
 
 if RAILS_ENV == 'production'
@@ -21,16 +21,16 @@ if RAILS_ENV == 'production'
 	Currency.create(:symbol => 'RUB', :description => 'Russian Ruble')
 	Currency.create(:symbol => 'CAD', :description => 'Canadain Dollar')
 	Currency.create(:symbol => 'MXN', :description => 'Mexican Peso')
-	Currency.create(:symbol => 'JPY', :description => 'Japanese Yen')
-	Currency.create(:symbol => 'GBP', :description => 'British Pound')
-	Currency.create(:symbol => 'SEK', :description => 'Swedish Kroner')
+	Currency.create(:symbol => 'JPY', :description => 'Japanese Yen', :base => true )
+	Currency.create(:symbol => 'GBP', :description => 'British Pound', :base => true )
+	Currency.create(:symbol => 'SEK', :description => 'Swedish Kroner', :base => true )
 	Currency.create(:symbol => 'AED', :description => 'UAE Dirham')
 	Currency.create(:symbol => 'SAR', :description => 'Saudi Riyal')
-	Currency.create(:symbol => 'AUD', :description => 'Australian Dollar')
+	Currency.create(:symbol => 'AUD', :description => 'Australian Dollar', :base => true )
 	Currency.create(:symbol => 'NZD', :description => 'New Zealand Dollar')
 	Currency.create(:symbol => 'RON', :description => 'Romanian New Lei')
 	Currency.create(:symbol => 'HUF', :description => 'Hungarian Forint')
-	Currency.create(:symbol => 'PLN', :description => 'Polish Zlotych')
+	Currency.create(:symbol => 'PLN', :description => 'Polish Zlotych', :base => true )
 	Currency.create(:symbol => 'BRL', :description => 'Brazilian Real')
 	Currency.create(:symbol => 'VEF', :description => 'Venezuelan Fuerte')
 	Currency.create(:symbol => 'PEN', :description => 'Peru Neuvos Sole')
@@ -41,6 +41,7 @@ if RAILS_ENV == 'production'
 	Currency.create(:symbol => 'EGP', :description => 'Egyptian Pound')
 	Currency.create(:symbol => 'HRK', :description => 'Croatian Kuna')
 end
+
 Conversion.generate_conversions!
 
 ['user', 'admin', 'root'].each_with_index do |level, i|

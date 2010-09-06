@@ -139,6 +139,7 @@ class CalculatorsController < ApplicationController
 		min = (factors+recs).compact.min*0.95
 		  
 	  g = Graph.new
+	  g.set_num_decimals(3)
 	  g.set_bg_color('#FFFFFF')
 	  g.title(title, '{font-size: 12px;}')
 	  g.set_data(factors)
