@@ -1,7 +1,7 @@
 set :user, 'jon'
 set :application, "fx"
-#set :repository,  "git@github.com:jmedding/Fx.git"
-set :repository,  "http://github.com/jmedding/Fx.git"
+set :repository,  "git@github.com:jmedding/Fx.git"
+
 set :domain, "pragmaticriskmanagement.com"
 
 set :deploy_to, "/var/www/#{application}"
@@ -23,14 +23,13 @@ role :db,  domain, :primary => true
 
 set :deploy_via, :remote_cache
 #set :deploy_via, :copy
-ssh_options[:forward_agent] = true
+#ssh_options[:forward_agent] = true
 
 set :scm, 'git'
 set :branch, 'master'
 set :scm_verbose, true
 set :use_sudo, false
 
-#default_environment['Path']='<your paths>:D:/Rails/ruby/bin;D:/Rails/mysql/bin;C:/WINDOWS/system32;C:/WINDOWS;C:/Program Files/Common Files/GTK/2.0/bin;D:/Rails/ruby/bin' 
 
 namespace :deploy do
     desc "Restart Application"
