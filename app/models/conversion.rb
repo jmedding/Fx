@@ -136,7 +136,8 @@ class Conversion < ActiveRecord::Base
 		if num_days > 0
 			uri = URI.parse("http://www.fxstreet.com/forex-tools/rate-history-tools/?tf=1d&period=#{num_days}&pair=#{pair?}")
 			p uri
-			rates = scraper.scrape(uri, {:timeout => 600}) #an array filled with arrays of days [date, o, h, l, c]
+			#add :parser => :html_parser to scrape call below to avoid using tidy, which doesn't want to work on AMD64 server...
+			rates = scraper.scrape(uri, {:timeout => 600, :parser => :html_parser}) #an array filled with arrays of days [date, o, h, l, c]
 			p 'data downloaded'
 			vals = []
 			unless rates.blank?
