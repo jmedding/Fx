@@ -1,6 +1,7 @@
 set :user, 'jon'
 set :application, "fx"
-set :repository,  "git@github.com:jmedding/Fx.git"
+#set :repository,  "git@github.com:jmedding/Fx.git"
+set :repository,  "http://github.com/jmedding/Fx.git"
 set :domain, "pragmaticriskmanagement.com"
 
 set :deploy_to, "/var/www/#{application}"
