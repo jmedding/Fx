@@ -11309,3 +11309,33 @@
     created_at: 2010-09-02 09:26:32
   attributes_cache: {}
 
+- !ruby/object:Datum 
+  attributes: 
+    updated_at: 2010-09-07 21:06:07
+    rate: "8.773"
+    conversion_id: "4"
+    id: "9958"
+    day: "2010-09-03"
+    created_at: 2010-09-07 21:06:07
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    updated_at: 2010-09-07 21:06:07
+    rate: "8.7554"
+    conversion_id: "4"
+    id: "9957"
+    day: "2010-09-06"
+    created_at: 2010-09-07 21:06:07
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    updated_at: 2010-09-07 21:06:07
+    rate: "8.6782"
+    conversion_id: "4"
+    id: "9956"
+    day: "2010-09-07"
+    created_at: 2010-09-07 21:06:07
+  attributes_cache: {}
+

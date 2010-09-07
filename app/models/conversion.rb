@@ -15,6 +15,7 @@ class Conversion < ActiveRecord::Base
 			end
 		end
 		Conversion.import_all_from_yaml
+		Conversion.update!
 		Conversion.export_all_to_yaml
 	end
 	
@@ -48,7 +49,7 @@ class Conversion < ActiveRecord::Base
 		end		
 		set_data #set this conversions first and last day attributes
 		#finally, run update to make the dataset current
-		populate!(days)
+		#populate!(days) #can't do this as the id's get carried over from the file and there may already be one for later imports. Instead, run Update all after all imports are done.
 		#export the data so that next time is current
 		yaml_export if export	#seems to cause problems in the YAML export. Test before using...
 	end
