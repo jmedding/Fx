@@ -159,8 +159,8 @@ class Conversion < ActiveRecord::Base
 	def get_buffer_probabilities(validity, multiple, invert, start = 0)
 		nmax = data.size
 		start_point = nmax - 1 - start
-		if (start_point) < (validity * (multiple ) + 1 )
-			p pair? + " returned nil.  data = #{nmax.to_s} start = #{start} validity = #{validity} multiple = #{multiple}"
+		if (start_point) < ((validity * multiple ) + 1 )
+			p pair? + " returned nil.  data = #{nmax.to_s}, start_point= #{start_point}, validity = #{validity}, multiple = #{multiple}"
 			return nil #span = (nmax - start - validity)/validity
 		end
 		#simulate runs over v*m and find 0 delta pos and prob pos then find the offset
@@ -189,8 +189,8 @@ class Conversion < ActiveRecord::Base
 		heat_map = []			#heat_map[multiple][probability]
 		minV = 15	#minimum validity in days
 		maxV = (270.0*5/7).floor #days
-		minM = 1.5 #multiple in validities
-		maxM = 4.0
+		minM = 2.0#multiple in validities
+		maxM = 5.0
 		puts
 		p "Runs:           " + maxRuns.to_s + "  "
 		p "Validity_min:   " + minV.to_s + "  "
@@ -211,7 +211,10 @@ class Conversion < ActiveRecord::Base
 			v = minV + rand(maxV - minV)
 			c = Conversion.all[rand(Conversion.count)]
 			m = minM
-			start = v * maxM + 1 + rand(c.data.size - (1 + v * (maxM+1)).to_i )
+			nMax = c.data.size
+			v = (nMax/(maxM + 1)).to_i - 10 if v * (maxM+1) > nMax - 10 #10 is a fudge factor...
+			start = v + 2 + rand(nMax - ((1+maxM)*v).to_i-3)
+			#start = v * maxM + 1 + rand(nMax - (1 + v * (maxM+1)).to_i )
 			#find actual variation for this exposure			
 			results = []
 			invert = [-1,1]
@@ -234,7 +237,7 @@ class Conversion < ActiveRecord::Base
 			
 				m += (maxM - minM)/10.0
 			end
-			p results[9][0].to_s + " " + "#{results[9][1]}       %.3f" % results[9][5][4]
+			#p results[9][0].to_s + " " + "#{results[9][1]}       %.3f" % results[9][5][4]
 			#normalize results	
 			n_results = c.normalize!(results,5)
 			#create summary by adding the normalized results to that place in the matrix
