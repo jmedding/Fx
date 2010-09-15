@@ -20,9 +20,20 @@ class Calculator < ActiveRecord::Base
 	
 	
 	def symbols_are_valid
-		errors.add_to_base("Currency FROM(#{from}) is not valid!") if Currency.get(from).blank?
-		errors.add_to_base("Currency TO(#{to}) is not valid!") if Currency.get(to).blank?
+	  c_from =  Currency.get(from)
+	  c_to =  Currency.get(to)
+		errors.add_to_base("Currency FROM(#{from}) is not valid!") if c_from.blank?
+		errors.add_to_base("Currency TO(#{to}) is not valid!") if c_to.blank?
 		errors.add_to_base("Currency FROM and Currency TO must be different!") if from == to
+		try = Conversion.get_conversion(c_from.id ,	c_to.id)
+		con = try[0]
+		unless con
+		  errors.add_to_base("We are sorry, but this particular currency pair (#{from}#{to}) is not in our database.") 
+		  if con.data.size < multiple * duration
+		    errors.add_to_base("We are sorry, but our database does not contain sufficient history for (#{from}#{to}) to calculate a provision.")
+      end
+    end
+  
 	end
 	
 	def get_provision
