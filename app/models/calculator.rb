@@ -1,6 +1,6 @@
 class Calculator < ActiveRecord::Base
 	belongs_to :conversion
-	validates_numericality_of :duration, :on => :save	, :only_integer => true, :greater_than => 5, :less_than => 271
+	validates_numericality_of :duration, :on => :save	, :only_integer => true, :greater_than => 5, :less_than => 2710
 	validates_presence_of :from
 	validates_presence_of :to
 	validate :symbols_are_valid
@@ -18,7 +18,10 @@ class Calculator < ActiveRecord::Base
 		0.6
 	end
 	
-	
+	def get_max_duration(con)
+	  (con.data.size/multiple).floor
+  end
+ 
 	def symbols_are_valid
 	  c_from =  Currency.get(from)
 	  c_to =  Currency.get(to)
@@ -27,11 +30,15 @@ class Calculator < ActiveRecord::Base
 		errors.add_to_base("Currency FROM and Currency TO must be different!") if from == to
 		try = Conversion.get_conversion(c_from.id ,	c_to.id)
 		con = try[0]
-		unless con
-		  errors.add_to_base("We are sorry, but this particular currency pair (#{from}#{to}) is not in our database.") 
+		if con
 		  if con.data.size < multiple * duration
+		    max_duration = get_max_duration(con)
 		    errors.add_to_base("We are sorry, but our database does not contain sufficient history for (#{from}#{to}) to calculate a provision.")
+		    errors.add_to_base("Please limit the duration to a maximum of #{max_duration} days")
+		    self.duration = max_duration
       end
+		else
+		  errors.add_to_base("We are sorry, but this particular currency pair (#{from}#{to}) is not in our database.") 
     end
   
 	end
@@ -44,7 +51,8 @@ class Calculator < ActiveRecord::Base
 		return nil unless try[0]
 		self.conversion = try[0]
 		self.invert = try[1]
-		self.duration = 270 if self.duration > 270
+		max_duration = get_max_duration(self.conversion)
+		self.duration = max_duration if self.duration > max_duration
 		@multiple = multiple
 		@prob = prob
 		self.provision = self.conversion.find_buffer(duration, multiple, prob, self.invert, nil)

@@ -159,7 +159,7 @@ class Conversion < ActiveRecord::Base
 	def get_buffer_probabilities(validity, multiple, invert, start = 0)
 		nmax = data.size
 		start_point = nmax - 1 - start
-		if (start_point) < ((validity * multiple ) + 1 )
+		if (start_point+1) < (validity * multiple)
 			p pair? + " returned nil.  data = #{nmax.to_s}, start_point= #{start_point}, validity = #{validity}, multiple = #{multiple}"
 			return nil #span = (nmax - start - validity)/validity
 		end
@@ -260,7 +260,6 @@ class Conversion < ActiveRecord::Base
 		heat_map.each_with_index do |row, m|
 			string = "Multiple %.2f  " % (minM + (maxM - minM)/10.0 *(m))
 			row.each { |var| string += "%.2f   " % var }
-			
 			p string
 		end
 			
@@ -273,6 +272,7 @@ class Conversion < ActiveRecord::Base
 		vars.each { |var| string += "%.2f   " % var }
 		p string
 	end
+	
 	def normalize!(array_of_arrays, element_to_be_normalized)
 		e = element_to_be_normalized
 		vals = array_of_arrays.map{|ar| ar[e] }.flatten	
