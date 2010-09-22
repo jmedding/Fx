@@ -15,7 +15,7 @@ class Calculator < ActiveRecord::Base
 	end
 	
 	def prob
-		0.6
+		0.5
 	end
 	
 	def get_max_duration(con)

@@ -167,7 +167,10 @@ class Exposure < ActiveRecord::Base
 		return nil if (current_rate.blank? || carried_rate.blank?)
 		(current_rate - carried_rate)/carried_rate*100
 	end
-	
+  def get_buffer_probabilities(m, start = 0)
+    i = invert ? 1 : -1
+    conversion.get_buffer_probabilities(tender.remaining_validity?, m, i, start)
+  end
 	def update_rates!
 		#first calculate remaining validity and multiply be xFactor(=2)
 		days_to_analyze = tender.remaining_validity? * 2

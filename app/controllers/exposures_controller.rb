@@ -222,8 +222,8 @@ class ExposuresController < ApplicationController
   def prob_plot
 		@exposure = get_exposure_for_user #Exposure.find(params[:id])
 		v = @exposure.tender.remaining_validity?
-		m = 3.0 #multiple
-		buffers = @exposure.conversion.get_buffer_probabilities(v, m)
+		m = multiple?(v) #3.0 #multiple
+		buffers = @exposure.get_buffer_probabilities(m)
 		n = buffers.size
 		main_title = nil
 		sub_title = nil

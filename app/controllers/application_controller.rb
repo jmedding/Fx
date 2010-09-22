@@ -16,6 +16,9 @@ class ApplicationController < ActionController::Base
 	end
 	
 	def admin?
+	  #Need to think about this functionality. 
+	  #if an admin logs on, ok, show admin stuff
+	  #if not, then why redirect to groups????
 			aps = current_user.priviledges.find(:all, :conditions => ['level_id >= ?', 2])			
 			redirect_to(groups_path) if aps.empty?
 			aps
