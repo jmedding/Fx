@@ -100,6 +100,7 @@ class Conversion < ActiveRecord::Base
 		end
 		# date - integer => rational. Must 	convert rational to integer
 		Datum.create_datums(self, days.to_i)
+    clean_data
 		set_data		
 	end
 	
@@ -297,5 +298,13 @@ class Conversion < ActiveRecord::Base
 		(data.last.rate ** invert)
 	end
 	
+  def clean_data
+    last_day = nil
+    data.each do |d|
+      data.delete(d) if d.day == last_day && last_day
+      last_day = d.day if d
+    end
+  end
+
 	
 end
