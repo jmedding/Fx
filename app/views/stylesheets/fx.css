@@ -1,5 +1,41 @@
 <% @set_min_w = " min-width: 700px;" %>
 
+.flot_table{
+    color: grey;
+   	background-color: white;
+	margin-bottom: 20px;
+	-moz-border-radius: 3px;
+	font:14px verdana,arial,sans-serif;
+	border-collapse:collapse;
+	border: 0px solid grey;
+}
+.flot_title {
+    font-size: larger;
+	padding: 5px 0px;
+	text-align: center;
+	border-collapse:collapse;
+	border: 0px solid grey;
+}
+.flot_ylabel {
+	padding: 0px 0px;
+	text-align: center;
+	border-collapse:collapse;
+	border: 0px solid grey;
+	
+	width: 100px;
+
+	-webkit-transform: rotate(-90deg); 
+    -moz-transform: rotate(-90deg);	
+     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+}
+.flot_xlabel {
+	padding: 0px 0px;
+	text-align: center;
+	border-collapse:collapse;
+	border: 0px solid grey;
+}
+
 .calculator{
 	width: 600px;
 	height: 300px;

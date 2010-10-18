@@ -10809,3 +10809,253 @@
     conversion_id: "2"
   attributes_cache: {}
 
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:24
+    updated_at: 2010-09-26 03:28:24
+    rate: "1.3008"
+    id: "10017"
+    day: "2010-09-13"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:24
+    updated_at: 2010-09-26 03:28:24
+    rate: "1.29655"
+    id: "10016"
+    day: "2010-09-14"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:24
+    updated_at: 2010-09-26 03:28:24
+    rate: "1.30605"
+    id: "10015"
+    day: "2010-09-15"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:24
+    updated_at: 2010-09-26 03:28:24
+    rate: "1.3295"
+    id: "10014"
+    day: "2010-09-16"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:24
+    updated_at: 2010-09-26 03:28:24
+    rate: "1.3284"
+    id: "10013"
+    day: "2010-09-17"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:24
+    updated_at: 2010-09-26 03:28:24
+    rate: "1.31765"
+    id: "10012"
+    day: "2010-09-20"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:24
+    updated_at: 2010-09-26 03:28:24
+    rate: "1.3231"
+    id: "10011"
+    day: "2010-09-21"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:24
+    updated_at: 2010-09-26 03:28:24
+    rate: "1.32475"
+    id: "10010"
+    day: "2010-09-22"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:24
+    updated_at: 2010-09-26 03:28:24
+    rate: "1.31855"
+    id: "10009"
+    day: "2010-09-23"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:24
+    updated_at: 2010-09-26 03:28:24
+    rate: "1.32745"
+    id: "10008"
+    day: "2010-09-24"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-10-15 22:09:09
+    updated_at: 2010-10-15 22:09:09
+    rate: "1.3277"
+    id: "10068"
+    day: "2010-09-27"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-10-15 22:09:08
+    updated_at: 2010-10-15 22:09:08
+    rate: "1.32775"
+    id: "10067"
+    day: "2010-09-28"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-10-15 22:09:08
+    updated_at: 2010-10-15 22:09:08
+    rate: "1.3334"
+    id: "10066"
+    day: "2010-09-29"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-10-15 22:09:08
+    updated_at: 2010-10-15 22:09:08
+    rate: "1.34035"
+    id: "10065"
+    day: "2010-09-30"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-10-15 22:09:08
+    updated_at: 2010-10-15 22:09:08
+    rate: "1.34465"
+    id: "10064"
+    day: "2010-10-01"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-10-15 22:09:08
+    updated_at: 2010-10-15 22:09:08
+    rate: "1.33825"
+    id: "10063"
+    day: "2010-10-04"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-10-15 22:09:08
+    updated_at: 2010-10-15 22:09:08
+    rate: "1.3384"
+    id: "10062"
+    day: "2010-10-05"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-10-15 22:09:08
+    updated_at: 2010-10-15 22:09:08
+    rate: "1.3406"
+    id: "10061"
+    day: "2010-10-06"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-10-15 22:09:08
+    updated_at: 2010-10-15 22:09:08
+    rate: "1.3474"
+    id: "10060"
+    day: "2010-10-07"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-10-15 22:09:08
+    updated_at: 2010-10-15 22:09:08
+    rate: "1.34575"
+    id: "10059"
+    day: "2010-10-08"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-10-15 22:09:08
+    updated_at: 2010-10-15 22:09:08
+    rate: "1.34345"
+    id: "10058"
+    day: "2010-10-11"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-10-15 22:09:08
+    updated_at: 2010-10-15 22:09:08
+    rate: "1.337"
+    id: "10057"
+    day: "2010-10-12"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-10-15 22:09:08
+    updated_at: 2010-10-15 22:09:08
+    rate: "1.3403"
+    id: "10056"
+    day: "2010-10-13"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-10-15 22:09:08
+    updated_at: 2010-10-15 22:09:08
+    rate: "1.343"
+    id: "10055"
+    day: "2010-10-14"
+    conversion_id: "2"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-10-15 22:09:08
+    updated_at: 2010-10-15 22:09:08
+    rate: "1.34435"
+    id: "10054"
+    day: "2010-10-15"
+    conversion_id: "2"
+  attributes_cache: {}
+

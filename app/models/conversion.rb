@@ -290,7 +290,7 @@ class Conversion < ActiveRecord::Base
 	
 	def get_recommended_rate(buffer, invert=1)
 		val = nil
-		val = get_current_rate(invert) * (1-0 - buffer) unless data.last.blank?
+		val = get_current_rate(invert) * (1.0 - buffer) unless data.last.blank?
 		val
 	end
 	
@@ -301,7 +301,7 @@ class Conversion < ActiveRecord::Base
   def clean_data
     last_day = nil
     data.each do |d|
-      data.delete(d) if d.day == last_day && last_day
+      data.delete(d) if (d.day == last_day && last_day)
       last_day = d.day if d
     end
   end

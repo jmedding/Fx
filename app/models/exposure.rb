@@ -22,6 +22,7 @@ class Exposure < ActiveRecord::Base
 	def set_conversion!
 		#try = [conversion, invert]
 		try = Conversion.get_conversion(currency_in, currency_out, true)
+		p 'set_conversion! failed for exposure ' + id.to_s unless try
 		self.conversion = try[0]
 		return try[1]	#= -1 if we have to invert
 	end
@@ -167,9 +168,9 @@ class Exposure < ActiveRecord::Base
 		return nil if (current_rate.blank? || carried_rate.blank?)
 		(current_rate - carried_rate)/carried_rate*100
 	end
-  def get_buffer_probabilities(m, start = 0)
+  def get_buffer_probabilities(multiple, start = 0)
     i = invert ? 1 : -1
-    conversion.get_buffer_probabilities(tender.remaining_validity?, m, i, start)
+    conversion.get_buffer_probabilities(tender.remaining_validity?, multiple, i, start)
   end
 	def update_rates!
 		#first calculate remaining validity and multiply be xFactor(=2)
@@ -185,21 +186,22 @@ class Exposure < ActiveRecord::Base
 		end_date = tender.validity + 10
 		
 		j = 0
-		i = invert ? -1 : 1
-		
-		puts start_date.to_s + "  --->   " + end_date.to_s
+		i = invert ? -1 : 1		
 		
 		data = conversion.data.find(:all, :conditions => ['day > ? and day <= ?', start_date, end_date])
-		puts data.size
+		
 		# **** This must be fixed  ************
 		#self.carried_rate = (data.first.rate ** i) / 1.05 if self.carried_rate.blank?
 		#***********************************
 		#update new rates with lates recommended rate
-		rec = conversion.get_recommended_rate(i)
+		probability = 0.5
+		
+		buffer = conversion.find_buffer(tender.remaining_validity?, multiple?, probability, i, 0)/100.0
+		rec = conversion.get_recommended_rate(buffer, i)
 			
 		data.each do |d|
 			j+=1		
-			puts j.to_s + " " + fx_symbol? + "=> " + d.day.to_s + " = " + d.rate.to_s
+			#puts j.to_s + " " + fx_symbol? + "=> " + d.day.to_s + " = " + d.rate.to_s
 			r = Rate.new(
 				:exposure => self, 
 				:factor => d.rate  ** i,
@@ -210,12 +212,51 @@ class Exposure < ActiveRecord::Base
 			rates << r
 		end
 		self.current_rate = data.last.rate ** i if data.last
-		#carried rate is not set automatically, until just before bid date. I can be set manually before
-		self.carried_rate = rec if check_carried_blank? && Date.today >= tender.bid_date - 1
-		puts "carried rate: " + carried_rate.to_s
+		#carried rate is not set automatically, until just before bid date. It can be set manually before
+		##self.carried_rate = rec if check_carried_blank? && Date.today >= tender.bid_date - 1
+		
+		#101015: carried rate is set to rec if blank
+		self.carried_rate = rec if check_carried_blank?
+		
+		#puts "carried rate: " + carried_rate.to_s
 		#save
+		puts conversion.pair? + " " + start_date.to_s + "  --->   " + end_date.to_s
 
 	end
+	def multiple?
+    m = 100.0/tender.remaining_validity?
+    m = 3 if m < 3
+	end
 	
-	
+	def get_probs
+	  buffers = get_buffer_probabilities(multiple?)
+	  probs = Array.new
+	  buffers.each_with_index { |buffer, i| probs << Pointxy.new(buffer, (i+1.0)/buffers.size)}
+	  probs
+  end
+  
+	def title?
+	  project = tender.project if tender.project
+	  if project
+			sub_title = ":" + tender.description
+			main_title = tender.project.name
+		else
+			main_title = tender.description
+			sub_title = nil
+		end
+		group_name = tender.group.name
+		direction = "Cash Out"
+		direction = "Cash In" if supply
+		currency_1 = currency_in_symbol?
+		currency_2 = currency_out_symbol?
+		currency_1_and_2 = "#{currency_1} => #{currency_2}"
+		title = "#{main_title}:#{group_name}#{sub_title}"
+		sub = "#{direction}:#{currency_1_and_2}" 
+		[title, sub] 
+  end
+  def prob_chart_title?
+    title = "Fx Provision Effectiveness"
+		sub = "#{conversion.pair?}, Exposure length = #{tender.remaining_validity?} days"
+		[title, sub]
+  end
 end

@@ -11329,3 +11329,103 @@
     conversion_id: "9"
   attributes_cache: {}
 
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:46
+    updated_at: 2010-09-26 03:28:46
+    rate: "6.71185"
+    id: "10090"
+    day: "2010-09-13"
+    conversion_id: "9"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:46
+    updated_at: 2010-09-26 03:28:46
+    rate: "6.7795"
+    id: "10089"
+    day: "2010-09-14"
+    conversion_id: "9"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:46
+    updated_at: 2010-09-26 03:28:46
+    rate: "6.74785"
+    id: "10088"
+    day: "2010-09-15"
+    conversion_id: "9"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:46
+    updated_at: 2010-09-26 03:28:46
+    rate: "6.67595"
+    id: "10087"
+    day: "2010-09-16"
+    conversion_id: "9"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:46
+    updated_at: 2010-09-26 03:28:46
+    rate: "6.66655"
+    id: "10086"
+    day: "2010-09-17"
+    conversion_id: "9"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:46
+    updated_at: 2010-09-26 03:28:46
+    rate: "6.6864"
+    id: "10085"
+    day: "2010-09-20"
+    conversion_id: "9"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:46
+    updated_at: 2010-09-26 03:28:46
+    rate: "6.7316"
+    id: "10084"
+    day: "2010-09-21"
+    conversion_id: "9"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:46
+    updated_at: 2010-09-26 03:28:46
+    rate: "6.8027"
+    id: "10083"
+    day: "2010-09-22"
+    conversion_id: "9"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:46
+    updated_at: 2010-09-26 03:28:46
+    rate: "6.81685"
+    id: "10082"
+    day: "2010-09-23"
+    conversion_id: "9"
+  attributes_cache: {}
+
+- !ruby/object:Datum 
+  attributes: 
+    created_at: 2010-09-26 03:28:46
+    updated_at: 2010-09-26 03:28:46
+    rate: "6.83105"
+    id: "10081"
+    day: "2010-09-24"
+    conversion_id: "9"
+  attributes_cache: {}
+

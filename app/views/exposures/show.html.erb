@@ -6,11 +6,31 @@
 	:locals => {:exposures => e, :header_text => t.description})  %>
 </table>
 
-<%= @graph %>
-</br>
+<%= render :partial => "graph_rates" %>
 
+<%= render (:partial => "shared/flot_chart", 
+    :locals => {:place_holder => "graph_probs",
+                :xlabel => "Fx Provision (%)", 
+                :ylabel => "Probability",
+                :title => @exposure.prob_chart_title?[0],
+                :sub => @exposure.prob_chart_title?[1],
+                :width => 600,
+                :height => 300
+                } )%>
+                                
 <%= @prob_plot%>
 
 <%= link_to 'Edit', edit_exposure_path(@exposure) %> |
 <%= link_to 'Back', exposures_path %>|
 <%= link_to 'Delete', @exposure, :confirm => 'Are you sure?', :method => :delete %>
+</br>
+<%= chart("graph_rates", { 
+      "Actual Rate" => {:collection => @exposure.rates, :x => :day, :y => :factor, :options => { :lines => {:show =>true}} }, 
+      "Recommended Rate" => {:collection => @exposure.rates, :x => :day, :y => :recommended, :options => { :lines => {:show =>true}} }},       
+      {:grid => { :backgroundColor => "#fffaff" }},
+      { :placeholder_tag => false}) %>
+      
+<%= chart("graph_probs", { 
+      "Actual Rate" => {:collection => @exposure.get_probs, :x => :x, :y => :y, :options => { :points => {:show =>true, :radius => 2}} }},       
+      {:grid => { :backgroundColor => "#fffaff" }},
+      { :placeholder_tag => false}) %>      
