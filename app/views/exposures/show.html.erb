@@ -8,17 +8,8 @@
 
 <%= render :partial => "graph_rates" %>
 
-<%= render (:partial => "shared/flot_chart", 
-    :locals => {:place_holder => "graph_probs",
-                :xlabel => "Fx Provision (%)", 
-                :ylabel => "Probability",
-                :title => @exposure.prob_chart_title?[0],
-                :sub => @exposure.prob_chart_title?[1],
-                :width => 600,
-                :height => 300
-                } )%>
+<%= render :partial => "graph_probs" %>
                                 
-<%= @prob_plot%>
 
 <%= link_to 'Edit', edit_exposure_path(@exposure) %> |
 <%= link_to 'Back', exposures_path %>|
