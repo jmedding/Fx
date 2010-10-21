@@ -1,0 +1,10 @@
+<%= render (:partial => "shared/flot_chart", 
+    :locals => {:xlabel => "date", 
+                :ylabel => "Exchange Rate",
+                :title => @exposure.title?[0],
+                :sub => @exposure.title?[1],
+                :place_holder => "graph_rates",
+                :width => 600,
+                :height => 300
+                } )%>
+

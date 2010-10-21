@@ -1,0 +1,30 @@
+<% xlabel = nil if local_assigns[:xlabel].nil? %>
+<% ylabel = nil if local_assigns[:ylabel].nil? %>
+<% title = nil if local_assigns[:title].nil? %>
+<% sub = nil if local_assigns[:sub].nil? %>
+<% place_holder = "graph_flot" if local_assigns[:place_holder].nil? %>
+<% width = 600 if local_assigns[:width].nil? %>
+<% height = 300 if local_assigns[:height].nil? %>
+
+<table class="flot_table">
+  <tr>
+    <td></td>
+    <td class="flot_title">
+      <%= title %>
+      <% if sub %>
+        <br/><span style="font-size:smaller"><%= sub %></span>
+      <% end %>  
+    </td>
+  </tr>
+  <tr>
+  <td class="flot_ylabel"><%= ylabel %></td>
+  <td>
+    <div id="<%= place_holder %>" style="width:<%= width %>px;height:<%= height %>px;"></div>
+  </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td class="flot_xlabel"><%= xlabel %></td>
+  </tr>
+</table>
+
