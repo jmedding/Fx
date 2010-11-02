@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_filter :logged_in?, :except => [:new, :create]
-	before_filter :admin? 
+	before_filter :admin?, :except => [:new, :create]
 	protect_from_forgery :except => [:delete, :create]
 	
 	
