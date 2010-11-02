@@ -38,6 +38,8 @@ class UsersController < ApplicationController
 		
     @group =  params[:group].blank? ? Group.new() : Group.find_by_id(params[:group][:id])
 		@user = User.new 
+
+    #need to create an account as well!!!
 		
 
     respond_to do |format|
