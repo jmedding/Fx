@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 		puts "Group = " + params[:group].to_s
 		#if this new user is assigned to an existing group it should be in the params.
 		
-    @group ? params[:group].blank? Group.new() : Group.find_by_id(params[:group][:id])
+    @group =  params[:group].blank? ? Group.new() : Group.find_by_id(params[:group][:id])
 		@user = User.new 
 		
 
