@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_filter :logged_in? 
+	before_filter :logged_in?, :except => [:new, :create]
 	before_filter :admin? 
 	protect_from_forgery :except => [:delete, :create]
 	
@@ -35,9 +35,10 @@ class UsersController < ApplicationController
 		@group = Group.new()
 		puts "Group = " + params[:group].to_s
 		#if this new user is assigned to an existing group it should be in the params.
-		@group = Group.find_by_id(params[:group][:id]) unless params[:group].blank?
+		
+    @group ? params[:group].blank? Group.new() : Group.find_by_id(params[:group][:id])
 		@user = User.new 
-		@group = Group.new()
+		
 
     respond_to do |format|
       format.html # new.html.erb
