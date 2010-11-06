@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	before_filter :logged_in?, :except => [:new, :create]
-	before_filter :admin?, :except => [:new, :create]
-	protect_from_forgery :except => [:delete, :create]
+	before_filter :admin?, :except => [:new, :edit, :update, :create, :destroy]
+	protect_from_forgery :except => [:destroy, :create]
 	
 	
   # GET /users
@@ -19,7 +19,6 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
-	 puts current_user.name
 
     respond_to do |format|
       format.html # show.html.erb
@@ -31,16 +30,10 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new
 		#	get business rules for each account type
-	  
-		@group = Group.new()
-		puts "Group = " + params[:group].to_s
-		#if this new user is assigned to an existing group it should be in the params.
+	  #if this new user is assigned to an existing group it should be in the params.
 		
     @group =  params[:group].blank? ? Group.new() : Group.find_by_id(params[:group][:id])
 		@user = User.new 
-
-    #need to create an account as well!!!
-		
 
     respond_to do |format|
       format.html # new.html.erb
@@ -51,6 +44,9 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+#    p @user.inspect
+#    p current_user.inspect
+    redirect_to current_user unless @user == current_user
   end
 
   # POST /users
@@ -59,22 +55,25 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(params[:user])
 		#a completely new group should only have a name, with id = nil.	 
-		@group = Group.new(params[:group])
+		@user.account = @group.account if @group = Group.find_by_id(params[:group][:group_id])
+      
 		#@group = Group.find_by_id(params[:group][id]) unless params[:group][id].blank?
 	 
 		#create a priviledge (level = 'user') for this new group. He is not an admin till he pays
-		p= Priviledge.new(:user => @user, :group => @group, :level => Level.find_by_name('user'))
 	 
 		respond_to do |format|
 			User.transaction do
+			  @group ||= Group.new(params[:group])
+				@user.account ||= Account.create!()  #only create new account if it is empty
 				@user.save!
-				account = Account.create!(:creator_id => @user.id)
-				account.users << @user
-				@group.account = account
+				@user.account.creator_id = @user.id
+				UserSession.create(:login => params[:user][:login], :password => params[:user][:password])
+				Priviledge.create!(:user => @user, :group => @group, :level => Level.find_by_name('user'))
+				@group.account = @user.account
+				@user.account.save!				
 				@group.save!
-				p.save!
 				base = Group.find_by_name("Base")
-				new_group = @group.parent_id.blank?
+				Group.rebuild! unless base.lft || base.rgt  #needed for testing
 				@group.move_to_child_of(base) if @group.parent_id.blank?
 				
 				flash[:notice] = 'Registration was successfull.'
@@ -88,8 +87,9 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
+    
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user == current_user && @user.update_attributes(params[:user])
         flash[:notice] = 'User was successfully updated.'
         format.html { redirect_to(@user) }
         format.xml  { head :ok }
@@ -104,19 +104,13 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
+    #p (@user == current_user).to_s
+    @user.destroy if @user == current_user
 
     respond_to do |format|
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
     end
  end
-rescue ActiveRecord::RecordInvalid => e
-	#can keep validating here
-	@group.valid?
-	p.valid?
-	respond_to do |format|
-       format.html { render :action => "new" }
-       format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-	end	
+
 end

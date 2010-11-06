@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
 	helper_method :free?
 	
 	def logged_in?
+	  p "No one is logged in - redirected" unless current_user
 		redirect_to(login_path) unless current_user
 	end
 	
@@ -19,8 +20,10 @@ class ApplicationController < ActionController::Base
 	  #Need to think about this functionality. 
 	  #if an admin logs on, ok, show admin stuff
 	  #if not, then why redirect to groups????
+
 			aps = current_user.priviledges.find(:all, :conditions => ['level_id >= ?', 2])			
-			redirect_to(groups_path) if aps.empty?
+  	  p "You are not an admin - redirected" if aps.empty?
+ 			redirect_to(groups_path) if aps.empty?
 			aps
 	end
 	
@@ -43,7 +46,7 @@ class ApplicationController < ActionController::Base
 	end
 	
 	def free?
-		puts current_user.account_id
+		#puts current_user.account_id
 		current_user.account.rules.blank?
 	end
 	

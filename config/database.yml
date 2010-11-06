@@ -27,12 +27,12 @@ test:
   host: localhost
 
 production:
-  adapter: jdbcmysql
+  adapter: mysql
   encoding: utf8
   reconnect: false
   database: fx_production
   pool: 5
-  username: root
-  password:
+  username: fx
+  password: prm
   host: localhost
 
