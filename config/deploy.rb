@@ -23,7 +23,7 @@ role :db,  domain, :primary => true
 
 set :deploy_via, :remote_cache
 #set :deploy_via, :copy
-#ssh_options[:forward_agent] = true
+ssh_options[:forward_agent] = true
 
 set :scm, 'git'
 set :branch, 'master'

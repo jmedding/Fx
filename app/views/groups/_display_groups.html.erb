@@ -1,4 +1,4 @@
-<%  if groups.size > 0 then -%>	
+<%  unless groups.empty? -%>	
 	<%- groups.each do |group| %>
 		<table class="table">
 		<tr><td class="table_head" colspan="#{groups[0].get_fields.size}">Group Information</td></tr>

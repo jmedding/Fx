@@ -73,9 +73,9 @@ def get_accessible_tenders_by_project (project)
 			end
 			groups_to_display = groups_to_display - groups_to_delete
 			groups_to_delete = []
-			groups_to_display << p.group if keep
+			groups_to_display << p.group if keep && !p.group.blank?
 		end		
-		return groups_to_display
+	  return groups_to_display
 	end
 	
 end
