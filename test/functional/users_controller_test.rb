@@ -21,9 +21,15 @@ class UsersControllerTest < ActionController::TestCase
     get :new
     assert_response :success
   end
-
-  test "should create user" do
-		
+  
+  test "should not create user" do
+    users_before = User.count
+    bad_user = create_test_user("2", true)  #invalid password confirmation
+    assert_equal users_before, User.count, "A user was created with the wrong password confirmation"
+    assert_template :new, "An invalid password confirmation did not render the new action"
+  end
+    
+  test "should create user" do		
 		assert_difference('User.count') do
 		  user = create_test_user
     end
@@ -66,12 +72,13 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to users_path
   end
   
-  def create_test_user(suffix = "")
+  def create_test_user(suffix = "", invalid = false)
+    blahblahblah = invalid ? "sfkndsfk" : ""
     Group.create!(:name => 'Base') unless Group.find_by_name("Base")
     post :create, 	:user => {:name => 'Tester' + suffix, 
 														:login =>  'tester' + suffix,
 														:email => 'tester' + suffix+ '@testing.com',
-														:password => 'tested' + suffix,
+														:password => 'tested' + suffix + blahblahblah,
 														:password_confirmation => 'tested' + suffix},
 									:group => {:name => 'test group'}			
 		user = User.find_by_name('Tester' + suffix)

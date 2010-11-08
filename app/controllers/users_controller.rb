@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 	  #if this new user is assigned to an existing group it should be in the params.
 		
     @group =  params[:group].blank? ? Group.new() : Group.find_by_id(params[:group][:id])
-		@user = User.new 
+		@user = User.new()
 
     respond_to do |format|
       format.html # new.html.erb
@@ -62,24 +62,30 @@ class UsersController < ApplicationController
 		#create a priviledge (level = 'user') for this new group. He is not an admin till he pays
 	 
 		respond_to do |format|
-			User.transaction do
-			  @group ||= Group.new(params[:group])
-				@user.account ||= Account.create!()  #only create new account if it is empty
-				@user.save!
-				@user.account.creator_id = @user.id
-				UserSession.create(:login => params[:user][:login], :password => params[:user][:password])
-				Priviledge.create!(:user => @user, :group => @group, :level => Level.find_by_name('user'))
-				@group.account = @user.account
-				@user.account.save!				
-				@group.save!
-				base = Group.find_by_name("Base")
-				Group.rebuild! unless base.lft || base.rgt  #needed for testing
-				@group.move_to_child_of(base) if @group.parent_id.blank?
-				
-				flash[:notice] = 'Registration was successfull.'
-				format.html { redirect_to(current_user) }
-				format.xml  { render :xml => @user, :status => :created, :location => @user }
-			end		
+		  begin
+		    
+			  User.transaction do
+			    @group ||= Group.new(params[:group])
+  				@user.account ||= Account.create!()  #only create new account if it is empty
+  				@user.save!
+  				@user.account.creator_id = @user.id
+   				UserSession.create(:login => params[:user][:login], :password => params[:user][:password])
+  				@group.account = @user.account
+  				@user.account.save!				
+  				@group.save!
+  				Priviledge.create!(:user => @user, :group => @group, :level => Level.find_by_name('user'))
+  				base = Group.find_by_name("Base")
+  				Group.rebuild! unless base.lft || base.rgt  #needed for testing
+  				@group.move_to_child_of(base) if @group.parent_id.blank?
+  				
+  				flash[:notice] = 'Registration was successfull.'
+  				format.html { redirect_to(current_user) }
+  				format.xml  { render :xml => @user, :status => :created, :location => @user }
+  			end		
+	    rescue ActiveRecord::RecordInvalid
+	      format.html { render :action => "new"}  #render is better than redirect, because it preserves all of the @user data
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
 		end
 	end
 	
