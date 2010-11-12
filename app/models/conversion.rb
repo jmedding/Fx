@@ -62,11 +62,11 @@ class Conversion < ActiveRecord::Base
 	def Conversion.get_conversion(currency_in, currency_out, create_new = false)
 		c = Conversion.find_by_currency_in_and_currency_out(currency_in, currency_out)
 		unless c.blank?
-			return [c, 1]		#do not invert the rates
+			return [c, false]		#do not invert the rates
 		end
 		c = Conversion.find_by_currency_in_and_currency_out(currency_out, currency_in)
 		unless c.blank?
-			return [c,-1]		#rates must be inverted
+			return [c, true]		#rates must be inverted
 		end
 		 #if we make it here, we did not find a valid conversion.
 		 #which is strange, because the currencies should have been validated
@@ -74,7 +74,7 @@ class Conversion < ActiveRecord::Base
 		if create_new
 			c = Conversion.create(:currency_in => currency_in, :currency_out => currency_out)
 			c.populate!
-			return [c, 1]		#do not invert the rates
+			return [c, invert]		#do not invert the rates
 		else
 			return [nil,nil]		#not allowed to create a new conversion
 		end

@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+eurusd:
+  id: 1
+  currency_in: 1
+  currency_out: 2
+  first: <%= (Date.today - 500).strftime("%Y-%m-%d") %>
+  last: <%= (Date.today).strftime("%Y-%m-%d") %>
+
+eurthb:
+  id: 2
+  currency_in: 1
+  currency_out: 3
+  first: <%= (Date.today - 500).strftime("%Y-%m-%d") %>
+  last: <%= (Date.today).strftime("%Y-%m-%d") %>
+
+#~ two:
+  #~ currency_in: 1
+  #~ currency_out: 1
+  #~ first: 2010-06-29
+  #~ last: 2010-06-29

@@ -11,7 +11,7 @@ class Exposure < ActiveRecord::Base
 	validate :currencies_are_valid_and_different
 	
 	def before_save
-		self.invert = set_conversion!
+		self.invert = set_conversion!  if self.invert.blank?
 		update_rates!
 	end
 		
@@ -21,9 +21,10 @@ class Exposure < ActiveRecord::Base
 	
 	def set_conversion!
 		#try = [conversion, invert]
-		try = Conversion.get_conversion(currency_in, currency_out, true)
+		try = Conversion.get_conversion(currency_in, currency_out, true)  #true will create a new conversion if it's not found
 		p 'set_conversion! failed for exposure ' + id.to_s unless try
 		self.conversion = try[0]
+		p "set converions invert = " + try[1].to_s
 		return try[1]	#= -1 if we have to invert
 	end
 	
@@ -50,8 +51,8 @@ class Exposure < ActiveRecord::Base
 	
 	def currencies_are_valid_and_different
 		unless (currency_in.blank? && currency_out.blank?)
-			erros.add_to_base("Currency_In(#{currency_in}) is not valid!") if Currency.find_by_id(currency_in).blank?
-			erros.add_to_base("Currency_Out(#{currency_out}) is not valid!") if Currency.find_by_id(currency_out).blank?
+			errors.add_to_base("Currency_In(#{currency_in}) is not valid!") if Currency.find_by_id(currency_in).blank?
+			errors.add_to_base("Currency_Out(#{currency_out}) is not valid!") if Currency.find_by_id(currency_out).blank?
 			errors.add_to_base("Currency_In and Currency_Out must be different!") if currency_in == currency_out
 		end		
 	end
@@ -169,7 +170,8 @@ class Exposure < ActiveRecord::Base
 		(current_rate - carried_rate)/carried_rate*100
 	end
   def get_buffer_probabilities(multiple, start = 0)
-    i = invert ? 1 : -1
+    
+    i = invert ? -1 : 1
     conversion.get_buffer_probabilities(tender.remaining_validity?, multiple, i, start)
   end
 	def update_rates!
@@ -186,7 +188,8 @@ class Exposure < ActiveRecord::Base
 		end_date = tender.validity + 10
 		
 		j = 0
-		i = invert ? -1 : 1		
+		i = invert ? -1 : 1
+		p "update_rates! invert = #{invert.to_s}"	
 		
 		data = conversion.data.find(:all, :conditions => ['day > ? and day <= ?', start_date, end_date])
 		
@@ -195,7 +198,6 @@ class Exposure < ActiveRecord::Base
 		#***********************************
 		#update new rates with lates recommended rate
 		probability = 0.5
-		
 		buffer = conversion.find_buffer(tender.remaining_validity?, multiple?, probability, i, 0)/100.0
 		rec = conversion.get_recommended_rate(buffer, i)
 			
@@ -223,9 +225,11 @@ class Exposure < ActiveRecord::Base
 		puts conversion.pair? + " " + start_date.to_s + "  --->   " + end_date.to_s
 
 	end
+	
 	def multiple?
     m = 100.0/tender.remaining_validity?
     m = 3 if m < 3
+    return m  #need this for testing... Don't know why
 	end
 	
 	def get_probs

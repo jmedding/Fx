@@ -13,6 +13,6 @@
 	<%- style_text = "text-align:right;" if f.is_number -%>
 	<%- style_text =  "text-align:left; padding-left:#{5+level*7}px;" if f.is_nested_set -%>
 	<%- params = { :class => "cell", :style => style_text} -%>
-	<%= content_tag (tag, text, params) -%>
+	<%= content_tag(tag, text, params) -%>
 <%- end %>
 </tr>

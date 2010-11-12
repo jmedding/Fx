@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+#~ one:
+  #~ conversion_id: 1
+  #~ rate: 1.5
+  #~ day: 2010-06-29
+
+#~ two:
+  #~ conversion_id: 1
+  #~ rate: 1.5
+  #~ day: 2010-06-29
+<% conversions = ['eurusd', 'eurthb']%>  
+<% conversions.each_with_index do |c, i| %>
+<% srand i+1 %>
+<% rate = rand(10) %>
+<% (1..500).each do |j| %>
+<% rate += (rand - 0.5)/10 %>
+d<%= c + j.to_s %>:
+  id: <%= (i)*500 + j %>
+  rate: <%= rate  %>
+  conversion_id: <%= i+1 %>
+  day: <%= (Date.today - j + 1).strftime("%Y-%m-%d") %>
+ 
+<% end %>
+<% end %>

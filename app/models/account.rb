@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
-	has_one :group,		:dependent => :destroy
+	has_one :group,		:dependent => :destroy  #it may be easier to have multiple groups, due to the nested set relationshipsai
 	belongs_to :currency
-	belongs_to :type
+	#belongs_to :type #Must uncomment this when we add real types!!!!!!!
 	belongs_to :rules
 	has_many :users, 	:dependent => :destroy
 	#has_many :invoices

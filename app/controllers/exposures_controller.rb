@@ -50,21 +50,24 @@ class ExposuresController < ApplicationController
 		# Create a new tender for each exposure.
 		#Include a field in the form for the tender bid date, validity and description
 		#The form will check @tender and if validity is nil then it will show the input fields for the tender
-	if current_user.account.type.blank?	#free plan, no tenders
-		@tender = Tender.new(:group => current_user.groups.find(:first), :user => current_user)
-	elsif
-		#case: paid
-			# can only create exposures from a tender, so if !params[:tender].blank? then pass this t0 @tender
-		if params[:tender].blank?
-			flash[:notice] = 'An exposure must be created from a tender. Pleae select or create one.'
-			redirect_to(tenders_path) 
-		end		
-		@exposure.tender = params[:tender]
-		@tender = nil
-	end
+		user = User.find(current_user.id) #if user.account.type is changed, current_user won't be udpated automatically
+	  if user.account.type_id.blank?	#free plan, no tenders
+		  @exposure.tender = Tender.new(:group => current_user.groups.find(:first), :user => current_user)
+    else
+		  #case: paid
+			p params[:tender]
+			tender = (params[:tender].blank? || params[:tender][:id].blank?) ? nil : Tender.find_by_id(params[:tender][:id].to_i)
+		  @exposure.tender = tender
+  	end
     respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @exposure }
+      if @exposure.tender.blank?
+		 	  flash[:notice] = 'An exposure must be created from a tender. Pleae select or create one.'
+        format.html { redirect_to(tenders_path) }
+        format.xml  { render :xml => @exposure.errors, :status => :unprocessable_entity }
+      else
+        format.html { render :new }# new.html.erb
+        format.xml  { render :xml => @exposure }
+      end
     end
   end
 
@@ -81,30 +84,30 @@ class ExposuresController < ApplicationController
 	 
 	 #if the form submits a :tender hash, then the tender is new and needs created and assigned
 	 #by assigning it to the exposure it should get saved when the exposure is saved.
-	unless params[:tender].blank?
-		bid_date = (params["tender"]["bid_date(1i)"].to_s+"-"+params["tender"]["bid_date(2i)"].to_s+"-"+params["tender"]["bid_date(3i)"].to_s).to_date
-		tender = Tender.new(params[:tender]) 
-		tender.validity = tender.bid_date + params[:tender][:validity].to_i
-		tender.user = current_user
-		tender.group = current_user.groups[0]
-	end
-	
-    respond_to do |format|
-		unless tender.save
-			flash[:notice] = 'Exposure duration information failed to save'
-			format.html { redirect_to(@exposure) }
-			format.xml  { render :xml => @exposure, :status => :created, :location => @exposure }
+	  unless params[:tender].blank?
+		  bid_date = (params["tender"]["bid_date(1i)"].to_s+"-"+params["tender"]["bid_date(2i)"].to_s+"-"+params["tender"]["bid_date(3i)"].to_s).to_date
+		  tender = Tender.new(params[:tender]) 
+		  tender.validity = tender.bid_date + params[:tender][:validity].to_i
+		  tender.user = current_user
+		  tender.group = current_user.groups[0]
 	  end
-		@exposure.tender = tender
-		
-		if @exposure.save 
-			#need to update the rates and calculate recommended rate to carry
-        flash[:notice] = 'Exposure was successfully created.'
+	  
+    respond_to do |format|
+	  	unless tender.save
+	  		flash[:notice] = 'Exposure duration information failed to save'
+	  		format.html { redirect_to(@exposure) }
+	  		format.xml  { render :xml => @exposure, :status => :created, :location => @exposure }
+	    end
+	  	@exposure.tender = tender
+	  	if @exposure.save
+	  		#need to update the rates and calculate recommended rate to carry
+        flash[:notice] = 'Exposure was successfully created.'        
         format.html { redirect_to(@exposure) }
         format.xml  { render :xml => @exposure, :status => :created, :location => @exposure }
       else
-			tender.destroy
-        format.html { render :action => "new" }
+  			p "Exposure failed to save" + @exposure.inspect
+  			tender.destroy
+  			format.html { render :action => "new" }
         format.xml  { render :xml => @exposure.errors, :status => :unprocessable_entity }
       end
     end

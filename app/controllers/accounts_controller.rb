@@ -9,6 +9,8 @@ class AccountsController < ApplicationController
       format.xml  { render :xml => @accounts }
     end
   end
+  
+  
 
   # GET /accounts/1
   # GET /accounts/1.xml
@@ -58,6 +60,7 @@ class AccountsController < ApplicationController
   # PUT /accounts/1.xml
   def update
     @account = Account.find(params[:id])
+    @account.type_id = params[:type_id]
 
     respond_to do |format|
       if @account.update_attributes(params[:account])
