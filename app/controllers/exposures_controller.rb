@@ -55,7 +55,7 @@ class ExposuresController < ApplicationController
 		  @exposure.tender = Tender.new(:group => current_user.groups.find(:first), :user => current_user)
     else
 		  #case: paid
-			p params[:tender]
+			#p params[:tender]
 			tender = (params[:tender].blank? || params[:tender][:id].blank?) ? nil : Tender.find_by_id(params[:tender][:id].to_i)
 		  @exposure.tender = tender
   	end
@@ -105,7 +105,7 @@ class ExposuresController < ApplicationController
         format.html { redirect_to(@exposure) }
         format.xml  { render :xml => @exposure, :status => :created, :location => @exposure }
       else
-  			p "Exposure failed to save" + @exposure.inspect
+  			#p "Exposure failed to save" + @exposure.inspect
   			tender.destroy
   			format.html { render :action => "new" }
         format.xml  { render :xml => @exposure.errors, :status => :unprocessable_entity }

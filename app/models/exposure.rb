@@ -24,7 +24,6 @@ class Exposure < ActiveRecord::Base
 		try = Conversion.get_conversion(currency_in, currency_out, true)  #true will create a new conversion if it's not found
 		p 'set_conversion! failed for exposure ' + id.to_s unless try
 		self.conversion = try[0]
-		p "set converions invert = " + try[1].to_s
 		return try[1]	#= -1 if we have to invert
 	end
 	
@@ -136,7 +135,7 @@ class Exposure < ActiveRecord::Base
 			day = day.next
 		end
 		save
-		puts tender.description.to_s + ' current_rate for ' + amount_symbol?.to_s + ' is ' + current_rate.to_s
+		#puts tender.description.to_s + ' current_rate for ' + amount_symbol?.to_s + ' is ' + current_rate.to_s
 		return 	Rate.find_all_by_exposure_id(id).length
 	end
 	
@@ -189,18 +188,16 @@ class Exposure < ActiveRecord::Base
 		
 		j = 0
 		i = invert ? -1 : 1
-		p "update_rates! invert = #{invert.to_s}"	
-		
 		data = conversion.data.find(:all, :conditions => ['day > ? and day <= ?', start_date, end_date])
 		
 		# **** This must be fixed  ************
 		#self.carried_rate = (data.first.rate ** i) / 1.05 if self.carried_rate.blank?
 		#***********************************
 		#update new rates with lates recommended rate
-		probability = 0.5
-		buffer = conversion.find_buffer(tender.remaining_validity?, multiple?, probability, i, 0)/100.0
-		rec = conversion.get_recommended_rate(buffer, i)
-			
+		#probability = 0.5
+		#buffer = conversion.find_buffer(tender.remaining_validity?, multiple?, probability, i, 0)/100.0
+		#rec = conversion.get_recommended_rate(buffer, i)
+		rec = recommended_rate?	
 		data.each do |d|
 			j+=1		
 			#puts j.to_s + " " + fx_symbol? + "=> " + d.day.to_s + " = " + d.rate.to_s
@@ -222,9 +219,16 @@ class Exposure < ActiveRecord::Base
 		
 		#puts "carried rate: " + carried_rate.to_s
 		#save
-		puts conversion.pair? + " " + start_date.to_s + "  --->   " + end_date.to_s
+		#puts conversion.pair? + " " + start_date.to_s + "  --->   " + end_date.to_s
 
 	end
+	
+	def recommended_rate?
+	  i = invert ? -1 : 1
+		probability = 0.5
+		buffer = conversion.find_buffer(tender.remaining_validity?, multiple?, probability, i, 0)/100.0
+		rec = conversion.get_recommended_rate(buffer, i)
+  end
 	
 	def multiple?
     m = 100.0/tender.remaining_validity?

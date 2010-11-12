@@ -89,8 +89,8 @@ class Conversion < ActiveRecord::Base
 		if (self.first.blank? && days > 0)	#first call to new Conversion
 			days = days 
 		elsif (self.first.blank? && days < 0)	#first call, use default num days
-			puts 'first:' + self.first.to_s
-			puts 'days: ' + days.to_s
+			#puts 'first:' + self.first.to_s
+			#puts 'days: ' + days.to_s
 			reset_data!
 			days = 1500
 		elsif self.first > Date.today - days + 2 #datums exist, but don't go back far enough
@@ -111,7 +111,7 @@ class Conversion < ActiveRecord::Base
 			#puts "is first blank? " + self.first.blank?.to_s
 			self.first = data.find(:first).day 
 			self.last = data.find(:last).day
-			puts pair? + " " + self.first.to_s + " - " + self.last.to_s 
+			#puts pair? + " " + self.first.to_s + " - " + self.last.to_s 
 			self.save!
 		end
 	end
