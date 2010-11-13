@@ -23,13 +23,11 @@ class CalculatorsController < ApplicationController
   def show
 	@hide_login = "hidden"
 	@orig_calculator = Calculator.find(params[:id])
-	@provision = @orig_calculator.get_provision	#this must be called first since it sets the conversion and invert params
+	@provision = @orig_calculator.provision #get_provision	#this must be called first since it sets the conversion and invert params
 	@current_rate = @orig_calculator.get_current_rate
 	@recommended_rate = @orig_calculator.get_recommended_rate
 	@calculator =@orig_calculator.clone 
 	#puts 'show action, id = ' + params.to_s
-	
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @calculator }
@@ -61,7 +59,7 @@ class CalculatorsController < ApplicationController
   # POST /calculators.xml
   def create
 	@hide_login = "hidden"  
-	puts 'create action ' + params.to_s
+	#puts 'create action ' + params.to_s
 	@calculator = Calculator.new(params[:calculator])
 	@calculator.source_id = 1	#we only get here from the 'caclulate' button
 	@calculator.session_id = get_session

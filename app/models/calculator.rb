@@ -23,15 +23,17 @@ class Calculator < ActiveRecord::Base
   end
  
 	def symbols_are_valid
-	  c_from =  Currency.get(from)
-	  c_to =  Currency.get(to)
+	  c_from =  Currency.find_by_symbol(from)
+	  c_to =    Currency.find_by_symbol(to)
 		errors.add_to_base("Currency FROM(#{from}) is not valid!") if c_from.blank?
 		errors.add_to_base("Currency TO(#{to}) is not valid!") if c_to.blank?
 		errors.add_to_base("Currency FROM and Currency TO must be different!") if from == to
 		try = Conversion.get_conversion(c_from.id ,	c_to.id)
 		con = try[0]
 		if con
-		  if con.data.size < multiple * duration
+		  self.conversion = con
+      self.invert = try[1] ? -1 : 1
+      if con.data.size < multiple * duration
 		    max_duration = get_max_duration(con)
 		    errors.add_to_base("We are sorry, but our database does not contain sufficient history for (#{from}#{to}) to calculate a provision.")
 		    errors.add_to_base("Please limit the duration to a maximum of #{max_duration} days")
@@ -40,19 +42,20 @@ class Calculator < ActiveRecord::Base
 		else
 		  errors.add_to_base("We are sorry, but this particular currency pair (#{from}#{to}) is not in our database.") 
     end
+    
   
 	end
 	
 	def get_provision
-		c_in = Currency.get(from)
-		c_out =  Currency.get(to)
-		return nil unless (c_in && c_out)
-		try = Conversion.get_conversion(c_in.id ,	c_out.id)
-		return nil unless try[0]
-		self.conversion = try[0]
-		self.invert = try[1]
-		max_duration = get_max_duration(self.conversion)
-		self.duration = max_duration if self.duration > max_duration
+		#c_in = Currency.find_by_symbol(from)
+		#c_out =  Currency.find_by_symbol(to)
+		#return nil unless (c_in && c_out)
+		#try = Conversion.get_conversion(c_in.id ,	c_out.id)
+		#return nil unless try[0]
+		#self.conversion = try[0]
+		#self.invert = try[1]
+		#max_duration = get_max_duration(self.conversion)
+		#self.duration = max_duration if self.duration > max_duration
 		@multiple = multiple
 		@prob = prob
 		self.provision = self.conversion.find_buffer(duration, multiple, prob, self.invert, nil)
