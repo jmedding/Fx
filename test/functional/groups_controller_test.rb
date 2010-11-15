@@ -22,9 +22,12 @@ class GroupsControllerTest < ActionController::TestCase
   end
 
   test "should create group" do
-    create_test_group
-
+    data1 = create_test_group #[user1, group1, priv1]
     assert_redirected_to group_path(assigns(:group))
+    
+    #test invalid case(no admin priviledges on group)
+    data2 = create_test_group(nil, nil, true)
+    assert_template :new
   end
 
   test "should show group" do

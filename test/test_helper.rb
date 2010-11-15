@@ -37,21 +37,27 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
   
   def create_test_group(parent = nil, user = nil, invalid = false)
-    user1 = create_test_user if user.blank?
+    i = rand(1000)
+    user1 = create_test_user(i) if user.blank?
     parent = user1.groups.find(:last)
-    priv = user1.priviledges.find_by_group_id(parent.id)
-    priv.level = Level.find_by_name('admin') unless invalid #will not have proper group priviledge required to create a new group
-    priv.save!
-
-    assert_difference('Group.count') do
-      post :create, :group => {:parent_id => parent.id, :name => "Test Group" }      
+    unless invalid
+      priv = user1.priviledges.find_by_group_id(parent.id)
+      priv.level = Level.find_by_name('admin') unless invalid #will not have proper group priviledge required to create a new group
+      priv.save!
     end
-    
-    group = Group.find(:last)
-    priv_new = user1.priviledges.find_by_group_id(group.id)
-    assert_not_nil priv_new
-    assert_equal Level.find_by_name('admin').id, priv_new.level_id
-    
+    name = "Test Group #{i}"
+    delta = invalid ? 0 : 1
+    assert_difference('Group.count', delta) do
+      post :create, :group => {:parent_id => parent.id, :name => name }      
+    end
+    group = user1.groups.find_by_name(name)      
+    priv_new = nil
+    unless invalid
+      priv_new = user1.priviledges.find_by_group_id(group.id)  
+      assert_not_nil priv_new
+      assert_equal Level.find_by_name('admin').id, priv_new.level_id    
+    end
+    return [user1, group, priv_new]  
   end
 
   def create_test_exposure( c1, c2, validity, amount, carried = nil, user = nil)
