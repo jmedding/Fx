@@ -72,15 +72,5 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to users_path
   end
   
-  def create_test_user(suffix = "", invalid = false)
-    blahblahblah = invalid ? "sfkndsfk" : ""
-    Group.create!(:name => 'Base') unless Group.find_by_name("Base")
-    post :create, 	:user => {:name => 'Tester' + suffix, 
-														:login =>  'tester' + suffix,
-														:email => 'tester' + suffix+ '@testing.com',
-														:password => 'tested' + suffix + blahblahblah,
-														:password_confirmation => 'tested' + suffix},
-									:group => {:name => 'test group'}			
-		user = User.find_by_name('Tester' + suffix)
-  end
+
 end

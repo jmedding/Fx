@@ -60,7 +60,8 @@ class AccountsController < ApplicationController
   # PUT /accounts/1.xml
   def update
     @account = Account.find(params[:id])
-    @account.type_id = params[:type_id]
+    #the account type update must be protected - to do!
+    @account.type_id = params[:type_id] if params[:type_id]
 
     respond_to do |format|
       if @account.update_attributes(params[:account])

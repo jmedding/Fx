@@ -91,42 +91,5 @@ class ExposuresControllerTest < ActionController::TestCase
     assert_redirected_to exposures_path
   end
   
-  def create_test_exposure( c1, c2, validity, amount, carried = nil, user = nil)
-    user = create_test_user unless user
-    c = Conversion.find_by_currency_in_and_currency_out(Currency.find_by_symbol(c1).id, Currency.find_by_symbol(c2).id)
-    post :create,
-     :tender => {:group => user.groups.find(:first), 
-                  :user => user,
-                  :description => 'Test Tender',
-                  "bid_date(1i)" => (Date.today + 10).strftime("%Y"),
-                  "bid_date(2i)" => (Date.today + 10).strftime("%m"),
-                  "bid_date(3i)" => (Date.today + 10).strftime("%d"),
-                  :validity => validity},
-     :exposure => {:supply => true,
-                  :currency_in => Currency.find_by_symbol(c1).id,
-                  :currency_out => Currency.find_by_symbol(c2).id,
-                  :carried_rate => carried,
-                  :amount => amount}
-  
-    return Exposure.find_by_amount(amount)  #must be careful to use unique amounts in our tests        
-  end
-  
-  def create_test_user(suffix = "", invalid = false)
-    assert_difference('User.count') do
-      old_controller = @controller
-      @controller = UsersController.new
-      blahblahblah = invalid ? "sfkndsfk" : ""
-      suffix = suffix.to_s
-      Group.create!(:name => 'Base') unless Group.find_by_name("Base")
-      post :create, :user => {:name => 'Tester' + suffix, 
-														:login =>  'tester' + suffix,
-														:email => 'tester' + suffix+ '@testing.com',
-														:password => 'tested' + suffix + blahblahblah,
-														:password_confirmation => 'tested' + suffix},
-			  						:group => {:name => 'test group'}			
-      @controller = old_controller 
-    end 
-         
-		user = User.find_by_name('Tester' + suffix)
-  end
+
 end

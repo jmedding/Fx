@@ -1,7 +1,16 @@
 require 'test_helper'
+require "authlogic/test_case"
 
 class GroupsControllerTest < ActionController::TestCase
-  test "should get index" do
+ 	self.fixture_path = File.join(File.dirname(__FILE__), "../fixtures/functional")
+	fixtures :levels
+	fixtures :users
+	fixtures :accounts
+	fixtures :data
+	fixtures :conversions
+	fixtures :currencies
+	
+	test "should get index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:groups)
@@ -13,9 +22,7 @@ class GroupsControllerTest < ActionController::TestCase
   end
 
   test "should create group" do
-    assert_difference('Group.count') do
-      post :create, :group => { }
-    end
+    create_test_group
 
     assert_redirected_to group_path(assigns(:group))
   end
@@ -42,4 +49,6 @@ class GroupsControllerTest < ActionController::TestCase
 
     assert_redirected_to groups_path
   end
+  
+
 end

@@ -35,4 +35,62 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  
+  def create_test_group(parent = nil, user = nil, invalid = false)
+    user1 = create_test_user if user.blank?
+    parent = user1.groups.find(:last)
+    priv = user1.priviledges.find_by_group_id(parent.id)
+    priv.level = Level.find_by_name('admin') unless invalid #will not have proper group priviledge required to create a new group
+    priv.save!
+
+    assert_difference('Group.count') do
+      post :create, :group => {:parent_id => parent.id, :name => "Test Group" }      
+    end
+    
+    group = Group.find(:last)
+    priv_new = user1.priviledges.find_by_group_id(group.id)
+    assert_not_nil priv_new
+    assert_equal Level.find_by_name('admin').id, priv_new.level_id
+    
+  end
+
+  def create_test_exposure( c1, c2, validity, amount, carried = nil, user = nil)
+    user = create_test_user unless user
+    c = Conversion.find_by_currency_in_and_currency_out(Currency.find_by_symbol(c1).id, Currency.find_by_symbol(c2).id)
+    post :create,
+     :tender => {:group => user.groups.find(:first), 
+                  :user => user,
+                  :description => 'Test Tender',
+                  "bid_date(1i)" => (Date.today + 10).strftime("%Y"),
+                  "bid_date(2i)" => (Date.today + 10).strftime("%m"),
+                  "bid_date(3i)" => (Date.today + 10).strftime("%d"),
+                  :validity => validity},
+     :exposure => {:supply => true,
+                  :currency_in => Currency.find_by_symbol(c1).id,
+                  :currency_out => Currency.find_by_symbol(c2).id,
+                  :carried_rate => carried,
+                  :amount => amount}
+  
+    return Exposure.find_by_amount(amount)  #must be careful to use unique amounts in our tests        
+  end
+  
+  def create_test_user(suffix = "", invalid = false)
+    delta = invalid ? 0 : 1
+    assert_difference('User.count', delta) do
+      old_controller = @controller
+      @controller = UsersController.new
+      blahblahblah = invalid ? "sfkndsfk" : ""
+      suffix = suffix.to_s
+      Group.create!(:name => 'Base') unless Group.find_by_name("Base")
+      post :create, :user => {:name => 'Tester' + suffix, 
+														:login =>  'tester' + suffix,
+														:email => 'tester' + suffix+ '@testing.com',
+														:password => 'tested' + suffix + blahblahblah,
+														:password_confirmation => 'tested' + suffix},
+			  						:group => {:name => 'test group'}			
+      @controller = old_controller 
+    end 
+         
+		user = User.find_by_name('Tester' + suffix)
+  end
 end

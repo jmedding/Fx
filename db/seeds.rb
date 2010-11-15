@@ -10,7 +10,7 @@
 Currency.delete_all	unless Currency.all.empty? #get rid of any dummy currencies used in the test fixtures
 
 eur = Currency.create(:symbol => 'EUR', :description => 'Euro', :base => true)
-usd = Currency.create(:symbol => 'USD', :description => 'US Dollar')
+usd = Currency.create(:symbol => 'USD', :description => 'US Dollar', :base => true)
 chf = Currency.create(:symbol => 'CHF', :description => 'Swiss Franc')
 thb = Currency.create(:symbol => 'THB', :description => 'Thai Bhat')
 cny = Currency.create(:symbol => 'CNY', :description => 'Chinese Yuan')

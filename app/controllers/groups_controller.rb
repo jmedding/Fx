@@ -52,15 +52,42 @@ class GroupsController < ApplicationController
   # POST /groups
   # POST /groups.xml
   def create
+    # Must check that user's account allows multiple groups
     Group.rebuild! if nil.|Group.find(:first).rgt
-	 @group = Group.new(params[:group])
+    @group = Group.new(params[:group])
+	  
+	  p params[:group][:parent_id].blank?
+	  
+	  if params[:group][:parent_id].blank?
+	    Logger.error "Cannot create group via CREATE action withouth parent_id" 
+	    flash[:notice] = "Can not create a group this way without a specifying a parent"
+    else
+	    # Must check that the current_user has admin privileges on parent or a parent of parent.
+	    parent = Group.find_by_id(params[:group][:parent_id]) 
+      if current_user.can_create_child_group(parent)
+        @group.account = parent.account
+      else
+        flash[:notice] = "You do not have sufficient privileges to create new group for #{parent.name}"
+      end  
+    end
+	    
+	 #a new group should be saved, and then an Admin privilige for the creator should be created
+	 #note: groups validates presence of 'account'
 
     respond_to do |format|
-      if @group.save
-        flash[:notice] = 'Group was successfully created.'
-        format.html { redirect_to(@group) }
-        format.xml  { render :xml => @group, :status => :created, :location => @group }
-      else
+      begin
+        Priviledge.transaction do	     
+	        @group.save!
+	        @group.move_to_child_of parent  #awesome nested set action.
+	        Priviledge.create!(:user => current_user, :group => @group, :level => Level.find_by_name('admin'))
+	        	        
+          flash[:notice] = 'Group was successfully created.'
+          format.html { redirect_to(@group) }
+          format.xml  { render :xml => @group, :status => :created, :location => @group }
+        end  
+      rescue
+        Group.rebuild! #don't know if this is needed, but it can't hurt, except for time.
+        @groups = current_user.get_unique_group_branches.map {|g| g.get_self_and_children?}.flatten
         format.html { render :action => "new" }
         format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
       end

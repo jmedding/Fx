@@ -78,4 +78,14 @@ def get_accessible_tenders_by_project (project)
 	  return groups_to_display
 	end
 	
+	def can_create_child_group (group)
+	  #this is not very efficient. Could pull groups and privides and see if there are any matches.
+	  admin_id = Level.find_by_name("admin").id
+	  group.self_and_ancestors.each do |g|
+	    return true if priviledges.find_by_group_id_and_level_id(g.id, admin_id)
+	    group = group.parent
+   end
+   return false
+  end
+	
 end
