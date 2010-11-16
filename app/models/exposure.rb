@@ -60,7 +60,7 @@ class Exposure < ActiveRecord::Base
 		Exposure.find(:all).each do |e|
 			#e.generate_dummy_rates
 			#puts e.id
-			e.update_rates!
+			e.save!
 		end
 	end
 	
@@ -210,16 +210,8 @@ class Exposure < ActiveRecord::Base
 				:day => d.day)
 			rates << r
 		end
-		self.current_rate = data.last.rate ** i if data.last
-		#carried rate is not set automatically, until just before bid date. It can be set manually before
-		##self.carried_rate = rec if check_carried_blank? && Date.today >= tender.bid_date - 1
-		
-		#101015: carried rate is set to rec if blank
+		self.current_rate = rates.last.factor unless rates.empty?
 		self.carried_rate = rec if check_carried_blank?
-		
-		#puts "carried rate: " + carried_rate.to_s
-		#save
-		#puts conversion.pair? + " " + start_date.to_s + "  --->   " + end_date.to_s
 
 	end
 	

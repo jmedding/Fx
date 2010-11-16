@@ -123,9 +123,10 @@ module ActionView
           set[:name] = "d#{i.to_s}"
           values[:collection].each do |object|
             x_value, y_value = object.send(values[:x]), object.send(values[:y])
-            x = x_is_date ? x_value.to_time.to_i * 1000 : x_value.to_f
-            y = y_is_date ? y_value.to_time.to_i * 1000 : y_value.to_f
-            data << [x,y]
+            # nil.to_f => 0.0, which is not what we want for graphing. Therefore check first if nil, then if time.
+            x = x_value.nil? ? (nil) : (x_is_date ? x_value.to_time.to_i * 1000 : x_value.to_f)
+            y = y_value.nil? ? (nil) : (y_is_date ? y_value.to_time.to_i * 1000 : y_value.to_f)
+            data << [x,y] unless x.nil? || y.nil? #this condition is not necessary, but makes the file smaller
           end
           set[:data] = data
 #          values[:options].each {|option, parameters| set[option] = parameters } if values[:options]
