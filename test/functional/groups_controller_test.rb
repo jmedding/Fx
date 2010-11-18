@@ -11,6 +11,9 @@ class GroupsControllerTest < ActionController::TestCase
 	fixtures :currencies
 	
 	test "should get index" do
+	  data1 = create_test_group #[user, group1, priv1]
+	  user1 = data1[0]
+	  data2 = create_test_group(user1) #[user, group1, priv1]
     get :index
     assert_response :success
     assert_not_nil assigns(:groups)
