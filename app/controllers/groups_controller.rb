@@ -20,12 +20,17 @@ class GroupsController < ApplicationController
   def show
     Group.rebuild! if nil.|Group.find(:first).rgt
 	 #this won't work - it won't find children groups
-	 @group = Group.find(params[:id])
+	 @group = Group.find_by_id(params[:id])
 	 @group = nil unless current_user.can_access_group?(@group)
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @group }
+   respond_to do |format|
+      if @group
+        format.html # show.html.erb
+        format.xml  { render :xml => @group }
+      else
+        flash[:notice] = 'Group invalid or you do not have access to this group.'
+        format.html { redirect_to groups_path}
+        format.xml { render :xml => @group.errors, :status => :unprocessable_entity }
+      end
     end
   end
 
@@ -33,8 +38,8 @@ class GroupsController < ApplicationController
   # GET /groups/new.xml
   def new
     Group.rebuild! if nil.|Group.find(:first).rgt
-	 @group = Group.new
-	 @groups = current_user.get_unique_group_branches.map {|g| g.get_self_and_children?}.flatten
+	  @group = Group.new
+	  @groups = current_user.get_unique_group_branches.map {|g| g.get_self_and_children?}.flatten
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,8 +50,8 @@ class GroupsController < ApplicationController
   # GET /groups/1/edit
   def edit
     Group.rebuild! if nil.|Group.find(:first).rgt
-	 @group = Group.find(params[:id])
-	 @groups = current_user.get_unique_group_branches
+	  @group = Group.find(params[:id])
+	  @groups = current_user.get_unique_group_branches
   end
 
   # POST /groups
@@ -55,8 +60,6 @@ class GroupsController < ApplicationController
     # Must check that user's account allows multiple groups
     Group.rebuild! if nil.|Group.find(:first).rgt
     @group = Group.new(params[:group])
-	  
-	  p params[:group][:parent_id].blank?
 	  
 	  if params[:group][:parent_id].blank?
 	    Logger.error "Cannot create group via CREATE action withouth parent_id" 

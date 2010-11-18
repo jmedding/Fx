@@ -17,11 +17,15 @@ class GroupsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_not_nil assigns(:groups)
+    assert_select "table.table", 1    #all of the groups are nested
+    assert_template :index
   end
 
   test "should get new" do
+    data1 = create_test_group #[user, group1, priv1]
     get :new
     assert_response :success
+    assert_not_nil assigns(:groups)
   end
 
   test "should create group" do
@@ -34,23 +38,36 @@ class GroupsControllerTest < ActionController::TestCase
   end
 
   test "should show group" do
-    get :show, :id => groups(:one).to_param
+    data_1 = create_test_group #[user, group1, priv1]
+    get :show, :id => data_1[1].id
     assert_response :success
+    user1 = data_1[0] 
+    data_2 = create_test_group #[user, group1, priv1]    
+    group2 = data_2[1]   
+    #Weird stuff. Current user will still be user1
+    get :show, :id => group2.id
+    assert_response :redirect
   end
 
   test "should get edit" do
-    get :edit, :id => groups(:one).to_param
+    data_1 = create_test_group #[user, group1, priv1]
+    group1 = data_1[1]
+    get :edit, :id => group1
     assert_response :success
   end
 
   test "should update group" do
-    put :update, :id => groups(:one).to_param, :group => { }
+    data_1 = create_test_group #[user, group1, priv1]
+    group1 = data_1[1]
+    put :update, :id => group1.id, :group => {:name => "new_name" }
     assert_redirected_to group_path(assigns(:group))
   end
 
   test "should destroy group" do
+    data_1 = create_test_group #[user, group1, priv1]
+    group1 = data_1[1]
     assert_difference('Group.count', -1) do
-      delete :destroy, :id => groups(:one).to_param
+      delete :destroy, :id => group1.id
     end
 
     assert_redirected_to groups_path

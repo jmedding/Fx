@@ -48,7 +48,10 @@ class ActiveSupport::TestCase
     name = "Test Group #{i}"
     delta = invalid ? 0 : 1
     assert_difference('Group.count', delta) do
-      post :create, :group => {:parent_id => parent.id, :name => name }      
+      old_controller = @controller
+      @controller = GroupsController.new
+      post :create, :group => {:parent_id => parent.id, :name => name }     
+      @controller = old_controller  
     end
     group = user.groups.find_by_name(name)      
     priv_new = nil
@@ -99,4 +102,5 @@ class ActiveSupport::TestCase
          
 		user = User.find_by_name('Tester' + suffix)
   end
+  
 end

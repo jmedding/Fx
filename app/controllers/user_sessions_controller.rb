@@ -35,6 +35,7 @@ class UserSessionsController < ApplicationController
   # DELETE /user_sessions/1.xml
   def destroy
     @user_session = UserSession.find(params[:id])
+    p @user_session.inspect
     @user_session.destroy
 
     respond_to do |format|
