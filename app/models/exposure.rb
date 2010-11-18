@@ -231,8 +231,12 @@ class Exposure < ActiveRecord::Base
 	def get_probs
 	  buffers = get_buffer_probabilities(multiple?)
 	  probs = Array.new
-	  buffers.each_with_index { |buffer, i| probs << Pointxy.new(buffer, (i+1.0)/buffers.size)}
+	  buffers.each_with_index { |buffer, i| probs << Pointxy.new(knock_down(buffer,3), knock_down(100*(i+1.0)/buffers.size,3))}
 	  probs
+  end
+  
+  def knock_down(val, dec)
+    val = (((val*10**dec).round).to_f)/10**dec
   end
   
 	def title?

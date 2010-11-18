@@ -1,7 +1,7 @@
 <%= render(:partial => "shared/flot_chart", 
     :locals => {:place_holder => "graph_probs",
                 :xlabel => "Fx Provision (%)", 
-                :ylabel => "Probability",
+                :ylabel => "Provision effectiveness (%)",
                 :title => @exposure.prob_chart_title?[0],
                 :sub => @exposure.prob_chart_title?[1],
                 :width => 600,
