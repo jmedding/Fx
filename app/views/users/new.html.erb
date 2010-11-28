@@ -1,27 +1,19 @@
-<h1>Create a New user</h1>
-
+<h1>Sign Up to Track Risks</h1>
+<div class="sign_up_form">
 <% form_for(@user) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label :full_name %><br />
-    <%= f.text_field :name %>
-  </p>
+<!--
+-->
   <p>
     <%= f.label :login_name %><br />
     <%= f.text_field :login %>
   </p>
+  
 	<p>
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </p>
   
-  <% fields_for :group do |group| %>
-		<p>
-		<%= group.label 			:name, "Enter the top-level name of your organization." %><br />
-		<%= group.text_field 	:name %>
-		</p>
-	<% end %>
 	<p>  
     <%= f.label :password %><br />
     <%= f.password_field :password %>
@@ -33,6 +25,23 @@
   <p>
     <%= f.submit 'Create' %>
   </p>
-<% end %>
+  <small><span style="color:grey">
+The following fields are optional.
+  <% fields_for :group do |group| %>
+		<p>
+		<%= group.label 			:name, "Enter the name of your organization." %><br />
+		<%= group.text_field 	:name %><br/>
+		<i>You can organize and report your risks by group</i>
+		</p>
+	<% end %>
+	
+	  <p>
+    <%= f.label :full_name %> <i>(Defaults to your login name)</i><br />
+    <%= f.text_field :name %>
+  </p>
 
+
+	</span></small>
+<% end %>
+</div>
 <%= link_to 'Back', users_path %>

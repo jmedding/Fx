@@ -54,5 +54,9 @@ class ApplicationController < ActionController::Base
 		current_user.account.rules.blank?
 	end
 	
+	def base_group
+	  Group.find_by_name("Base")
+  end
+	
 
 end

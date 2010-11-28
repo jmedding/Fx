@@ -39,6 +39,11 @@ class CalculatorsControllerTest < ActionController::TestCase
     get :show, :id => calc1.id
     assert_response :success
   end
+  
+  test "should register user from calculator" do
+    exposure = create_test_calc("EUR", "USD", 60, true)
+    assert_response :redirect
+  end
 
   test "should get edit" do
     calc1 = create_test_calc("EUR", "USD", 60)
@@ -61,10 +66,5 @@ class CalculatorsControllerTest < ActionController::TestCase
     assert_redirected_to calculators_path
   end
   
-  def create_test_calc(c_in, c_out, duration)
-    assert_difference('Calculator.count') do
-      post :create, :calculator => { :from => c_in,  :to => c_out, :duration => duration}
-    end
-    Calculator.find(:last)
-  end
+
 end

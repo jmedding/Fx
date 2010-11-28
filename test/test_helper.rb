@@ -64,7 +64,7 @@ class ActiveSupport::TestCase
   end
 
   def create_test_exposure( c1, c2, validity, amount, carried = nil, user = nil)
-    user = create_test_user unless user
+    user ||= create_test_user
     c = Conversion.find_by_currency_in_and_currency_out(Currency.find_by_symbol(c1).id, Currency.find_by_symbol(c2).id)
     post :create,
      :tender => {:group => user.groups.find(:first), 
@@ -103,4 +103,34 @@ class ActiveSupport::TestCase
 		user = User.find_by_name('Tester' + suffix)
   end
   
+  def create_test_calc(c_in, c_out, duration, register = false)
+    calc_params = { :from => c_in,  :to => c_out, :duration => duration}
+    assert_difference('Calculator.count') do
+      post :create, :calculator => calc_params
+    end
+    calc = Calculator.find(:last)
+    if register
+      session[:calculator] = calc_params
+      user = create_test_user
+      exposure = Exposure.find(:last)
+      return user.can_access_exposure?(exposure) ? exposure : nil
+    else
+      return calc
+    end
+  end
+  
+  def create_user_for_unit
+    
+    account = Account.new
+    user = nil
+    assert_difference ('User.count') do
+      user = User.create!( :login                 => "Unit_Tester",
+                          :password              => "test_pass",
+                          :password_confirmation => "test_pass",
+                          :email                 => "unit_tester@test.com",
+                          :account                => account
+                        )
+    end
+    return user                  
+  end
 end

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  from: EUR
+  to: USD
+  duration: 30
+  session_id: nil
+  source_id: 1
+
+two:
+  from: EUR
+  to: THB
+  duration: 25
+  session_id: nil
+  source_id: 1

@@ -80,35 +80,18 @@ class ExposuresController < ApplicationController
   # POST /exposures
   # POST /exposures.xml
   def create
-    @exposure = Exposure.new(params[:exposure])
-	 
-	 #if the form submits a :tender hash, then the tender is new and needs created and assigned
-	 #by assigning it to the exposure it should get saved when the exposure is saved.
-	  unless params[:tender].blank?
-		  bid_date = (params["tender"]["bid_date(1i)"].to_s+"-"+params["tender"]["bid_date(2i)"].to_s+"-"+params["tender"]["bid_date(3i)"].to_s).to_date
-		  tender = Tender.new(params[:tender]) 
-		  tender.validity = tender.bid_date + params[:tender][:validity].to_i
-		  tender.user = current_user
-		  tender.group = current_user.groups[0]
-	  end
-	  
+    # Move all object creation work to the model so we can resuse it when doing the calc_> register flow.
+    message = nil
+    @exposure = Exposure.create_with_tender(params, message)
     respond_to do |format|
-	  	unless tender.save
-	  		flash[:notice] = 'Exposure duration information failed to save'
-	  		format.html { redirect_to(@exposure) }
-	  		format.xml  { render :xml => @exposure, :status => :created, :location => @exposure }
-	    end
-	  	@exposure.tender = tender
-	  	if @exposure.save
-	  		#need to update the rates and calculate recommended rate to carry
+      if message.blank?
         flash[:notice] = 'Exposure was successfully created.'        
         format.html { redirect_to(@exposure) }
         format.xml  { render :xml => @exposure, :status => :created, :location => @exposure }
       else
-  			#p "Exposure failed to save" + @exposure.inspect
-  			tender.destroy
-  			format.html { render :action => "new" }
-        format.xml  { render :xml => @exposure.errors, :status => :unprocessable_entity }
+        flash[:notice] = message
+  			format.html { render :action => new }
+        format.xml  { render :xml => @exposure.errors, :status => :unprocessable_entity }        
       end
     end
   end

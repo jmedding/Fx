@@ -9,12 +9,12 @@ class Account < ActiveRecord::Base
 	def get_fields
 		f = Array.new
 		f << Field.new("Pament", payment, true)
-		f << Field.new("Currency", curreny.symbol)
+		f << Field.new("Currency", currency.symbol)
 		#f.last.link_object = self
 		f << Field.new("Period", period, true)
-		f << Field.new("CC Number", cc_num)
+		f << Field.new("CC Number", ccnum)
 		f << Field.new("CC_Exp", cc_exp)
-		f << Field.new("CC Code", cc_code)
+#		f << Field.new("CC Code", cc_code)  #This field is not in the schema. May need to be added.
 		f << Field.new("CC Name", cc_name)
 		f << Field.new("PayPal", paypal)
 		return f

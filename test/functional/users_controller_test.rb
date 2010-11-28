@@ -48,14 +48,12 @@ class UsersControllerTest < ActionController::TestCase
 	end
 
   test "should get edit" do
-    user = create_test_user
-    
+    user = create_test_user    
     get :edit, :id => user.id
     assert_response :success
     looser = create_test_user("1")  #user will remain current_user (don't know why...)
     get :edit, :id => looser.id
-    assert_redirected_to user_path(user) #should redirect to current_user user-show page, but this redirects
-    
+    assert_redirected_to user_path(user) #should redirect to current_user user-show page, but this redirects    
   end
 
   test "should update user" do

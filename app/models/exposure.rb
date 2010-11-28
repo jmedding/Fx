@@ -14,6 +14,8 @@ class Exposure < ActiveRecord::Base
 		self.invert = set_conversion!  if self.invert.blank?
 		update_rates!
 	end
+	
+	
 		
 	def check_carried_blank?
 		self.carried_rate.blank? || self.carried_rate <= 0
@@ -53,9 +55,38 @@ class Exposure < ActiveRecord::Base
 			errors.add_to_base("Currency_In(#{currency_in}) is not valid!") if Currency.find_by_id(currency_in).blank?
 			errors.add_to_base("Currency_Out(#{currency_out}) is not valid!") if Currency.find_by_id(currency_out).blank?
 			errors.add_to_base("Currency_In and Currency_Out must be different!") if currency_in == currency_out
-		end		
+		end				
 	end
 	
+  def Exposure.create_with_tender (params, message = nil)
+    exp = Exposure.new(params[:exposure])
+	  
+	  #if the form submits a :tender hash, then the tender is new and needs to be created and assigned
+	  unless params[:tender].blank?
+		  if params[:tender][:id]
+		    tender = Tender.find_by_id(params[:tender][:id])
+      else
+        tender = Tender.new(params[:tender]) 
+		    tender.validity = tender.bid_date + params[:tender][:validity].to_i
+      end
+	  end
+	  unless tender
+      p  message = "No tender data received"
+      return nil
+    end
+    unless tender.save
+	    p	message = 'Exposure duration information failed to save'
+	  	return nil
+	  end
+	  exp.tender = tender
+	  unless exp.save
+	    tender.destroy
+	    p  message = "Exposure could not be saved"
+	    return nil
+   end
+   return exp
+ 	end
+ 	  		
 	def Exposure.populate_exposures!
 		Exposure.find(:all).each do |e|
 			#e.generate_dummy_rates
@@ -169,7 +200,6 @@ class Exposure < ActiveRecord::Base
 		(current_rate - carried_rate)/carried_rate*100
 	end
   def get_buffer_probabilities(multiple, start = 0)
-    
     i = invert ? -1 : 1
     conversion.get_buffer_probabilities(tender.remaining_validity?, multiple, i, start)
   end

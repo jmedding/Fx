@@ -1,7 +1,8 @@
 <H1>Calculate Foreign Exchange (ForEx) Risk Provision</H1>
+
+<div class="calculator">
 <% form_for(@calculator) do |f| %>
 <%= f.error_messages %>
-<div class="calculator">
 <div class="widget">
 
 <% len = 15 %>
@@ -10,41 +11,56 @@
 	<p>
 		<div class="label"><%= f.label :from %></div> 
 		<div class="label"><%= f.label :to %> </div>
-		<div class="label"><%= f.label :duration %><small><i>(days)</i></small></div>
+		<div class="label"><%= f.label :duration %></div>
 		
 	</p>
 	<p>
 		<div class="label"><%= f.collection_select(:from, Currency.all, :symbol, :symbol)%></div> 
 		<div class="label"><%= f.collection_select(:to, Currency.all, :symbol, :symbol)%></div> 
-		<div class="label"><%= f.text_field :duration, :size => 5 %> </div> 
+		<div class="label"><%= f.text_field :duration, :size => 1 %><small><i>(days)</i></small> </div> 
 	</p>
 	</br>
 	<p>
 	 <%= f.submit 'Calculate Risk Provision now!' %>
   </p>
-   <div class="calculator_results">
+<div class="calculator_results">
 	<% if @current_rate %>
-		<div class="label2">Currencies:</div> 
-		<div class="label3"><%= "From #{@calculator.from} to #{@calculator.to}" %></div> 
-		<div class="label2">Current Date:</div> 
-		<div class="label3"><%= Date.today %></div> 
-		<div class="label2">Current Rate:</div> 
-		<div class="label3"><%= "%0.3f" % @current_rate %></div> 
-		<div class="label2">Duration:</div> 
-		<div class="label3"><%= "#{@calculator.duration} days" %></div> 
-		<div class="label2">Provision:</div> 
-		<div class="label3"><%= "%0.2f%" % @provision  %></div> 
-		<div class="label2">Effective Rate:</div> 
-		<div class="label3"><%= "%0.3f" % @recommended_rate %></div> 
-		<% end %>
+	 <table class = "calc_table">
+	  <tr>
+	    <td class="label2">Currencies:</td> 
+		  <td class="label3"><%= "From #{@calculator.from} to #{@calculator.to}" %></td>
+		</tr>
+		<tr>
+		  <td class="label2">Current Date:</td> 
+		  <td class="label3"><%= Date.today %></td> 
+		</tr>
+		<tr>  
+	  	<td class="label2">Current Rate:</td> 
+	  	<td class="label3"><%= "%0.3f" % @current_rate %></td> 
+		</tr>
+		<tr>
+	  	<td class="label2">Duration:</td> 
+	  	<td class="label3"><%= "#{@calculator.duration} days" %></td> 
+		</tr>
+		<tr>
+		  <td class="label2">Provision:</td> 
+		  <td class="label3"><%= "%0.2f%" % @provision  %></td> 
+		</tr>
+		<tr>
+		  <td class="label2">Effective Rate:</td> 
+		  <td class="label3"><%= "%0.3f" % @recommended_rate %></td> 
+		</tr>
+	</table>
+	<% end %>
 	</div>
-<% end %>
+
 </div>
 
 <div class="calculator_graph">
 	<% if @current_rate %>
-	<%= open_flash_chart_object(275,275, "/calculators/graph/#{@orig_calculator.id}")  %>
+	<%= open_flash_chart_object(275,220, "/calculators/graph/#{@orig_calculator.id}")  %>
 	<% end %>
+	<%= f.submit 'Track this Risk for Free!', :name => "create_account", :class => "track_button" %>
 </div>
-
+<% end %>
 </div>

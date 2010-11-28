@@ -7,7 +7,7 @@ class CalculatorsController < ApplicationController
     @calculators = Calculator.all
 	 s = get_session	#session[:_csrf_token]
 	 source = params[:source]
-	 puts "session: #{s} at index action"
+	 #puts "session: #{s} at index action"
 	 #this is dangerour, becuase if Calculate.create fails validation (currencies don't exist) we get an infiniete loop 
 	 @calculator = Calculator.create(:from => 'EUR', :to => 'USD', 
 																:duration => 90, :session_id => s, 
@@ -38,9 +38,8 @@ class CalculatorsController < ApplicationController
   # GET /calculators/new.xml
   def new
     @hide_login = "hidden"
-	 @calculator = Calculator.new(params[:calculator])	
-	 puts 'new action'
-		#redirect_to :action => 'create', :calculator => @calculator
+	  @calculator = Calculator.new(params[:calculator])	
+	  #redirect_to :action => 'create', :calculator => @calculator
     respond_to do |format|      
 		format.html # new.html.erb
       format.xml  { render :xml => @calculator }
@@ -49,34 +48,35 @@ class CalculatorsController < ApplicationController
 
   # GET /calculators/1/edit
   def edit
-	  puts 'edit action'
-	  
-    @hide_login = "hidden"
+	  @hide_login = "hidden"
     @calculator = Calculator.find(params[:id])
   end
 
   # POST /calculators
   # POST /calculators.xml
   def create
-	@hide_login = "hidden"  
-	#puts 'create action ' + params.to_s
-	@calculator = Calculator.new(params[:calculator])
-	@calculator.source_id = 1	#we only get here from the 'caclulate' button
-	@calculator.session_id = get_session
-    respond_to do |format|
-      if @calculator.save
-        flash[:notice] = nil #'Calculator was successfully created.'
-        format.html { redirect_to @calculator}
-        format.xml  { render :xml => @calculator, :status => :created, :location => @calculator }
-      else
-			
-			#flash[:notice] = 'Calculator was not successfully created.'
-        format.html { render :action => "new", :calculator => @calculator }
-        format.xml  { render :xml => @calculator.errors, :status => :unprocessable_entity }
-      end
+	  @hide_login = "hidden"  
+	  if params[:create_account]
+	    session[:calculator] = params[:calculator]
+	    redirect_to register_path #, :calculator => params[:calculator]
+    else
+    	@calculator = Calculator.new(params[:calculator])
+	    @calculator.source_id = 1	#we only get here from the 'caclulate' button
+	    @calculator.session_id = get_session
+        respond_to do |format|
+          if @calculator.save
+            flash[:notice] = nil #'Calculator was successfully created.'
+            format.html { redirect_to @calculator}
+            format.xml  { render :xml => @calculator, :status => :created, :location => @calculator }
+          else
+	    		
+	    		#flash[:notice] = 'Calculator was not successfully created.'
+            format.html { render :action => "new", :calculator => @calculator }
+            format.xml  { render :xml => @calculator.errors, :status => :unprocessable_entity }
+          end
+        end
     end
   end
-
   # PUT /calculators/1
   # PUT /calculators/1.xml
   def update

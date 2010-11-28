@@ -22,6 +22,7 @@ class AccountsController < ApplicationController
       format.xml  { render :xml => @account }
     end
   end
+ 
 
   # GET /accounts/new
   # GET /accounts/new.xml
