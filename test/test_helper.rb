@@ -119,8 +119,12 @@ class ActiveSupport::TestCase
     end
   end
   
-  def create_user_for_unit
-    
+  def my_round(val, zeros)
+    f = 10.0 **zeros
+    (val * f).round / f
+  end
+  
+  def create_user_for_unit    
     account = Account.new
     user = nil
     assert_difference ('User.count') do
