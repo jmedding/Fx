@@ -3,6 +3,7 @@
 eur:
   id: 1
   symbol: EUR
+  base: true
 
 usd:
   id: 2

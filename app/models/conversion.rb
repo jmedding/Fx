@@ -29,10 +29,12 @@ class Conversion < ActiveRecord::Base
 	def yaml_export
 		text = data.to_yaml
 		text.gsub!("/\n/", "\r\n")
+		File.create("./db/seeds//#{RAILS_ENV}/", "d") unless File.open("./db/seeds//#{RAILS_ENV}")
 		File.open("./db/seeds//#{RAILS_ENV}/#{pair?}.yaml", 'w') {|f| f.write(text) }
 	end
 		
 	def yaml_import (days = 1500, export = false)
+	  #should only be called from 'Conversion.generate_convesions' other wise, data will not be updated properly
 		reset_data!
 		file = "./db/seeds/#{RAILS_ENV}/"+pair?+".yaml"
 		p 'try to load from ' + file 
@@ -123,11 +125,20 @@ class Conversion < ActiveRecord::Base
 			self.first = nil
 			self.last = nil
 	end
-		
+
+  def clean_data
+    last_day = nil
+    data.each do |d|
+      data.delete(d) if (d.day == last_day && last_day)
+      last_day = d.day if d
+    end
+  end		
+
 	def scrape_rates(num_days)
 		scraper = Scraper.define do
 			array :days
-			process "table#tabla2 tr", :days => Scraper.define {
+			#process "table#tabla2 tr", :days => Scraper.define {
+			process "table:nth-of-type(2) tr", :days => Scraper.define {
 				array :values
 				process "td", :values => :text					
 				result :values
@@ -140,10 +151,9 @@ class Conversion < ActiveRecord::Base
 			p uri
 			#add :parser => :html_parser to scrape call below to avoid using tidy, which doesn't want to work on AMD64 server...
 			rates = scraper.scrape(uri, {:timeout => 600, :parser => :html_parser}) #an array filled with arrays of days [date, o, h, l, c]
-			p 'data downloaded'
+			p rates.nil? ? "No data found" : "data downloaded for #{rates.count.to_s} days"
 			vals = []
 			unless rates.blank?
-				rates.delete_at(0)	#first row has header text
 				rates.each {|r| vals << [r[0], (Float(r[2])+Float(r[4]))/2] if r.length >=5}
 			end			
 			return vals
@@ -298,13 +308,7 @@ class Conversion < ActiveRecord::Base
 		(data.last.rate ** invert)
 	end
 	
-  def clean_data
-    last_day = nil
-    data.each do |d|
-      data.delete(d) if (d.day == last_day && last_day)
-      last_day = d.day if d
-    end
-  end
+
 
 	
 end
