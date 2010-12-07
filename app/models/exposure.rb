@@ -210,7 +210,7 @@ class Exposure < ActiveRecord::Base
 		#the conversion_id and invert paramater should be set when completing the exposure
 		#if there are no rates yet, then seed with the last ten days
 		if rates.empty?
-			start_date = [Date.today - 2 * tender.remaining_validity?, tender.bid_date - 10].min
+			start_date = [Date.today - days_to_analyze, tender.bid_date - 10].min
 		else
 			start_date = rates.find(:last).day
 		end

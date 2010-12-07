@@ -12,11 +12,20 @@ class ConversionTest < ActiveSupport::TestCase
 
   
   test "Generate_Conversions" do
-    Conversion.generate_conversions!
+    #need to delete /seed/test.* otherwise it's wonky'
+    #Conversion.generate_conversions!
     assert_equal 2, Conversion.count
     con = Conversion.find(:first)
     
     assert_equal 500, con.data.count
+  end
+  
+  test "Test Conversion.update!" do
+    cur = Currency.create(:symbol => "NIL")
+    pln = Currency.find(3)
+    p "testing dummy conversion"
+    con = Conversion.create(:currency_in => cur.id, :currency_out => pln.id)  #this should normally not be scraped
+    Conversion.update!  #will fail if it tries to scrap con
   end
   
   test "pair?" do
@@ -26,7 +35,7 @@ class ConversionTest < ActiveSupport::TestCase
 
   test "get_conversion" do
     c1 = Currency.find(:first)
-    c2 = Currency.find(:last)
+    c2 = Currency.find(2)
     con = Conversion.get_conversion(c1.id, c2.id)[0]
     assert_equal 500, con.data.count
   end

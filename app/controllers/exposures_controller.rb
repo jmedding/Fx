@@ -213,7 +213,7 @@ class ExposuresController < ApplicationController
 			#carrieds << r.carried
 			#recs << r.recommended
 			#days << r.day
-			
+			p r.day
 			all << r.factor unless r.factor.blank? || r.factor == 0
 			all << r.carried unless r.carried .blank? || r.carried == 0
 			all << r.recommended unless r.recommended.blank? || r.recommended == 0

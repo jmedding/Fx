@@ -15,7 +15,7 @@ class Conversion < ActiveRecord::Base
 			end
 		end
 		Conversion.import_all_from_yaml
-		Conversion.update!
+		Conversion.update! -1, false
 		Conversion.export_all_to_yaml
 	end
 	
@@ -57,8 +57,8 @@ class Conversion < ActiveRecord::Base
 	end
 	
 	
-	def Conversion.update!(days = -1) 
-		Conversion.all.each {|c| c.populate!(days)}
+	def Conversion.update!(days = -1, skip_empty = true) 
+		Conversion.all.each {|c| c.populate!(days) unless c.data.empty? && skip_empty}
 	end
 	
 	def Conversion.get_conversion(currency_in, currency_out, create_new = false)
